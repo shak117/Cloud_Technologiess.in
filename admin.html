@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Control Panel | Cloud Technologies</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233dd6c8' stroke-width='2'><rect x='2' y='3' width='20' height='6' rx='2'/><rect x='2' y='15' width='20' height='6' rx='2'/><circle cx='6' cy='6' r='1' fill='%233dd6c8'/><circle cx='6' cy='18' r='1' fill='%233dd6c8'/><path d='M18 9v6'/></svg>">
+</head>
+<body class="admin-body">
+
+  <!-- =========================================================
+       LOGIN MODAL OVERLAY (PASSWORD PROTECTED)
+  ========================================================== -->
+  <div class="admin-login-overlay" id="adminLoginOverlay">
+    <div class="login-card">
+      <div class="login-icon-box">
+        🔒
+      </div>
+      <h2 class="login-title">Cloud Technologies</h2>
+      <div class="login-subtitle">Admin Security Portal • Authorized Access Only</div>
+
+      <div class="login-error" id="loginError"></div>
+
+      <form id="adminLoginForm">
+        <div class="login-form-group">
+          <label for="adminUsername">Username</label>
+          <input type="text" id="adminUsername" class="login-input" placeholder="Enter admin username" required autofocus autocomplete="username">
+        </div>
+
+        <div class="login-form-group">
+          <label for="adminPassword">Password</label>
+          <input type="password" id="adminPassword" class="login-input" placeholder="Enter admin password" required autocomplete="current-password">
+        </div>
+
+        <button type="submit" class="btn-login-submit">
+          Authenticate &amp; Access Panel →
+        </button>
+      </form>
+
+      <div class="login-footer-hint">
+        🔐 Protected system • Cloud Technologies Infrastructure
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       ADMIN HEADER
+  ========================================================== -->
+  <header class="admin-navbar">
+    <div class="admin-nav-inner">
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <a href="index.html" class="admin-brand">
+          <div class="logo-symbol" style="width: 36px; height: 36px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="6" rx="2"></rect>
+              <rect x="2" y="15" width="20" height="6" rx="2"></rect>
+              <circle cx="6" cy="6" r="1" fill="currentColor"></circle>
+              <circle cx="6" cy="18" r="1" fill="currentColor"></circle>
+              <path d="M18 9v6"></path>
+            </svg>
+          </div>
+          <div>
+            <span class="brand-name" style="font-size: 1.1rem;">Cloud Technologies</span>
+          </div>
+        </a>
+        <span class="admin-brand-tag">Admin Console</span>
+      </div>
+
+      <div class="admin-nav-right">
+        <a href="index.html" target="_blank" style="color: var(--admin-teal); text-decoration: none; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 0.35rem;">
+          <span>🌐 View Live Site</span>
+        </a>
+        <div class="admin-user-badge">
+          <span style="color: #34d399; font-size: 0.75rem;">●</span>
+          <span>cloud (Shashank Pawar)</span>
+        </div>
+        <button class="btn-admin-logout" id="adminLogoutBtn">
+          <span>Logout ⏏</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================
+       MAIN DASHBOARD
+  ========================================================== -->
+  <main class="admin-container">
+
+    <!-- Top Metrics Overview -->
+    <div class="admin-metrics-grid">
+      <div class="metric-card">
+        <div class="metric-icon-box" style="background: rgba(59, 130, 246, 0.15); color: #60a5fa;">
+          📋
+        </div>
+        <div>
+          <div class="metric-val" id="metricTotalRequests">0</div>
+          <div class="metric-label">Total Inquiries</div>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-icon-box" style="background: rgba(61, 214, 200, 0.15); color: #3dd6c8;">
+          ✨
+        </div>
+        <div>
+          <div class="metric-val" id="metricNewRequests" style="color: var(--admin-teal);">0</div>
+          <div class="metric-label">New / Unread</div>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-icon-box" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24;">
+          ⚙️
+        </div>
+        <div>
+          <div class="metric-val" id="metricActiveDemos" style="color: var(--admin-gold);">0</div>
+          <div class="metric-label">Active Demos</div>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-icon-box" style="background: rgba(16, 185, 129, 0.15); color: #34d399;">
+          🏆
+        </div>
+        <div>
+          <div class="metric-val" id="metricConvertedClients" style="color: var(--admin-green);">0</div>
+          <div class="metric-label">Converted / Won</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="admin-tabs-bar">
+      <button class="admin-tab-btn active" data-tab="tab-requests">
+        <span>📥 Client Requests &amp; Demos</span>
+      </button>
+      <button class="admin-tab-btn" data-tab="tab-content">
+        <span>✏️ Website Content &amp; Settings Editor</span>
+      </button>
+    </div>
+
+    <!-- =========================================================
+         TAB 1: CLIENT REQUESTS & DEMOS
+    ========================================================== -->
+    <div class="admin-tab-pane" id="tab-requests" style="display: block;">
+      <div class="admin-toolbar">
+        <div class="toolbar-left">
+          <input type="text" id="leadSearchInput" class="admin-search-input" placeholder="Search by name, phone, demand...">
+          
+          <select id="leadStatusFilter" class="admin-filter-select">
+            <option value="all">All Statuses</option>
+            <option value="New">New</option>
+            <option value="Contacted">Contacted</option>
+            <option value="Demo In Progress">Demo In Progress</option>
+            <option value="Converted / Won">Converted / Won</option>
+            <option value="Completed">Completed</option>
+            <option value="Closed">Closed</option>
+          </select>
+
+          <select id="leadTypeFilter" class="admin-filter-select">
+            <option value="all">All Request Types</option>
+            <option value="Demo Booking">Demo Bookings</option>
+            <option value="Custom Proposal">Custom Proposals</option>
+          </select>
+        </div>
+
+        <div class="toolbar-right">
+          <button class="btn-admin-action btn-gold" onclick="exportLeadsCSV()">
+            <span>📥 Export to CSV</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Requests Table -->
+      <div class="admin-card-table">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Client / ID</th>
+              <th>Category &amp; Type</th>
+              <th>Phone &amp; Direct WhatsApp</th>
+              <th>Demand / Features</th>
+              <th>Received Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="leadsTableBody">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         TAB 2: WEBSITE CONTENT & SETTINGS EDITOR
+    ========================================================== -->
+    <div class="admin-tab-pane" id="tab-content" style="display: none;">
+      <form id="siteConfigForm">
+        <div class="content-editor-grid">
+          
+          <!-- Card 1: Agency & Contact -->
+          <div class="editor-card">
+            <div class="editor-card-header">
+              <span style="font-size: 1.3rem;">🏢</span>
+              <h3 class="editor-card-title">Agency &amp; Contact Info</h3>
+            </div>
+
+            <div class="editor-form-group">
+              <label for="cfgBrandName">Agency Brand Name</label>
+              <input type="text" id="cfgBrandName" class="editor-input" required>
+            </div>
+
+            <div class="editor-form-group">
+              <label for="cfgBrandTag">Agency Tagline / Subtitle</label>
+              <input type="text" id="cfgBrandTag" class="editor-input">
+            </div>
+
+            <div class="editor-form-group">
+              <label for="cfgDirectPhone">Direct Phone Number</label>
+              <input type="text" id="cfgDirectPhone" class="editor-input" required>
+            </div>
+
+            <div class="editor-form-group">
+              <label for="cfgWhatsappNumber">WhatsApp Number (numeric, e.g. 8830464841)</label>
+              <input type="text" id="cfgWhatsappNumber" class="editor-input" required>
+            </div>
+
+            <div class="editor-form-group">
+              <label for="cfgSupportEmail">Support Email</label>
+              <input type="email" id="cfgSupportEmail" class="editor-input">
+            </div>
+
+            <div class="editor-form-group">
+              <label for="cfgUptimeBadge">Telemetry Uptime Badge</label>
+              <input type="text" id="cfgUptimeBadge" class="editor-input">
+            </div>
+
+            <div class="editor-form-group">
+              <label for="cfgDeliveryBadge">Telemetry Delivery Badge</label>
+              <input type="text" id="cfgDeliveryBadge" class="editor-input">
+            </div>
+          </div>
+
+          <!-- Card 2: Homepage Hero & Marketing Copy -->
+          <div class="editor-card">
+            <div class="editor-card-header">
+              <span style="font-size: 1.3rem;">🚀</span>
+              <h3 class="editor-card-title">Homepage Hero &amp; Messaging</h3>
+            </div>
+
+            <div class="editor-form-group">
+              <label for="cfgHeroTag">Hero Section Tag</label>
+              <input type="text" id="cfgHeroTag" class="editor-input">
+            </div>
+
+            <div class="editor-form-group">
+              <label for="cfgHeroTitle">Hero Main Headline</label>
+              <textarea id="cfgHeroTitle" class="editor-textarea" style="min-height: 55px;"></textarea>
+            </div>
+
+            <div class="editor-form-group">
+              <label for="cfgHeroDesc">Hero Description</label>
+              <textarea id="cfgHeroDesc" class="editor-textarea" style="min-height: 85px;"></textarea>
+            </div>
+
+            <div class="editor-form-group">
+              <label for="cfgDemoCalloutTitle">Demo Callout Banner Title</label>
+              <input type="text" id="cfgDemoCalloutTitle" class="editor-input">
+            </div>
+
+            <div class="editor-form-group">
+              <label for="cfgDemoCalloutDesc">Demo Callout Banner Description</label>
+              <textarea id="cfgDemoCalloutDesc" class="editor-textarea" style="min-height: 60px;"></textarea>
+            </div>
+          </div>
+
+          <!-- Card 3: Founder Profile & Quote -->
+          <div class="editor-card">
+            <div class="editor-card-header">
+              <span style="font-size: 1.3rem;">👨‍💻</span>
+              <h3 class="editor-card-title">Founder Details (Shashank Pawar)</h3>
+            </div>
+
+            <div class="editor-form-group">
+              <label for="cfgFounderName">Founder Name</label>
+              <input type="text" id="cfgFounderName" class="editor-input">
+            </div>
+
+            <div class="editor-form-group">
+              <label for="cfgFounderTitle">Founder Official Title</label>
+              <input type="text" id="cfgFounderTitle" class="editor-input">
+            </div>
+
+            <div class="editor-form-group">
+              <label for="cfgFounderQuote">Founder Quote &amp; Philosophy</label>
+              <textarea id="cfgFounderQuote" class="editor-textarea" style="min-height: 90px;"></textarea>
+            </div>
+          </div>
+
+          <!-- Card 4: Quick Guide & Live Sync -->
+          <div class="editor-card">
+            <div class="editor-card-header">
+              <span style="font-size: 1.3rem;">💡</span>
+              <h3 class="editor-card-title">Live Dynamic Sync</h3>
+            </div>
+            <p style="font-size: 0.88rem; color: #94a3b8; line-height: 1.6;">
+              When you click <strong style="color: #ffffff;">Save Website Changes</strong>, your edits are saved to local persistent storage. The main website (<code style="color: var(--admin-teal);">index.html</code>, <code style="color: var(--admin-teal);">services.html</code>, <code style="color: var(--admin-teal);">gallery.html</code>, <code style="color: var(--admin-teal);">team.html</code>) dynamically pulls and updates these values in real-time.
+            </p>
+            <div style="margin-top: 1.2rem; padding: 1rem; background: rgba(61, 214, 200, 0.06); border: 1px solid rgba(61, 214, 200, 0.2); border-radius: 10px;">
+              <div style="font-size: 0.8rem; font-weight: 700; color: var(--admin-teal); margin-bottom: 0.3rem;">✓ Security Notice</div>
+              <div style="font-size: 0.78rem; color: #cbd5e1;">Credentials are encrypted in session memory. You can log out safely anytime from the top bar.</div>
+            </div>
+          </div>
+
+          <!-- Floating Actions Bar -->
+          <div class="editor-actions-bar">
+            <div>
+              <button type="button" class="btn-reset-config" id="btnResetConfig">
+                ↺ Reset All Defaults
+              </button>
+            </div>
+            <button type="submit" class="btn-save-config">
+              <span>💾 Save Website Changes &amp; Apply Live</span>
+            </button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+
+  </main>
+
+  <!-- =========================================================
+       LEAD DETAIL / INTERNAL NOTES MODAL
+  ========================================================== -->
+  <div class="modal-backdrop" id="leadDetailModal">
+    <div class="modal-dialog" style="max-width: 520px;">
+      <button class="modal-close-btn" onclick="closeLeadModal()" aria-label="Close modal">&times;</button>
+      
+      <div class="section-tag" style="margin-bottom: 0.5rem;">REQUEST DETAILS</div>
+      <h3 class="modal-title" id="modalLeadClientName">Client Name</h3>
+      
+      <div style="font-size: 0.84rem; color: #94a3b8; margin-bottom: 1.2rem; line-height: 1.6;">
+        <div><strong>Phone:</strong> <span id="modalLeadPhone" style="color: #ffffff;"></span></div>
+        <div><strong>Industry:</strong> <span id="modalLeadIndustry" style="color: #ffffff;"></span></div>
+        <div><strong>Request Type:</strong> <span id="modalLeadType" style="color: #ffffff;"></span></div>
+        <div><strong>Features:</strong> <span id="modalLeadFeatures" style="color: var(--admin-teal);"></span></div>
+        <div style="margin-top: 0.5rem;"><strong>Client Notes:</strong> <span id="modalLeadNotes" style="color: #cbd5e1; font-style: italic;"></span></div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="modalLeadAdminNotes">Admin Internal Notes &amp; Follow-up Status</label>
+        <textarea id="modalLeadAdminNotes" class="form-textarea" placeholder="Add private notes (e.g. called client, demo scheduled for Friday)..." style="min-height: 80px;"></textarea>
+      </div>
+
+      <div style="display: flex; gap: 0.8rem; margin-top: 1rem;">
+        <button type="button" class="btn-modal-submit" id="btnSaveLeadNotes" style="background: var(--admin-teal); color: #070d18;">
+          Save Internal Notes
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="adminToast" class="admin-toast"></div>
+
+  <!-- Admin Scripts -->
+  <script src="js/admin.js"></script>
+</body>
+</html>
