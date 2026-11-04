@@ -6,6 +6,7 @@ const ADMIN_PASS = "Cloud@2005";
 const SESSION_KEY = "cloudtech_admin_session";
 const LEADS_KEY = "cloudtech_leads";
 const CONFIG_KEY = "cloudtech_site_config";
+const CLIENTS_KEY = "cloudtech_clients";
 
 const DEFAULT_LEADS = [
   {
@@ -66,6 +67,29 @@ const DEFAULT_CONFIG = {
 };
 
 // State
+const DEFAULT_CLIENTS = [
+  {
+    id: "client-mama",
+    name: "Mama Pedhewale",
+    industry: "Heritage D2C E-Commerce",
+    logo: "images/client-mama-pedhewale.png",
+    link: "https://mamapedhewale.com",
+    badge: "Satara Since 1948",
+    active: true
+  },
+  {
+    id: "client-knotberry",
+    name: "knotberry.studios",
+    industry: "Handmade Boutique & Lifestyle",
+    logo: "images/client-knotberry.png",
+    link: "https://knotberry.studios",
+    badge: "Boutique & UI/UX",
+    active: true
+  }
+];
+
+let allClients = [];
+
 let allLeads = [];
 let siteConfig = {};
 
@@ -75,6 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initTabs();
   initLeadsTable();
   initConfigEditor();
+  initClientsManager();
 });
 
 // -------------------------------------------------------------
@@ -155,6 +180,19 @@ function initStorage() {
     }
   } catch (e) {
     siteConfig = DEFAULT_CONFIG;
+  }
+
+  // Clients
+  try {
+    const storedClients = localStorage.getItem(CLIENTS_KEY);
+    if (!storedClients) {
+      allClients = DEFAULT_CLIENTS;
+      localStorage.setItem(CLIENTS_KEY, JSON.stringify(allClients));
+    } else {
+      allClients = JSON.parse(storedClients);
+    }
+  } catch (e) {
+    allClients = DEFAULT_CLIENTS;
   }
 }
 
