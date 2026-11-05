@@ -1,16 +1,16 @@
 /**
- * Cloud Technologies — Modern Client Experience & Core App Controller
- * Palette: Navy Blue, Royal Blue, Vibrant Cyan & Pure White
+ * Cloud Technologies — Core App Controller & Client Interactions
+ * Visual Identity: Modern Blue, Warm Ivory & Tech-Forward Engineering
  */
 
 const WHATSAPP_NUMBER = "918830464841";
 const CLIENTS_STORAGE_KEY = "cloudtech_clients";
 
-// Default Client Collaborations
+// Approved Client Collaborations (SK Relax Studio, HIRAMOTI Collection, Mhaswadkar Machineries)
 const DEFAULT_CLIENTS = [
   {
     id: "c1",
-    name: "SK Relax Beauty Academy & Salon",
+    name: "SK Relax Studio",
     industry: "Beauty Academy & Salon",
     logo: "images/client-sk-relax.png",
     badge: "Satara",
@@ -18,7 +18,7 @@ const DEFAULT_CLIENTS = [
   },
   {
     id: "c2",
-    name: "HIRAMOTI Catalogue",
+    name: "HIRAMOTI Collection",
     industry: "Catalogue & Collections",
     logo: "images/client-hiramoti.png",
     badge: "E-Catalogue",
@@ -26,26 +26,10 @@ const DEFAULT_CLIENTS = [
   },
   {
     id: "c3",
-    name: "Mama Pedhewale – Traditional Sweets",
-    industry: "Traditional Sweets Satara",
-    logo: "images/client-mama-pedhewale.png",
-    badge: "Since 1948",
-    active: true
-  },
-  {
-    id: "c4",
     name: "Mhaswadkar Machineries",
     industry: "Machineries Trading Co.",
     logo: "images/client-mhaswadkar.svg",
-    badge: "Estd. 1982",
-    active: true
-  },
-  {
-    id: "c5",
-    name: "Punita Collection",
-    industry: "Ethnic & Western Boutique",
-    logo: "images/client-punita.svg",
-    badge: "Boutique",
+    badge: "Industrial",
     active: true
   }
 ];
@@ -62,7 +46,7 @@ const SERVICES_SCOPE = {
     name: "E-Commerce & Online Store Architecture",
     category: "High-Conversion E-Commerce",
     tagline: "Custom online storefronts engineered to process orders without crash or timeouts.",
-    highlights: ["Diwali / Rush Hour Surge Shield", "1-Click WhatsApp Direct Checkout", "Custom Product Bundles Engine", "Live Inventory Telemetry"]
+    highlights: ["High-Capacity Product Engines", "1-Click WhatsApp Direct Checkout", "Custom Product Bundles Engine", "Live Inventory Telemetry"]
   },
   "ui-ux": {
     name: "Conversion UI/UX Design & Prototyping",
@@ -85,8 +69,17 @@ const SERVICES_SCOPE = {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Initialize Collaborations Carousel
+  // Initialize 1.5-Second Collaborations Carousel
   initCollaborationsCarousel();
+
+  // Initialize Dual-Line Growth Comparison Chart (if on page)
+  initGrowthComparisonChart();
+
+  // Initialize SK Relax Case Study Chart (if on page)
+  initSKRelaxChart();
+
+  // Initialize Digital Marketing Form & Funnel (if on page)
+  initMarketingEnquiryForm();
 
   // Consultation Modal Handling
   initConsultationModal();
@@ -121,9 +114,11 @@ window.chatOnWhatsApp = function(goalKey, customMessage) {
 };
 
 // -------------------------------------------------------------
-// Collaborations Section: Horizontal Scrolling Carousel
+// Collaborations Section: 1.5-Second Stepping Carousel
+// Moving one logo position at a time every 1500ms with smooth 600ms slide
 // -------------------------------------------------------------
 function initCollaborationsCarousel() {
+  const container = document.getElementById("collabCarouselContainer");
   const wrapper = document.getElementById("collabTrackWrapper");
   const track = document.getElementById("collabTrack");
   const prevBtn = document.getElementById("collabPrevBtn");
@@ -131,220 +126,629 @@ function initCollaborationsCarousel() {
 
   if (!wrapper || !track) return;
 
-  let autoScrollTimer = null;
-  const SCROLL_INTERVAL = 3000; // 3 seconds
+  // Retrieve active clients from storage or fallback to defaults
+  let clients = DEFAULT_CLIENTS;
+  try {
+    const stored = localStorage.getItem(CLIENTS_STORAGE_KEY);
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        // Filter out legacy mama / punita entries
+        const filtered = parsed.filter(c => c.active && !/mama|pedhewale|punita/i.test(c.name));
+        if (filtered.length > 0) clients = filtered;
+      }
+    }
+  } catch (e) {}
 
-  const getScrollStep = () => {
-    const item = track.querySelector(".collab-item");
-    return item ? (item.offsetWidth + 32) : 220;
+  // Duplicate logos 4 times for a perfectly seamless infinite loop
+  const copies = 4;
+  const originalCount = clients.length;
+  track.innerHTML = "";
+
+  for (let c = 0; c < copies; c++) {
+    clients.forEach((client, idx) => {
+      const card = document.createElement("div");
+      card.className = "collab-logo-card";
+      card.dataset.index = (c * originalCount + idx).toString();
+
+      // Only display logo image with object-fit: contain (no text labels)
+      const img = document.createElement("img");
+      img.src = client.logo;
+      img.alt = client.name;
+      img.className = "collab-brand-logo";
+      img.loading = "lazy";
+
+      card.appendChild(img);
+      track.appendChild(card);
+    });
+  }
+
+  let currentIndex = 0;
+  let isTransitioning = false;
+  let timer = null;
+  const INTERVAL_MS = 1500; // 1.5 seconds per logo movement
+  const TRANSITION_DURATION = 600; // 600ms smooth cubic-bezier slide
+
+  const getStepWidth = () => {
+    const firstCard = track.querySelector(".collab-logo-card");
+    if (!firstCard) return 260;
+    const gap = parseFloat(window.getComputedStyle(track).gap) || 32;
+    return firstCard.offsetWidth + gap;
   };
 
-  const scrollNext = () => {
-    const maxScroll = track.scrollWidth - track.clientWidth;
-    if (track.scrollLeft >= maxScroll - 15) {
-      track.scrollTo({ left: 0, behavior: "smooth" });
+  const updatePosition = (animate = true) => {
+    const step = getStepWidth();
+    if (animate) {
+      track.style.transition = `transform ${TRANSITION_DURATION}ms cubic-bezier(0.25, 1, 0.5, 1)`;
     } else {
-      track.scrollBy({ left: getScrollStep(), behavior: "smooth" });
+      track.style.transition = "none";
+    }
+    track.style.transform = `translateX(-${currentIndex * step}px)`;
+  };
+
+  const slideNext = () => {
+    if (isTransitioning) return;
+    isTransitioning = true;
+    currentIndex++;
+    updatePosition(true);
+  };
+
+  const slidePrev = () => {
+    if (isTransitioning) return;
+    if (currentIndex <= 0) {
+      currentIndex = originalCount;
+      updatePosition(false);
+      track.offsetHeight; // force reflow
+    }
+    isTransitioning = true;
+    currentIndex--;
+    updatePosition(true);
+  };
+
+  track.addEventListener("transitionend", () => {
+    isTransitioning = false;
+    // Seamless reset when completing two cycles
+    if (currentIndex >= originalCount * 2) {
+      currentIndex = currentIndex - originalCount;
+      updatePosition(false);
+      track.offsetHeight; // force reflow
+    }
+  });
+
+  const startTimer = () => {
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!timer) {
+      timer = setInterval(slideNext, INTERVAL_MS);
     }
   };
 
-  const scrollPrev = () => {
-    if (track.scrollLeft <= 15) {
-      track.scrollTo({ left: track.scrollWidth, behavior: "smooth" });
-    } else {
-      track.scrollBy({ left: -getScrollStep(), behavior: "smooth" });
+  const stopTimer = () => {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
     }
   };
 
   if (nextBtn) {
     nextBtn.addEventListener("click", () => {
-      scrollNext();
-      restartTimer();
+      stopTimer();
+      slideNext();
+      startTimer();
     });
   }
 
   if (prevBtn) {
     prevBtn.addEventListener("click", () => {
-      scrollPrev();
-      restartTimer();
+      stopTimer();
+      slidePrev();
+      startTimer();
     });
   }
 
-  const startTimer = () => {
-    if (!autoScrollTimer) {
-      autoScrollTimer = setInterval(scrollNext, SCROLL_INTERVAL);
-    }
-  };
+  // Pause on hover, resume on mouseleave
+  const hoverZone = container || wrapper;
+  hoverZone.addEventListener("mouseenter", stopTimer);
+  hoverZone.addEventListener("mouseleave", startTimer);
 
-  const stopTimer = () => {
-    if (autoScrollTimer) {
-      clearInterval(autoScrollTimer);
-      autoScrollTimer = null;
-    }
-  };
-
-  const restartTimer = () => {
+  // Mobile Touch / Swipe Handling
+  let touchStartX = 0;
+  let touchEndX = 0;
+  wrapper.addEventListener("touchstart", (e) => {
     stopTimer();
-    startTimer();
-  };
-
-  wrapper.addEventListener("mouseenter", stopTimer);
-  wrapper.addEventListener("mouseleave", startTimer);
-  wrapper.addEventListener("touchstart", stopTimer, { passive: true });
-  wrapper.addEventListener("touchend", () => {
-    setTimeout(startTimer, 1500);
+    touchStartX = e.changedTouches[0].screenX;
   }, { passive: true });
 
+  wrapper.addEventListener("touchend", (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) {
+        slideNext();
+      } else {
+        slidePrev();
+      }
+    }
+    setTimeout(startTimer, 1000);
+  }, { passive: true });
+
+  window.addEventListener("resize", () => {
+    updatePosition(false);
+  });
+
+  // Start automated sliding
   startTimer();
 }
 
 // -------------------------------------------------------------
-// Consultation Modal Controller
+// Dual-Line Growth Comparison Chart (From Reference Image)
+// -------------------------------------------------------------
+function initGrowthComparisonChart() {
+  const canvas = document.getElementById("growthComparisonChart");
+  if (!canvas || typeof Chart === "undefined") return;
+
+  const ctx = canvas.getContext("2d");
+
+  // Create smooth gradients for fills
+  const tealGrad = ctx.createLinearGradient(0, 0, 0, 260);
+  tealGrad.addColorStop(0, "rgba(13, 122, 104, 0.28)");
+  tealGrad.addColorStop(1, "rgba(13, 122, 104, 0.01)");
+
+  const tanGrad = ctx.createLinearGradient(0, 0, 0, 260);
+  tanGrad.addColorStop(0, "rgba(192, 138, 78, 0.20)");
+  tanGrad.addColorStop(1, "rgba(192, 138, 78, 0.01)");
+
+  new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: [
+        "Digital Visibility",
+        "Customer Engagement",
+        "Lead Generation",
+        "Campaign Optimization",
+        "Business Growth"
+      ],
+      datasets: [
+        {
+          label: "Without Cloud Technologies",
+          data: [12, 16, 21, 24, 26],
+          borderColor: "#C08A4E",
+          backgroundColor: tanGrad,
+          fill: true,
+          tension: 0.32,
+          borderWidth: 2.5,
+          pointBackgroundColor: "#FFFFFF",
+          pointBorderColor: "#C08A4E",
+          pointBorderWidth: 2,
+          pointRadius: 5,
+          pointHoverRadius: 7
+        },
+        {
+          label: "With Cloud Technologies",
+          data: [16, 34, 51, 71, 96],
+          borderColor: "#0D7A68",
+          backgroundColor: tealGrad,
+          fill: true,
+          tension: 0.32,
+          borderWidth: 3,
+          pointBackgroundColor: "#FFFFFF",
+          pointBorderColor: "#0D7A68",
+          pointBorderWidth: 2.5,
+          pointRadius: 6,
+          pointHoverRadius: 8
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          display: false // Displayed in custom styled HTML below
+        },
+        tooltip: {
+          backgroundColor: "rgba(15, 23, 42, 0.92)",
+          titleFont: { family: "Manrope, sans-serif", weight: "bold", size: 12 },
+          bodyFont: { family: "Inter, sans-serif", size: 11 },
+          padding: 10,
+          cornerRadius: 8,
+          callbacks: {
+            label: function(context) {
+              return ` ${context.dataset.label}: ${context.parsed.y} Index`;
+            }
+          }
+        }
+      },
+      scales: {
+        y: {
+          min: 0,
+          max: 100,
+          ticks: {
+            stepSize: 20,
+            font: { family: "Inter, sans-serif", size: 10 },
+            color: "#8C8980"
+          },
+          grid: {
+            color: "#F1EEE6"
+          },
+          title: {
+            display: true,
+            text: "Business Growth (Conceptual)",
+            font: { family: "Inter, sans-serif", size: 10, weight: "600" },
+            color: "#8C8980"
+          }
+        },
+        x: {
+          grid: {
+            display: false
+          },
+          ticks: {
+            font: { family: "Manrope, sans-serif", size: 11, weight: "600" },
+            color: "#47453E"
+          }
+        }
+      }
+    }
+  });
+}
+
+// -------------------------------------------------------------
+// SK Relax Visual Case Study Grouped Bar Chart
+// -------------------------------------------------------------
+function initSKRelaxChart() {
+  const canvas = document.getElementById("skRelaxChart");
+  if (!canvas || typeof Chart === "undefined") return;
+
+  const ctx = canvas.getContext("2d");
+
+  new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: [
+        "Hair Care Products",
+        "Skin Care Products",
+        "Beauty Services",
+        "Hair Treatments",
+        "Salon Packages"
+      ],
+      datasets: [
+        {
+          label: "Before Cloud Technologies",
+          data: [28, 22, 35, 20, 18],
+          backgroundColor: "#CBD5E1",
+          borderRadius: 6,
+          barPercentage: 0.6,
+          categoryPercentage: 0.7
+        },
+        {
+          label: "With Cloud Technologies Marketing",
+          data: [84, 72, 94, 68, 62],
+          backgroundColor: "#2563EB",
+          borderRadius: 6,
+          barPercentage: 0.6,
+          categoryPercentage: 0.7
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: "top",
+          align: "end",
+          labels: {
+            boxWidth: 12,
+            font: { family: "Inter, sans-serif", size: 11, weight: "600" },
+            color: "#475569"
+          }
+        },
+        tooltip: {
+          backgroundColor: "rgba(15, 23, 42, 0.92)",
+          titleFont: { family: "Manrope, sans-serif", weight: "bold", size: 12 },
+          bodyFont: { family: "Inter, sans-serif", size: 11 },
+          padding: 10,
+          cornerRadius: 8
+        }
+      },
+      scales: {
+        y: {
+          min: 0,
+          max: 100,
+          ticks: {
+            stepSize: 20,
+            callback: value => value + "%",
+            font: { family: "Inter, sans-serif", size: 10 },
+            color: "#64748B"
+          },
+          grid: {
+            color: "#F1F5F9"
+          }
+        },
+        x: {
+          grid: {
+            display: false
+          },
+          ticks: {
+            font: { family: "Manrope, sans-serif", size: 11, weight: "600" },
+            color: "#334155"
+          }
+        }
+      }
+    }
+  });
+}
+
+// -------------------------------------------------------------
+// Interactive 7-Stage Funnel Accordion Toggle
+// -------------------------------------------------------------
+window.toggleFunnelStage = function(headerEl) {
+  const card = headerEl.closest(".funnel-stage-card");
+  if (!card) return;
+  card.classList.toggle("open");
+};
+
+// -------------------------------------------------------------
+// 10-Field Digital Marketing Intake Form Handler
+// -------------------------------------------------------------
+function initMarketingEnquiryForm() {
+  const form = document.getElementById("marketingForm");
+  if (!form) return;
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const nameInput = document.getElementById("mktName");
+    const brandInput = document.getElementById("mktBrand");
+    const phoneInput = document.getElementById("mktPhone");
+    const categorySelect = document.getElementById("mktCategory");
+    const locationInput = document.getElementById("mktLocation");
+    const urlInput = document.getElementById("mktUrl");
+    const adBudgetSelect = document.getElementById("mktAdBudget");
+    const challengeSelect = document.getElementById("mktChallenge");
+    const notesInput = document.getElementById("mktNotes");
+
+    let isValid = true;
+
+    // Reset error classes
+    document.querySelectorAll(".form-group").forEach(fg => fg.classList.remove("has-error"));
+
+    if (!nameInput || !nameInput.value.trim()) {
+      if (nameInput) nameInput.closest(".form-group").classList.add("has-error");
+      isValid = false;
+    }
+    if (!brandInput || !brandInput.value.trim()) {
+      if (brandInput) brandInput.closest(".form-group").classList.add("has-error");
+      isValid = false;
+    }
+    const cleanPhone = phoneInput ? phoneInput.value.replace(/[^0-9]/g, "") : "";
+    if (cleanPhone.length < 10) {
+      if (phoneInput) phoneInput.closest(".form-group").classList.add("has-error");
+      isValid = false;
+    }
+    if (!categorySelect || !categorySelect.value) {
+      if (categorySelect) categorySelect.closest(".form-group").classList.add("has-error");
+      isValid = false;
+    }
+    if (!locationInput || !locationInput.value.trim()) {
+      if (locationInput) locationInput.closest(".form-group").classList.add("has-error");
+      isValid = false;
+    }
+
+    // Check services
+    const checkedServices = [];
+    document.querySelectorAll("input[name='mktServices']:checked").forEach(cb => {
+      checkedServices.push(cb.value);
+    });
+    if (checkedServices.length === 0) {
+      const errEl = document.getElementById("errServices");
+      if (errEl) errEl.closest(".form-group").classList.add("has-error");
+      isValid = false;
+    }
+
+    if (!adBudgetSelect || !adBudgetSelect.value) {
+      if (adBudgetSelect) adBudgetSelect.closest(".form-group").classList.add("has-error");
+      isValid = false;
+    }
+    if (!challengeSelect || !challengeSelect.value) {
+      if (challengeSelect) challengeSelect.closest(".form-group").classList.add("has-error");
+      isValid = false;
+    }
+
+    if (!isValid) {
+      const firstErr = document.querySelector(".form-group.has-error");
+      if (firstErr) firstErr.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+
+    const lead = {
+      id: "mkt_" + Date.now(),
+      submittedAt: new Date().toISOString(),
+      fullName: nameInput.value.trim(),
+      brandName: brandInput.value.trim(),
+      phone: cleanPhone,
+      category: categorySelect.value,
+      location: locationInput.value.trim(),
+      url: urlInput ? urlInput.value.trim() : "",
+      services: checkedServices,
+      adBudget: adBudgetSelect.value,
+      challenge: challengeSelect.value,
+      notes: notesInput ? notesInput.value.trim() : "",
+      status: "New"
+    };
+
+    // Save to localStorage
+    try {
+      const stored = localStorage.getItem("cloudtech_marketing_leads") || "[]";
+      const list = JSON.parse(stored);
+      list.unshift(lead);
+      localStorage.setItem("cloudtech_marketing_leads", JSON.stringify(list));
+    } catch (err) {
+      console.warn("Storage error:", err);
+    }
+
+    // Show modal & build prefilled WhatsApp link
+    const modal = document.getElementById("mktSuccessModal");
+    const nameEl = document.getElementById("successLeadName");
+    const brandEl = document.getElementById("successBrandName");
+    const waCTA = document.getElementById("directWhatsAppCTA");
+
+    if (nameEl) nameEl.textContent = lead.fullName;
+    if (brandEl) brandEl.textContent = lead.brandName;
+
+    const waText = `*New Marketing Strategy Enquiry - Cloud Technologies*\n\n` +
+      `*Client Name:* ${lead.fullName}\n` +
+      `*Brand / Business:* ${lead.brandName}\n` +
+      `*WhatsApp:* +91 ${lead.phone}\n` +
+      `*Category:* ${lead.category}\n` +
+      `*Location:* ${lead.location}\n` +
+      `*Ad Budget:* ${lead.adBudget}\n` +
+      `*Primary Challenge:* ${lead.challenge}\n` +
+      `*Services:* ${lead.services.join(", ")}\n` +
+      (lead.notes ? `*Notes:* ${lead.notes}\n` : "") +
+      `\nHello Shashank! I just submitted my digital marketing enquiry on cloudtechnologies.in. Let's discuss our growth strategy!`;
+
+    if (waCTA) {
+      waCTA.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waText)}`;
+    }
+
+    if (modal) {
+      modal.style.display = "flex";
+    }
+
+    form.reset();
+  });
+}
+
+window.closeMarketingSuccess = function() {
+  const modal = document.getElementById("mktSuccessModal");
+  if (modal) modal.style.display = "none";
+};
+
+// -------------------------------------------------------------
+// Consultation Modal Functions
 // -------------------------------------------------------------
 window.openConsultationModal = function(serviceType) {
   const modal = document.getElementById("consultationModal");
-  const select = document.getElementById("projectTypeSelect");
+  if (!modal) return;
+  modal.style.display = "flex";
 
-  if (select && serviceType && serviceType !== "general") {
-    select.value = serviceType;
-  }
-
-  if (modal) {
-    modal.classList.add("show");
-    document.body.style.overflow = "hidden";
+  if (serviceType) {
+    const select = document.getElementById("modalServiceSelect");
+    if (select) {
+      for (let i = 0; i < select.options.length; i++) {
+        if (select.options[i].value.toLowerCase().includes(serviceType.toLowerCase())) {
+          select.selectedIndex = i;
+          break;
+        }
+      }
+    }
   }
 };
 
 window.closeConsultationModal = function() {
   const modal = document.getElementById("consultationModal");
-  if (modal) {
-    modal.classList.remove("show");
-    document.body.style.overflow = "auto";
-  }
+  if (modal) modal.style.display = "none";
 };
 
 function initConsultationModal() {
   const modal = document.getElementById("consultationModal");
-  const form = document.getElementById("consultationModalForm");
+  const form = document.getElementById("consultationForm");
+  if (!modal || !form) return;
 
-  if (modal) {
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) {
-        window.closeConsultationModal();
-      }
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeConsultationModal();
+  });
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("modalClientName").value.trim();
+    const phone = document.getElementById("modalClientPhone").value.trim();
+    const business = document.getElementById("modalBusinessName").value.trim();
+    const service = document.getElementById("modalServiceSelect").value;
+    const notes = document.getElementById("modalClientNotes").value.trim();
+
+    if (!name || !phone) {
+      alert("Please provide your Name and WhatsApp phone number.");
+      return;
+    }
+
+    // Save lead
+    saveLeadToStorage({
+      id: "lead_" + Date.now(),
+      submittedAt: new Date().toISOString(),
+      name,
+      phone,
+      business,
+      service,
+      notes,
+      type: "Proposal Request",
+      status: "New"
     });
-  }
 
-  if (form) {
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const name = (document.getElementById("clientName") ? document.getElementById("clientName").value.trim() : "");
-      const service = (document.getElementById("projectTypeSelect") ? document.getElementById("projectTypeSelect").value : "Web Development");
-      const phone = (document.getElementById("clientPhone") ? document.getElementById("clientPhone").value.trim() : "");
-      const notes = (document.getElementById("clientNotes") ? document.getElementById("clientNotes").value.trim() : "");
+    const msg = `*New Proposal Request - Cloud Technologies*\n\n` +
+      `*Name:* ${name}\n` +
+      `*WhatsApp:* +91 ${phone}\n` +
+      `*Business:* ${business || "Not specified"}\n` +
+      `*Service Interested:* ${service}\n` +
+      (notes ? `*Notes:* ${notes}\n` : "") +
+      `\nHello Shashank! I would like to schedule a proposal call for my project.`;
 
-      const whatsappText = (
-        `Hello Cloud Technologies!\n\n` +
-        `I would like to request a quote / proposal for my business:\n` +
-        `• Name/Business: ${name || 'N/A'}\n` +
-        `• Service: ${service}\n` +
-        `• Phone/WhatsApp: ${phone || 'N/A'}\n` +
-        `• Project Notes: ${notes || 'Ready to discuss requirements'}\n\n` +
-        `Please share pricing and details at your earliest convenience!`
-      );
-
-      // Save lead locally for Admin Panel
-      window.saveLeadToStorage({
-        type: "Project Quote",
-        name: name || "Anonymous Client",
-        industry: service,
-        phone: phone || "N/A",
-        features: [service],
-        notes: notes || "Direct quote inquiry"
-      });
-
-      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappText)}`, "_blank");
-      window.closeConsultationModal();
-    });
-  }
+    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+    closeConsultationModal();
+    window.open(waUrl, "_blank");
+  });
 }
 
 // -------------------------------------------------------------
-// Demo Modal Controller
+// Demo Modal Functions
 // -------------------------------------------------------------
 window.openDemoModal = function() {
   const modal = document.getElementById("demoModal");
-  if (modal) {
-    modal.classList.add("show");
-    document.body.style.overflow = "hidden";
-  }
+  if (modal) modal.style.display = "flex";
 };
 
 window.closeDemoModal = function() {
   const modal = document.getElementById("demoModal");
-  if (modal) {
-    modal.classList.remove("show");
-    document.body.style.overflow = "auto";
-  }
+  if (modal) modal.style.display = "none";
 };
 
 // -------------------------------------------------------------
-// Intro Video Modal Controller
+// Intro Modal Functions
 // -------------------------------------------------------------
 window.openIntroModal = function() {
   const modal = document.getElementById("introModal");
-  if (modal) {
-    modal.classList.add("show");
-    document.body.style.overflow = "hidden";
-  }
+  if (modal) modal.style.display = "flex";
 };
 
 window.closeIntroModal = function() {
   const modal = document.getElementById("introModal");
-  if (modal) {
-    modal.classList.remove("show");
-    document.body.style.overflow = "auto";
-  }
+  if (modal) modal.style.display = "none";
 };
 
 // -------------------------------------------------------------
-// Mobile Menu Controller
+// Mobile Menu Toggle
 // -------------------------------------------------------------
 function initMobileMenu() {
   const toggleBtn = document.getElementById("mobileMenuToggle");
   const drawer = document.getElementById("mobileNavDrawer");
-  const navMenu = document.getElementById("navLinks");
+  if (!toggleBtn || !drawer) return;
 
-  window.toggleMobileMenu = function() {
-    if (drawer) {
-      drawer.classList.toggle("show");
-    } else if (navMenu) {
-      navMenu.classList.toggle("open");
-    }
-  };
-
-  if (!toggleBtn) return;
-  if (toggleBtn.dataset.boundMobileMenu) return;
-  toggleBtn.dataset.boundMobileMenu = "true";
-
-  toggleBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    window.toggleMobileMenu();
+  toggleBtn.addEventListener("click", () => {
+    drawer.classList.toggle("open");
   });
 
-  document.querySelectorAll(".mobile-drawer-link").forEach(link => {
+  drawer.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", () => {
-      if (drawer) drawer.classList.remove("show");
-      if (navMenu) navMenu.classList.remove("open");
+      drawer.classList.remove("open");
     });
   });
-
-  document.addEventListener("click", (e) => {
-    if (drawer && drawer.classList.contains("show") && !drawer.contains(e.target) && !toggleBtn.contains(e.target)) {
-      drawer.classList.remove("show");
-    }
-  });
 }
+
+window.toggleMobileMenu = function() {
+  const drawer = document.getElementById("mobileNavDrawer");
+  if (drawer) drawer.classList.toggle("open");
+};
 
 // -------------------------------------------------------------
 // FAQ Accordion
@@ -352,103 +756,36 @@ function initMobileMenu() {
 function initFaqAccordion() {
   const faqItems = document.querySelectorAll(".faq-item");
   faqItems.forEach(item => {
-    item.addEventListener("click", () => {
-      item.classList.toggle("active");
+    const question = item.querySelector(".faq-question");
+    if (!question) return;
+
+    question.addEventListener("click", () => {
+      const isOpen = item.classList.contains("open");
+      faqItems.forEach(i => i.classList.remove("open"));
+      if (!isOpen) {
+        item.classList.add("open");
+      }
     });
   });
 }
 
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    if (typeof window.closeDemoModal === "function") window.closeDemoModal();
-    if (typeof window.closeConsultationModal === "function") window.closeConsultationModal();
-    if (typeof window.closeIntroModal === "function") window.closeIntroModal();
-    const drawer = document.getElementById("mobileNavDrawer");
-    if (drawer) drawer.classList.remove("show");
-  }
-});
-
-// Demo Form Handler
-document.addEventListener("DOMContentLoaded", () => {
-  const demoModal = document.getElementById("demoModal");
-  const demoForm = document.getElementById("demoModalForm");
-  const introModal = document.getElementById("introModal");
-
-  if (demoModal) {
-    demoModal.addEventListener("click", (e) => {
-      if (e.target === demoModal) window.closeDemoModal();
-    });
-  }
-
-  if (introModal) {
-    introModal.addEventListener("click", (e) => {
-      if (e.target === introModal) window.closeIntroModal();
-    });
-  }
-
-  if (demoForm) {
-    demoForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const name = (document.getElementById("demoClientName") ? document.getElementById("demoClientName").value.trim() : "");
-      const industry = (document.getElementById("demoIndustrySelect") ? document.getElementById("demoIndustrySelect").value : "General");
-      const phone = (document.getElementById("demoClientPhone") ? document.getElementById("demoClientPhone").value.trim() : "");
-      const notes = (document.getElementById("demoClientNotes") ? document.getElementById("demoClientNotes").value.trim() : "N/A");
-
-      const selectedFeatures = [];
-      document.querySelectorAll(".demo-feature-chk:checked").forEach(cb => {
-        selectedFeatures.push(cb.value);
-      });
-      const featuresStr = selectedFeatures.length > 0 ? selectedFeatures.join(", ") : "Standard Custom Features";
-
-      const message = (
-        `Hello Cloud Technologies! 🚀\n\n` +
-        `I would like to book a Custom Demo Website as per my demand:\n` +
-        `• Name/Business: ${name}\n` +
-        `• Industry: ${industry}\n` +
-        `• Features: ${featuresStr}\n` +
-        `• WhatsApp: ${phone}\n` +
-        `• Notes: ${notes}\n\n` +
-        `Please share details on when my demo will be ready!`
-      );
-
-      // Save lead locally for Admin Panel
-      window.saveLeadToStorage({
-        type: "Demo Booking",
-        name: name || "Anonymous Client",
-        industry: industry,
-        phone: phone || "N/A",
-        features: selectedFeatures,
-        notes: notes || "Standard prototype demand"
-      });
-
-      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank");
-      window.closeDemoModal();
-    });
-  }
-});
-
 // -------------------------------------------------------------
-// Admin Integration Helpers
+// Storage Helper
 // -------------------------------------------------------------
 window.saveLeadToStorage = function(leadData) {
   try {
-    const LEADS_KEY = "cloudtech_leads";
-    const existing = JSON.parse(localStorage.getItem(LEADS_KEY) || "[]");
-    const newLead = {
-      id: "REQ-" + Math.floor(100000 + Math.random() * 900000),
-      createdAt: new Date().toISOString(),
-      status: "New",
-      adminNotes: "",
-      ...leadData
-    };
-    existing.unshift(newLead);
-    localStorage.setItem(LEADS_KEY, JSON.stringify(existing));
-    return newLead;
-  } catch (e) {
-    console.warn("Could not save lead locally:", e);
+    const raw = localStorage.getItem("cloudtech_leads") || "[]";
+    const list = JSON.parse(raw);
+    list.unshift(leadData);
+    localStorage.setItem("cloudtech_leads", JSON.stringify(list));
+  } catch (err) {
+    console.warn("Storage error:", err);
   }
 };
 
+// -------------------------------------------------------------
+// Apply Live Site Config from Admin Panel
+// -------------------------------------------------------------
 function applyLiveSiteConfig() {
   try {
     const raw = localStorage.getItem("cloudtech_site_config");

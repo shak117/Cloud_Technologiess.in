@@ -166,7 +166,7 @@ const CLOUD_PLANS = [
     payments: "UPI (GPay/PhonePe), Cards, NetBanking",
     backup: "Daily Automated Order Backups",
     support: "Priority VIP Support",
-    bestFor: "D2C sweet shops (like Mama Pedhewale), clothing, grocery & retail stores.",
+    bestFor: "D2C brands, clothing boutiques, grocery & retail stores.",
     features: [
       "Full Shopping Cart + Smooth Checkout",
       "Zero-Timeout UPI (GPay, PhonePe) & Cards",
