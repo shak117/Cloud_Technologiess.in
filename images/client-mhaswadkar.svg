@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 90" width="100%" height="100%">
+  <defs>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#144B8F" />
+      <stop offset="100%" stop-color="#092552" />
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38A832" />
+      <stop offset="100%" stop-color="#1E6E1A" />
+    </linearGradient>
+    <filter id="subtleDrop" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-color="#000000" flood-opacity="0.15" />
+    </filter>
+  </defs>
+
+  <!-- Circular Emblem based on authentic Mhaswadkar storefront sign -->
+  <g transform="translate(12, 7)">
+    <!-- Blue Left Half Crescent Arc -->
+    <path d="M 38,6 A 32,32 0 0,0 38,70 L 38,54 A 16,16 0 0,1 38,22 Z" fill="url(#blueGrad)" filter="url(#subtleDrop)"/>
+    <!-- Green Right Top Arc -->
+    <path d="M 38,6 A 32,32 0 0,1 70,38 L 54,38 A 16,16 0 0,0 38,22 Z" fill="url(#greenGrad)" filter="url(#subtleDrop)"/>
+    <!-- Green Right Bottom Hook (monogram G/turbine) -->
+    <path d="M 38,70 A 32,32 0 0,0 70,38 L 46,38 L 46,46 L 54,46 A 16,16 0 0,1 38,54 Z" fill="url(#greenGrad)" filter="url(#subtleDrop)"/>
+    <!-- Center blue accent pin -->
+    <circle cx="38" cy="38" r="4.5" fill="#144B8F"/>
+  </g>
+
+  <!-- Brand Typography -->
+  <g transform="translate(100, 17)">
+    <text x="0" y="24" font-family="'Outfit', 'Segoe UI', system-ui, sans-serif" font-size="22" font-weight="800" fill="#092552" letter-spacing="0.5">
+      MHASWADKAR <tspan fill="#247820">MACHINERIES</tspan>
+    </text>
+    <text x="0" y="44" font-family="'Segoe UI', system-ui, sans-serif" font-size="10.5" font-weight="600" fill="#475569" letter-spacing="1">
+      TRADING COMPANY • SATARA • ESTD. 1982
+    </text>
+    <text x="0" y="58" font-family="'Segoe UI', 'Noto Sans Devanagari', sans-serif" font-size="10.5" font-weight="500" fill="#64748B">
+      म्हसवडकर ट्रेडींग कंपनी / म्हसवडकर मशनरीज प्रा. लि.
+    </text>
+  </g>
+</svg>

@@ -69,21 +69,48 @@ const DEFAULT_CONFIG = {
 // State
 const DEFAULT_CLIENTS = [
   {
-    id: "client-mama",
-    name: "Mama Pedhewale",
-    industry: "Heritage D2C E-Commerce",
-    logo: "images/client-mama-pedhewale.png",
-    link: "https://mamapedhewale.com",
-    badge: "Satara Since 1948",
+    id: "client-sk-relax",
+    name: "SK Relax Beauty Academy & Salon",
+    industry: "Beauty Academy & Salon",
+    logo: "images/client-sk-relax.png",
+    link: "#",
+    badge: "Satara",
     active: true
   },
   {
-    id: "client-knotberry",
-    name: "knotberry.studios",
-    industry: "Handmade Boutique & Lifestyle",
-    logo: "images/client-knotberry.png",
-    link: "https://knotberry.studios",
-    badge: "Boutique & UI/UX",
+    id: "client-hiramoti",
+    name: "HIRAMOTI Catalogue",
+    industry: "Catalogue & Collections",
+    logo: "images/client-hiramoti.png",
+    link: "#",
+    badge: "E-Catalogue",
+    active: true
+  },
+  {
+    id: "client-mama",
+    name: "Mama Pedhewale – Traditional Sweets",
+    industry: "Traditional Sweets Satara",
+    logo: "images/client-mama-pedhewale.png",
+    link: "https://mamapedhewale.com",
+    badge: "Since 1948",
+    active: true
+  },
+  {
+    id: "client-mhaswadkar",
+    name: "Mhaswadkar Machineries",
+    industry: "Machineries Trading Co.",
+    logo: "images/client-mhaswadkar.svg",
+    link: "#",
+    badge: "Estd. 1982",
+    active: true
+  },
+  {
+    id: "client-punita",
+    name: "Punita Collection",
+    industry: "Ethnic & Western Boutique",
+    logo: "images/client-punita.svg",
+    link: "#",
+    badge: "Boutique",
     active: true
   }
 ];

@@ -1,111 +1,92 @@
-// Cloud Technologies - Main Application Controller
-// Full-Service Digital Agency & Cloud Solutions (WhatsApp: 8830464841)
+/**
+ * Cloud Technologies — Modern Client Experience & Core App Controller
+ * Palette: Navy Blue, Royal Blue, Vibrant Cyan & Pure White
+ */
 
 const WHATSAPP_NUMBER = "918830464841";
 const CLIENTS_STORAGE_KEY = "cloudtech_clients";
 
+// Default Client Collaborations
 const DEFAULT_CLIENTS = [
   {
-    id: "client-mama",
-    name: "Mama Pedhewale",
-    industry: "Heritage D2C E-Commerce",
-    logo: "images/client-mama-pedhewale.png",
-    link: "https://mamapedhewale.com",
-    badge: "Satara Since 1948",
+    id: "c1",
+    name: "SK Relax Beauty Academy & Salon",
+    industry: "Beauty Academy & Salon",
+    logo: "images/client-sk-relax.png",
+    badge: "Satara",
     active: true
   },
   {
-    id: "client-knotberry",
-    name: "knotberry.studios",
-    industry: "Handmade Boutique & Lifestyle",
-    logo: "images/client-knotberry.png",
-    link: "https://knotberry.studios",
-    badge: "Boutique & UI/UX",
+    id: "c2",
+    name: "HIRAMOTI Catalogue",
+    industry: "Catalogue & Collections",
+    logo: "images/client-hiramoti.png",
+    badge: "E-Catalogue",
+    active: true
+  },
+  {
+    id: "c3",
+    name: "Mama Pedhewale – Traditional Sweets",
+    industry: "Traditional Sweets Satara",
+    logo: "images/client-mama-pedhewale.png",
+    badge: "Since 1948",
+    active: true
+  },
+  {
+    id: "c4",
+    name: "Mhaswadkar Machineries",
+    industry: "Machineries Trading Co.",
+    logo: "images/client-mhaswadkar.svg",
+    badge: "Estd. 1982",
+    active: true
+  },
+  {
+    id: "c5",
+    name: "Punita Collection",
+    industry: "Ethnic & Western Boutique",
+    logo: "images/client-punita.svg",
+    badge: "Boutique",
     active: true
   }
 ];
 
+// Scope Definitions
 const SERVICES_SCOPE = {
-  "business-site": {
-    name: "High-Impact Business Website",
-    category: "Web Development & Cloud",
-    tagline: "3–6 page fast corporate presence designed to turn visitors into inquiries.",
-    highlights: [
-      "Custom responsive design (mobile-first)",
-      "Sub-1.5s loading speed on mobile",
-      "Direct Click-to-WhatsApp & Lead Forms",
-      "Free SSL Security & 24h Deployment"
-    ],
-    why: "Perfect for doctors, lawyers, consultants, local shops, and corporate firms needing a credible, modern online presence."
+  "web-dev": {
+    name: "Website & Web Application Development",
+    category: "Full-Stack Web Engineering",
+    tagline: "High-performance, mobile-first web applications built for business conversion.",
+    highlights: ["React, Next.js or Custom CMS", "Sub-1.5s Load Time SLA", "Zero-Timeout UPI Gateways", "Pincode & WhatsApp Ordering"]
   },
   "ecommerce": {
-    name: "Full-Scale Online Shopping Store",
-    category: "E-Commerce Engineering",
-    tagline: "High-capacity digital store with cart, checkout, UPI payments, and order tracking.",
-    highlights: [
-      "Full Shopping Cart + Smooth Checkout",
-      "Zero-Timeout UPI (GPay/PhonePe) & Cards",
-      "Live Google Maps Order Tracking",
-      "Anti-Crash Shield for Diwali & Festival Rushes"
-    ],
-    why: "Perfect for retail shops, sweet stores (like Mama Pedhewale), clothing boutiques, and D2C brands selling products online."
+    name: "E-Commerce & Online Store Architecture",
+    category: "High-Conversion E-Commerce",
+    tagline: "Custom online storefronts engineered to process orders without crash or timeouts.",
+    highlights: ["Diwali / Rush Hour Surge Shield", "1-Click WhatsApp Direct Checkout", "Custom Product Bundles Engine", "Live Inventory Telemetry"]
   },
   "ui-ux": {
-    name: "Custom UI/UX Design & Prototyping",
-    category: "Design & Brand Experience",
-    tagline: "Pixel-perfect mobile interfaces, user journey mapping, and Figma prototypes.",
-    highlights: [
-      "Interactive prototypes you test on your phone",
-      "Conversion Rate Optimization (CRO)",
-      "Design systems & typography palettes",
-      "Frictionless user flow to consultation"
-    ],
-    why: "Perfect for ambitious brands that want to stand out from generic templates and provide an exceptional user experience."
+    name: "Conversion UI/UX Design & Prototyping",
+    category: "Design Systems & Visual Strategy",
+    tagline: "Human-centered interfaces that guide visitors into qualified buyers.",
+    highlights: ["Interactive Figma Prototypes", "Custom Design Tokens & Styleguides", "Frictionless Checkout UX", "Mobile Viewport First Fidelity"]
   },
   "meta-ads": {
-    name: "Meta Ads (Facebook & Instagram)",
-    category: "Performance Growth & Paid Media",
-    tagline: "Targeted advertising funnels designed to drive inquiries and direct sales.",
-    highlights: [
-      "Precision demographic & local targeting",
-      "High-converting video reels & carousel copy",
-      "100% accurate Pixel & Conversions API",
-      "Full funnel retargeting & weekly reports"
-    ],
-    why: "Perfect for businesses wanting a steady, predictable flow of high-intent customer leads and online sales every week."
+    name: "Meta Ads & Performance Paid Growth",
+    category: "Performance Acquisition",
+    tagline: "Hyper-targeted Facebook & Instagram campaigns generating high-intent client inquiries.",
+    highlights: ["Conversions API (CAPI) Tracking", "High-ROAS Direct-to-WhatsApp Ads", "Custom Audience Retargeting", "Weekly Transparent ROI Telemetry"]
   },
   "cloud-hosting": {
-    name: "Managed Cloud Infrastructure",
-    category: "Tier-III Cloud Hosting",
-    tagline: "High-speed solid-state cloud hosting, automated backups, and 99.9% uptime.",
-    highlights: [
-      "Sub-1.5s mobile loading SLA",
-      "Free auto-renewing SSL green padlock",
-      "Automated regular safe backups",
-      "24-Hour rapid server & domain setup"
-    ],
-    why: "Perfect for mission-critical business websites and web applications that cannot afford downtime or slow speeds."
-  },
-  "retainer": {
-    name: "Full-Stack Growth Partnership",
-    category: "Dedicated Tech & Media Team",
-    tagline: "All-in-one digital execution: Web development + UI/UX + Meta Ads + Cloud hosting.",
-    highlights: [
-      "Dedicated engineer & designer team",
-      "Continuous feature updates & optimizations",
-      "Active Meta Ads management & scaling",
-      "Direct WhatsApp priority support line"
-    ],
-    why: "Perfect for high-growth businesses and brands wanting a complete in-house digital team without the overhead."
+    name: "Managed Cloud Hosting & Infrastructure",
+    category: "Cloud Operations & Security",
+    tagline: "Sub-1.5s load speeds, 99.9% uptime SLA, and automated daily off-site backups.",
+    highlights: ["NVMe SSD High-Speed Storage", "Global CDN Edge Caching", "Free Automated SSL Certificates", "24/7 Security & Server Telemetry"]
   }
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Initialize Client Marquee
-  initClientMarquee();
-
-  // Interactive Service Matcher / Scope Finder
-  initServiceMatcher();
+  // Initialize Collaborations Carousel
+  initCollaborationsCarousel();
 
   // Consultation Modal Handling
   initConsultationModal();
@@ -113,38 +94,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // Mobile Menu Toggle
   initMobileMenu();
 
-  // Gallery Filters
-  initGalleryFilters();
+  // FAQ Accordion
+  initFaqAccordion();
 
   // Apply Live Config from Admin Panel
   applyLiveSiteConfig();
 });
-
-// -------------------------------------------------------------
-// Gallery Filter Tabs Controller
-// -------------------------------------------------------------
-function initGalleryFilters() {
-  const filterBtns = document.querySelectorAll('.gallery-filter-btn');
-  const galleryCards = document.querySelectorAll('.gallery-card');
-  if (!filterBtns.length || !galleryCards.length) return;
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.getAttribute('data-filter') || 'all';
-
-      galleryCards.forEach(card => {
-        const cat = card.getAttribute('data-category') || '';
-        if (filter === 'all' || cat.split(' ').includes(filter)) {
-          card.style.display = '';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
-}
 
 // -------------------------------------------------------------
 // Direct WhatsApp Link Helper
@@ -156,11 +111,9 @@ window.chatOnWhatsApp = function(goalKey, customMessage) {
     text = customMessage;
   } else if (goalKey && SERVICES_SCOPE[goalKey]) {
     const s = SERVICES_SCOPE[goalKey];
-    text = `Hello Cloud Technologies! I am interested in your *${s.name}* (${s.category}) service for my business.
-
-Please share details and how we can get started!`;
+    text = `Hello Cloud Technologies! I am interested in your *${s.name}* (${s.category}) service for my business.\n\nPlease share details and how we can get started!`;
   } else {
-    text = `Hello Cloud Technologies! I want to discuss digital services (Web Development, UI/UX, Meta Ads, Cloud Hosting) for my business. Please guide me.`;
+    text = `Hello Cloud Technologies! I want to discuss digital solutions (Web Development, UI/UX, Meta Ads, Cloud Hosting) for my business. Please guide me.`;
   }
 
   const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
@@ -168,181 +121,191 @@ Please share details and how we can get started!`;
 };
 
 // -------------------------------------------------------------
-// Priority Feature: Dynamic Client Collaborations Marquee
+// Collaborations Section: Horizontal Scrolling Carousel
 // -------------------------------------------------------------
-function initClientMarquee() {
-  const track = document.getElementById("clientsMarqueeTrack");
-  if (!track) return;
+function initCollaborationsCarousel() {
+  const wrapper = document.getElementById("collabTrackWrapper");
+  const track = document.getElementById("collabTrack");
+  const prevBtn = document.getElementById("collabPrevBtn");
+  const nextBtn = document.getElementById("collabNextBtn");
 
-  let clients = [];
-  try {
-    const stored = localStorage.getItem(CLIENTS_STORAGE_KEY);
-    if (!stored) {
-      clients = DEFAULT_CLIENTS;
-      localStorage.setItem(CLIENTS_STORAGE_KEY, JSON.stringify(DEFAULT_CLIENTS));
-    } else {
-      clients = JSON.parse(stored);
-      if (!Array.isArray(clients) || clients.length === 0) {
-        clients = DEFAULT_CLIENTS;
-      }
-    }
-  } catch(e) {
-    clients = DEFAULT_CLIENTS;
-  }
+  if (!wrapper || !track) return;
 
-  const activeClients = clients.filter(c => c.active !== false);
-  if (activeClients.length === 0) return;
+  let autoScrollTimer = null;
+  const SCROLL_INTERVAL = 3000; // 3 seconds
 
-  // Duplicate items 6 times to ensure a seamless looping horizontal marquee
-  const repeatCount = Math.max(6, Math.ceil(12 / activeClients.length));
-  let fullList = [];
-  for (let i = 0; i < repeatCount; i++) {
-    fullList = fullList.concat(activeClients);
-  }
-
-  track.innerHTML = fullList.map(c => `
-    <a href="${c.link || 'javascript:void(0)'}" target="${c.link && c.link.startsWith('http') ? '_blank' : '_self'}" class="client-logo-card" title="${c.name} — ${c.industry}">
-      ${c.logo ? `<img src="${c.logo}" alt="${c.name} Logo" class="client-logo-img" loading="lazy" />` : ''}
-      <div>
-        <span class="client-logo-name">${c.name}</span>
-        ${c.badge ? `<span class="client-logo-badge">${c.badge}</span>` : ''}
-      </div>
-    </a>
-  `).join("");
-}
-
-window.reloadClientMarquee = initClientMarquee;
-
-// -------------------------------------------------------------
-// Interactive Service Matcher (Quiz Style)
-// -------------------------------------------------------------
-function initServiceMatcher() {
-  const buttons = document.querySelectorAll(".quiz-btn, .matcher-option-btn");
-  const resultCard = document.getElementById("planFinderResult");
-
-  if (!buttons.length || !resultCard) return;
-
-  const showService = (goalKey) => {
-    const s = SERVICES_SCOPE[goalKey] || SERVICES_SCOPE["business-site"];
-
-    resultCard.innerHTML = `
-      <div class="finder-rec-box">
-        <div class="rec-badge" style="font-family:var(--font-heading); font-size:0.75rem; font-weight:700; color:var(--accent-gold); letter-spacing:0.06em; margin-bottom:0.4rem;">RECOMMENDED SOLUTION ROADMAP</div>
-        <h3 class="rec-title" style="font-size:1.4rem; font-weight:800; margin-bottom:0.4rem;">${s.name}</h3>
-        <p class="rec-tagline" style="color:var(--text-secondary); font-size:0.95rem; margin-bottom:1rem;">${s.tagline}</p>
-
-        <div class="rec-highlights" style="display:flex; flex-direction:column; gap: 0.5rem; margin: 1.2rem 0;">
-          ${s.highlights.map(h => `<div style="display:flex; align-items:center; gap:0.5rem; font-size:0.9rem;"><span style="color:var(--accent-gold); font-weight:bold;">✓</span> ${h}</div>`).join("")}
-        </div>
-
-        <p style="margin-bottom: 1.5rem; font-size:0.92rem; color:var(--text-secondary);">
-          <strong style="color:var(--text-primary);">Why this fits your business:</strong> ${s.why}
-        </p>
-
-        <button class="btn-hero-primary" onclick="chatOnWhatsApp('${goalKey}')">
-          Discuss ${s.name} on WhatsApp →
-        </button>
-      </div>
-    `;
+  const getScrollStep = () => {
+    const item = track.querySelector(".collab-item");
+    return item ? (item.offsetWidth + 32) : 220;
   };
 
-  buttons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      buttons.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      const goal = btn.getAttribute("data-goal");
-      showService(goal);
-    });
-  });
+  const scrollNext = () => {
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    if (track.scrollLeft >= maxScroll - 15) {
+      track.scrollTo({ left: 0, behavior: "smooth" });
+    } else {
+      track.scrollBy({ left: getScrollStep(), behavior: "smooth" });
+    }
+  };
 
-  // Initial load
-  showService("ecommerce");
+  const scrollPrev = () => {
+    if (track.scrollLeft <= 15) {
+      track.scrollTo({ left: track.scrollWidth, behavior: "smooth" });
+    } else {
+      track.scrollBy({ left: -getScrollStep(), behavior: "smooth" });
+    }
+  };
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      scrollNext();
+      restartTimer();
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+      scrollPrev();
+      restartTimer();
+    });
+  }
+
+  const startTimer = () => {
+    if (!autoScrollTimer) {
+      autoScrollTimer = setInterval(scrollNext, SCROLL_INTERVAL);
+    }
+  };
+
+  const stopTimer = () => {
+    if (autoScrollTimer) {
+      clearInterval(autoScrollTimer);
+      autoScrollTimer = null;
+    }
+  };
+
+  const restartTimer = () => {
+    stopTimer();
+    startTimer();
+  };
+
+  wrapper.addEventListener("mouseenter", stopTimer);
+  wrapper.addEventListener("mouseleave", startTimer);
+  wrapper.addEventListener("touchstart", stopTimer, { passive: true });
+  wrapper.addEventListener("touchend", () => {
+    setTimeout(startTimer, 1500);
+  }, { passive: true });
+
+  startTimer();
 }
 
 // -------------------------------------------------------------
-// Consultation Modal
+// Consultation Modal Controller
 // -------------------------------------------------------------
-function initConsultationModal() {
+window.openConsultationModal = function(serviceType) {
   const modal = document.getElementById("consultationModal");
-  const closeBtn = document.getElementById("modalCloseBtn");
-  const form = document.getElementById("consultationModalForm");
+  const select = document.getElementById("projectTypeSelect");
 
-  if (!modal) return;
+  if (select && serviceType && serviceType !== "general") {
+    select.value = serviceType;
+  }
 
-  window.openConsultationModal = function(serviceKey) {
-    const select = document.getElementById("projectTypeSelect") || document.getElementById("modalServiceSelect");
-    if (select && serviceKey && serviceKey !== 'general') {
-      select.value = serviceKey;
-    }
+  if (modal) {
     modal.classList.add("show");
     document.body.style.overflow = "hidden";
-  };
+  }
+};
 
-  window.closeConsultationModal = function() {
+window.closeConsultationModal = function() {
+  const modal = document.getElementById("consultationModal");
+  if (modal) {
     modal.classList.remove("show");
     document.body.style.overflow = "auto";
-  };
-
-  if (closeBtn) {
-    closeBtn.addEventListener("click", window.closeConsultationModal);
   }
+};
 
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      window.closeConsultationModal();
-    }
-  });
+function initConsultationModal() {
+  const modal = document.getElementById("consultationModal");
+  const form = document.getElementById("consultationModalForm");
+
+  if (modal) {
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        window.closeConsultationModal();
+      }
+    });
+  }
 
   if (form) {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      const nameEl = document.getElementById("clientName");
-      const domainEl = document.getElementById("clientDomain");
-      const serviceEl = document.getElementById("projectTypeSelect") || document.getElementById("modalServiceSelect");
-      const phoneEl = document.getElementById("clientPhone");
-      const notesEl = document.getElementById("clientNotes");
-
-      const name = nameEl ? nameEl.value.trim() : "";
-      const domain = domainEl ? domainEl.value.trim() : "";
-      const service = serviceEl ? serviceEl.value : "General Consultation";
-      const phone = phoneEl ? phoneEl.value.trim() : "";
-      const notes = notesEl ? notesEl.value.trim() : "";
+      const name = (document.getElementById("clientName") ? document.getElementById("clientName").value.trim() : "");
+      const service = (document.getElementById("projectTypeSelect") ? document.getElementById("projectTypeSelect").value : "Web Development");
+      const phone = (document.getElementById("clientPhone") ? document.getElementById("clientPhone").value.trim() : "");
+      const notes = (document.getElementById("clientNotes") ? document.getElementById("clientNotes").value.trim() : "");
 
       const whatsappText = (
-        `Hello Cloud Technologies!
-
-` +
-        `I would like to discuss a custom digital project:
-` +
-        `• Name: ${name || 'N/A'}
-` +
-        `• Services Required: ${service}
-` +
-        `• Existing Domain / Business: ${domain || 'New project'}
-` +
-        `• Contact Phone: ${phone || 'N/A'}
-` +
-        `• Project Goals: ${notes || 'Ready for strategy discussion'}
-
-` +
-        `Please share your availability for a consultation call!`
+        `Hello Cloud Technologies!\n\n` +
+        `I would like to request a quote / proposal for my business:\n` +
+        `• Name/Business: ${name || 'N/A'}\n` +
+        `• Service: ${service}\n` +
+        `• Phone/WhatsApp: ${phone || 'N/A'}\n` +
+        `• Project Notes: ${notes || 'Ready to discuss requirements'}\n\n` +
+        `Please share pricing and details at your earliest convenience!`
       );
 
       // Save lead locally for Admin Panel
       window.saveLeadToStorage({
-        type: "Custom Proposal",
+        type: "Project Quote",
         name: name || "Anonymous Client",
         industry: service,
         phone: phone || "N/A",
         features: [service],
-        notes: (domain ? `Domain: ${domain}. ` : "") + (notes || "")
+        notes: notes || "Direct quote inquiry"
       });
 
-      chatOnWhatsApp(null, whatsappText);
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappText)}`, "_blank");
       window.closeConsultationModal();
     });
   }
 }
+
+// -------------------------------------------------------------
+// Demo Modal Controller
+// -------------------------------------------------------------
+window.openDemoModal = function() {
+  const modal = document.getElementById("demoModal");
+  if (modal) {
+    modal.classList.add("show");
+    document.body.style.overflow = "hidden";
+  }
+};
+
+window.closeDemoModal = function() {
+  const modal = document.getElementById("demoModal");
+  if (modal) {
+    modal.classList.remove("show");
+    document.body.style.overflow = "auto";
+  }
+};
+
+// -------------------------------------------------------------
+// Intro Video Modal Controller
+// -------------------------------------------------------------
+window.openIntroModal = function() {
+  const modal = document.getElementById("introModal");
+  if (modal) {
+    modal.classList.add("show");
+    document.body.style.overflow = "hidden";
+  }
+};
+
+window.closeIntroModal = function() {
+  const modal = document.getElementById("introModal");
+  if (modal) {
+    modal.classList.remove("show");
+    document.body.style.overflow = "auto";
+  }
+};
 
 // -------------------------------------------------------------
 // Mobile Menu Controller
@@ -383,43 +346,43 @@ function initMobileMenu() {
   });
 }
 
+// -------------------------------------------------------------
+// FAQ Accordion
+// -------------------------------------------------------------
+function initFaqAccordion() {
+  const faqItems = document.querySelectorAll(".faq-item");
+  faqItems.forEach(item => {
+    item.addEventListener("click", () => {
+      item.classList.toggle("active");
+    });
+  });
+}
+
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
     if (typeof window.closeDemoModal === "function") window.closeDemoModal();
     if (typeof window.closeConsultationModal === "function") window.closeConsultationModal();
-    if (typeof window.closeServiceModal === "function") window.closeServiceModal();
-    if (typeof window.closeGalleryModal === "function") window.closeGalleryModal();
+    if (typeof window.closeIntroModal === "function") window.closeIntroModal();
     const drawer = document.getElementById("mobileNavDrawer");
     if (drawer) drawer.classList.remove("show");
   }
 });
 
-// Demo Modal Controller
-window.openDemoModal = function() {
-  const modal = document.getElementById("demoModal");
-  if (modal) {
-    modal.classList.add("show");
-    document.body.style.overflow = "hidden";
-  }
-};
-
-window.closeDemoModal = function() {
-  const modal = document.getElementById("demoModal");
-  if (modal) {
-    modal.classList.remove("show");
-    document.body.style.overflow = "auto";
-  }
-};
-
+// Demo Form Handler
 document.addEventListener("DOMContentLoaded", () => {
   const demoModal = document.getElementById("demoModal");
   const demoForm = document.getElementById("demoModalForm");
+  const introModal = document.getElementById("introModal");
 
   if (demoModal) {
     demoModal.addEventListener("click", (e) => {
-      if (e.target === demoModal) {
-        window.closeDemoModal();
-      }
+      if (e.target === demoModal) window.closeDemoModal();
+    });
+  }
+
+  if (introModal) {
+    introModal.addEventListener("click", (e) => {
+      if (e.target === introModal) window.closeIntroModal();
     });
   }
 
@@ -427,9 +390,9 @@ document.addEventListener("DOMContentLoaded", () => {
     demoForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const name = (document.getElementById("demoClientName") ? document.getElementById("demoClientName").value.trim() : "");
-      const industry = (document.getElementById("demoIndustrySelect") ? document.getElementById("demoIndustrySelect").value : (document.getElementById("demoBusinessType") ? document.getElementById("demoBusinessType").value : "General"));
-      const phone = (document.getElementById("demoClientPhone") ? document.getElementById("demoClientPhone").value.trim() : (document.getElementById("demoPhone") ? document.getElementById("demoPhone").value.trim() : ""));
-      const notes = (document.getElementById("demoClientNotes") ? document.getElementById("demoClientNotes").value.trim() : (document.getElementById("demoNotes") ? document.getElementById("demoNotes").value.trim() : "N/A"));
+      const industry = (document.getElementById("demoIndustrySelect") ? document.getElementById("demoIndustrySelect").value : "General");
+      const phone = (document.getElementById("demoClientPhone") ? document.getElementById("demoClientPhone").value.trim() : "");
+      const notes = (document.getElementById("demoClientNotes") ? document.getElementById("demoClientNotes").value.trim() : "N/A");
 
       const selectedFeatures = [];
       document.querySelectorAll(".demo-feature-chk:checked").forEach(cb => {
@@ -438,22 +401,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const featuresStr = selectedFeatures.length > 0 ? selectedFeatures.join(", ") : "Standard Custom Features";
 
       const message = (
-        `Hello Cloud Technologies! 🚀
-
-` +
-        `I would like to book a Custom Demo Website as per my demand:
-` +
-        `• Name/Business: ${name}
-` +
-        `• Industry: ${industry}
-` +
-        `• Features Requested: ${featuresStr}
-` +
-        `• WhatsApp Number: ${phone}
-` +
-        `• Demand & Notes: ${notes}
-
-` +
+        `Hello Cloud Technologies! 🚀\n\n` +
+        `I would like to book a Custom Demo Website as per my demand:\n` +
+        `• Name/Business: ${name}\n` +
+        `• Industry: ${industry}\n` +
+        `• Features: ${featuresStr}\n` +
+        `• WhatsApp: ${phone}\n` +
+        `• Notes: ${notes}\n\n` +
         `Please share details on when my demo will be ready!`
       );
 
@@ -467,7 +421,7 @@ document.addEventListener("DOMContentLoaded", () => {
         notes: notes || "Standard prototype demand"
       });
 
-      window.open(`https://wa.me/918830464841?text=${encodeURIComponent(message)}`, "_blank");
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank");
       window.closeDemoModal();
     });
   }
@@ -530,10 +484,6 @@ function applyLiveSiteConfig() {
     if (cfg.heroDesc) {
       const heroDescEl = document.querySelector(".hero-desc");
       if (heroDescEl) heroDescEl.textContent = cfg.heroDesc;
-    }
-
-    if (cfg.deliveryBadge) {
-      document.querySelectorAll(".telemetry-badge").forEach(el => el.textContent = cfg.deliveryBadge);
     }
   } catch (e) {
     console.warn("Error applying live site config:", e);

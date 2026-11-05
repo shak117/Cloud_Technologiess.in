@@ -7,20 +7,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
 
 :root {
-  --admin-bg: #F8F6F0;
-  --admin-surface: #F1EEE6;
+  --admin-bg: #F8FAFC;
+  --admin-surface: #F1F5F9;
   --admin-surface-card: #FFFFFF;
-  --admin-border: #E8E3D9;
-  --admin-border-subtle: #E8E3D9;
-  --admin-text: #25251F;
-  --admin-text-secondary: #77756D;
-  --admin-text-muted: #9E9C93;
-  --admin-gold: #B69A68;
-  --admin-teal: #B69A68;
+  --admin-border: #E2E8F0;
+  --admin-border-subtle: #EDF2F7;
+  --admin-text: #0F172A;
+  --admin-text-secondary: #475569;
+  --admin-text-muted: #64748B;
+  --admin-gold: #2563EB;
+  --admin-teal: #06B6D4;
   --admin-green: #10B981;
   --admin-red: #EF4444;
-  --admin-blue: #3B82F6;
-  --font-heading: 'Manrope', -apple-system, sans-serif;
+  --admin-blue: #2563EB;
+  --font-heading: 'Plus Jakarta Sans', 'Manrope', -apple-system, sans-serif;
   --font-body: 'Inter', -apple-system, sans-serif;
 }
 
