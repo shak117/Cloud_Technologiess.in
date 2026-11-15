@@ -152,10 +152,9 @@
             <option value="all">All Statuses</option>
             <option value="New">New</option>
             <option value="Contacted">Contacted</option>
-            <option value="Demo In Progress">Demo In Progress</option>
-            <option value="Converted / Won">Converted / Won</option>
-            <option value="Completed">Completed</option>
-            <option value="Closed">Closed</option>
+            <option value="Interested">Interested</option>
+            <option value="Converted">Converted</option>
+            <option value="Not Interested">Not Interested</option>
           </select>
 
           <select id="leadTypeFilter" class="admin-filter-select">
@@ -177,12 +176,12 @@
         <table class="admin-table">
           <thead>
             <tr>
-              <th>Client / ID</th>
-              <th>Category &amp; Type</th>
-              <th>Phone &amp; Direct WhatsApp</th>
-              <th>Demand / Features</th>
-              <th>Received Date</th>
-              <th>Status</th>
+              <th>Customer Name</th>
+              <th>Mobile Number</th>
+              <th>Service Requested</th>
+              <th>Project Requirements</th>
+              <th>Date Received</th>
+              <th>Lead Status</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -426,8 +425,11 @@
         <textarea id="modalLeadAdminNotes" class="form-textarea" placeholder="Add private notes (e.g. called client, demo scheduled for Friday)..." style="min-height: 80px;"></textarea>
       </div>
 
-      <div style="display: flex; gap: 0.8rem; margin-top: 1rem;">
-        <button type="button" class="btn-modal-submit" id="btnSaveLeadNotes" style="background: var(--admin-teal); color: #070d18;">
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.8rem; margin-top: 1rem; flex-wrap: wrap;">
+        <a href="#" id="modalLeadWhatsAppLink" target="_blank" class="btn-modal-submit" style="background: #25D366; color: #FFFFFF; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">
+          <span>💬 Chat on WhatsApp</span>
+        </a>
+        <button type="button" class="btn-modal-submit" id="btnSaveLeadNotes" style="background: #2563EB; color: #FFFFFF;">
           Save Internal Notes
         </button>
       </div>

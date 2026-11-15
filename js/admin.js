@@ -9,52 +9,46 @@ const MKT_LEADS_KEY = "cloudtech_marketing_leads";
 const CONFIG_KEY = "cloudtech_site_config";
 const CLIENTS_KEY = "cloudtech_clients";
 
+// Default seed inquiries
 const DEFAULT_LEADS = [
   {
-    id: "REQ-SKRELAX",
-    type: "Digital Marketing",
-    name: "SK Relax Studio",
-    industry: "Beauty Academy & Salon",
-    phone: "8830464841",
-    features: ["Targeted Meta Ads", "WhatsApp Funnel", "Reel Video Shoots"],
-    notes: "Academy course admissions and premium bridal service campaign requested.",
-    createdAt: new Date(Date.now() - 2 * 86400000).toISOString(),
-    status: "Converted / Won",
-    adminNotes: "Client live! Significant increase in direct WhatsApp consultation leads."
-  },
-  {
-    id: "REQ-HIRAMOTI",
-    type: "Digital Catalogue",
-    name: "HIRAMOTI Collection",
-    industry: "Catalogue & Collections",
-    phone: "8830464841",
-    features: ["Digital Catalogue", "Mobile Speed Optimization", "WhatsApp Direct Order"],
-    notes: "High-speed mobile showcase for seasonal collections.",
-    createdAt: new Date(Date.now() - 4 * 86400000).toISOString(),
-    status: "Completed",
-    adminNotes: "Digital showcase platform deployed and running."
-  },
-  {
-    id: "REQ-MHASWADKAR",
-    type: "Industrial Platform",
-    name: "Mhaswadkar Machineries",
-    industry: "Machineries & Equipment Trading",
-    phone: "8830464841",
-    features: ["Product Showcase", "B2B Lead Funnel", "Hosting Infrastructure"],
-    notes: "Industrial machinery inquiries from Satara and Western Maharashtra.",
-    createdAt: new Date(Date.now() - 86400000).toISOString(),
+    id: "LEAD-101",
+    name: "Dr. Arvind Kulkarni",
+    phone: "9822012345",
+    service: "Website Development",
+    requirements: "Need a clean, mobile-responsive clinic website with appointment booking and patient inquiry forms.",
+    createdAt: new Date(Date.now() - 3600000 * 2).toISOString(),
     status: "New",
-    adminNotes: "Follow up scheduled on WhatsApp."
+    adminNotes: "Consultation call scheduled on WhatsApp."
+  },
+  {
+    id: "LEAD-102",
+    name: "Shree Ganesh Electricals",
+    phone: "8830464841",
+    service: "Billing Software",
+    requirements: "Need Cloud Billing Software for retail counter POS, GST invoicing, barcode scanning, and inventory stock tracking.",
+    createdAt: new Date(Date.now() - 86400000 * 1).toISOString(),
+    status: "Interested",
+    adminNotes: "Demo demonstrated. Client reviewing pricing package."
+  },
+  {
+    id: "LEAD-103",
+    name: "SK Relax Studio",
+    phone: "8830464841",
+    service: "Digital Marketing / Meta Ads",
+    requirements: "Targeted Instagram & Facebook campaigns for bridal packages and academy student enrollment.",
+    createdAt: new Date(Date.now() - 86400000 * 3).toISOString(),
+    status: "Converted",
+    adminNotes: "Campaign launched successfully. Steady stream of WhatsApp leads."
   }
 ];
 
 const DEFAULT_CLIENTS = [
   {
     id: "client-sk-relax",
-    name: "SK Relax Studio",
+    name: "SK Relax Beauty Academy & Salon",
     industry: "Beauty Academy & Salon",
     logo: "images/client-sk-relax.png",
-    badge: "Satara",
     active: true
   },
   {
@@ -62,43 +56,52 @@ const DEFAULT_CLIENTS = [
     name: "HIRAMOTI Collection",
     industry: "Catalogue & Collections",
     logo: "images/client-hiramoti.png",
-    badge: "E-Catalogue",
+    active: true
+  },
+  {
+    id: "client-mama",
+    name: "Mama Pedhewale",
+    industry: "Heritage Sweets & D2C",
+    logo: "images/client-mama-pedhewale.png",
     active: true
   },
   {
     id: "client-mhaswadkar",
     name: "Mhaswadkar Machineries",
-    industry: "Machineries Trading Co.",
+    industry: "Industrial Machinery Trading",
     logo: "images/client-mhaswadkar.svg",
-    badge: "Industrial",
     active: true
   },
   {
-    id: "client-mahajan",
-    name: "Mahajan Hospital",
-    industry: "Healthcare & Clinic Services",
-    logo: "images/cloud-logo.png",
-    badge: "Healthcare",
-    active: false
+    id: "client-punita",
+    name: "Punita Collection",
+    industry: "Ethnic & Western Boutique",
+    logo: "images/client-punita.svg",
+    active: true
+  },
+  {
+    id: "client-jogeshwari",
+    name: "Jogeshwari Misal",
+    industry: "Food & QSR Franchise",
+    logo: "images/client-jogeshwari.svg",
+    active: true
   }
 ];
 
 const DEFAULT_CONFIG = {
   brandName: "Cloud Technologies",
-  brandTag: "Digital Solutions & Cloud Agency",
+  brandTag: "Digital Solutions & Software",
   directPhone: "8830464841",
   whatsappNumber: "8830464841",
   supportEmail: "contact@cloudtechnologies.in",
   uptimeBadge: "99.9% Uptime • Free SSL Security",
-  deliveryBadge: "Rapid Campaign Deployment",
+  deliveryBadge: "Rapid Solutions Deployment",
   heroTag: "Full-Service Digital Engineering & Growth",
-  heroTitle: "Digital Solutions to Grow <span class=\"highlight-blue\">Your Business</span>",
-  heroDesc: "We build modern websites, powerful web applications and run result-driven digital marketing campaigns to help businesses in Satara go online, get customers and grow.",
-  demoCalloutTitle: "Interactive Demo Website Built As Per Your Demand",
-  demoCalloutDesc: "Want to see how your site looks & works before committing? We build a working demo prototype tailored to your exact industry. 100% Free!",
+  heroTitle: "Building Digital Solutions That Help <span class=\"highlight-blue\">Businesses Grow.</span>",
+  heroDesc: "We help businesses establish their digital presence, automate everyday operations and reach more customers through modern websites, business software and result-driven digital marketing.",
   founderName: "Shashank Pawar",
   founderTitle: "Founder & Principal Solutions Architect",
-  founderQuote: "We founded Cloud Technologies to bring high-performance web engineering, data-driven Meta ads, and robust cloud infrastructure to ambitious businesses in Satara and across India.",
+  founderQuote: "Hi, I'm Shashank Pawar, Founder of Cloud Technologies. I work with businesses to turn their ideas and everyday operational challenges into practical digital solutions.",
   founderPhone: "8830464841"
 };
 
@@ -108,7 +111,6 @@ let mktLeads = [];
 let clients = [];
 let siteConfig = {};
 let currentLeadId = null;
-let currentMktLeadId = null;
 
 document.addEventListener("DOMContentLoaded", () => {
   initAuth();
@@ -116,7 +118,6 @@ document.addEventListener("DOMContentLoaded", () => {
     initStorage();
     initTabs();
     initLeadsTable();
-    initMarketingTable();
     initClientsManager();
     initConfigEditor();
     renderDashboard();
@@ -143,7 +144,6 @@ function initAuth() {
         initStorage();
         initTabs();
         initLeadsTable();
-        initMarketingTable();
         initClientsManager();
         initConfigEditor();
         renderDashboard();
@@ -180,15 +180,15 @@ function initStorage() {
       leads = [...DEFAULT_LEADS];
       localStorage.setItem(LEADS_KEY, JSON.stringify(leads));
     } else {
-      leads = JSON.parse(rawLeads).filter(l => !/mama|pedhewale|punita/i.test(l.name));
-    }
-
-    const rawMkt = localStorage.getItem(MKT_LEADS_KEY);
-    if (!rawMkt) {
-      mktLeads = [];
-      localStorage.setItem(MKT_LEADS_KEY, JSON.stringify(mktLeads));
-    } else {
-      mktLeads = JSON.parse(rawMkt);
+      leads = JSON.parse(rawLeads);
+      // Migrate old statuses if any
+      leads.forEach(l => {
+        if (!l.service && l.type) l.service = l.type;
+        if (!l.requirements && l.notes) l.requirements = l.notes;
+        if (l.status === "Converted / Won" || l.status === "Completed") l.status = "Converted";
+        if (l.status === "Closed") l.status = "Not Interested";
+        if (l.status === "Demo In Progress") l.status = "Interested";
+      });
     }
 
     const rawClients = localStorage.getItem(CLIENTS_KEY);
@@ -196,8 +196,7 @@ function initStorage() {
       clients = [...DEFAULT_CLIENTS];
       localStorage.setItem(CLIENTS_KEY, JSON.stringify(clients));
     } else {
-      clients = JSON.parse(rawClients).filter(c => !/mama|pedhewale|punita/i.test(c.name));
-      if (clients.length === 0) clients = [...DEFAULT_CLIENTS];
+      clients = JSON.parse(rawClients);
     }
 
     const rawConfig = localStorage.getItem(CONFIG_KEY);
@@ -230,7 +229,6 @@ function initTabs() {
       const targetPane = document.getElementById(targetId);
       if (targetPane) targetPane.style.display = "block";
 
-      if (targetId === "tab-marketing-leads") renderMarketingTable();
       if (targetId === "tab-clients") renderClientsManager();
     });
   });
@@ -240,7 +238,6 @@ function initTabs() {
 function renderDashboard() {
   updateMetrics();
   filterAndRenderLeads();
-  renderMarketingTable();
   renderClientsManager();
   populateConfigFields();
 }
@@ -251,29 +248,26 @@ function updateMetrics() {
   const activeEl = document.getElementById("metricActiveDemos");
   const wonEl = document.getElementById("metricConvertedClients");
 
-  const total = leads.length + mktLeads.length;
-  const newCount = leads.filter(l => l.status === "New").length + mktLeads.filter(m => m.status === "New").length;
-  const inProgress = leads.filter(l => l.status === "Demo In Progress" || l.status === "Contacted").length;
-  const won = leads.filter(l => l.status === "Converted / Won" || l.status === "Completed" || l.status === "Active Client").length;
+  const total = leads.length;
+  const newCount = leads.filter(l => l.status === "New").length;
+  const interested = leads.filter(l => l.status === "Interested" || l.status === "Contacted").length;
+  const converted = leads.filter(l => l.status === "Converted").length;
 
   if (totalEl) totalEl.textContent = total;
   if (newEl) newEl.textContent = newCount;
-  if (activeEl) activeEl.textContent = inProgress;
-  if (wonEl) wonEl.textContent = won;
-
-  const mktBadge = document.getElementById("mktBadgeCount");
-  if (mktBadge) mktBadge.textContent = mktLeads.length;
+  if (activeEl) activeEl.textContent = interested;
+  if (wonEl) wonEl.textContent = converted;
 }
 
-// TAB 1: Proposals & Demos Table
+// TAB 1: Inquiries Management
+const VALID_STATUSES = ["New", "Contacted", "Interested", "Converted", "Not Interested"];
+
 function initLeadsTable() {
   const searchInput = document.getElementById("leadSearchInput");
   const statusFilter = document.getElementById("leadStatusFilter");
-  const typeFilter = document.getElementById("leadTypeFilter");
 
   if (searchInput) searchInput.addEventListener("input", filterAndRenderLeads);
   if (statusFilter) statusFilter.addEventListener("change", filterAndRenderLeads);
-  if (typeFilter) typeFilter.addEventListener("change", filterAndRenderLeads);
 
   const saveNotesBtn = document.getElementById("btnSaveLeadNotes");
   if (saveNotesBtn) {
@@ -281,12 +275,14 @@ function initLeadsTable() {
       if (!currentLeadId) return;
       const lead = leads.find(l => l.id === currentLeadId);
       if (lead) {
-        const notes = document.getElementById("modalLeadAdminNotes").value;
-        lead.adminNotes = notes;
+        lead.adminNotes = document.getElementById("modalLeadAdminNotes").value;
+        const statusSelect = document.getElementById("modalLeadStatusSelect");
+        if (statusSelect) lead.status = statusSelect.value;
         saveLeadsToStorage();
+        updateMetrics();
         filterAndRenderLeads();
         closeLeadModal();
-        showToast("Lead notes updated successfully.");
+        showToast("Lead updated successfully.");
       }
     });
   }
@@ -298,47 +294,61 @@ function filterAndRenderLeads() {
 
   const search = (document.getElementById("leadSearchInput")?.value || "").toLowerCase();
   const status = document.getElementById("leadStatusFilter")?.value || "all";
-  const type = document.getElementById("leadTypeFilter")?.value || "all";
 
   const filtered = leads.filter(l => {
     const matchSearch = (l.name || "").toLowerCase().includes(search) ||
                         (l.phone || "").toLowerCase().includes(search) ||
-                        (l.industry || "").toLowerCase().includes(search);
+                        (l.service || l.type || "").toLowerCase().includes(search) ||
+                        (l.requirements || l.notes || "").toLowerCase().includes(search);
     const matchStatus = status === "all" || l.status === status;
-    const matchType = type === "all" || l.type === type;
-    return matchSearch && matchStatus && matchType;
+    return matchSearch && matchStatus;
   });
 
   if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--admin-text-muted); padding: 2rem;">No matching inquiries found.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--admin-text-muted); padding: 2.5rem;">No enquiries found matching your criteria.</td></tr>`;
     return;
   }
 
   tbody.innerHTML = filtered.map(l => {
-    const dateStr = l.createdAt ? new Date(l.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }) : "-";
+    const dateStr = l.createdAt ? new Date(l.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" }) : "-";
     const statusCls = getStatusClass(l.status);
+    const serviceName = l.service || l.type || "General Inquiry";
+    const reqText = l.requirements || l.notes || "No details provided";
+
     return `
       <tr>
-        <td><strong>${escapeHtml(l.id)}</strong></td>
         <td>
-          <div style="font-weight: 700; color: var(--admin-text);">${escapeHtml(l.name)}</div>
-          <div style="font-size: 0.78rem; color: var(--admin-text-muted);">${escapeHtml(l.industry || "")}</div>
+          <strong style="color: var(--admin-text); display: block;">${escapeHtml(l.name)}</strong>
+          <span style="font-size: 0.74rem; color: var(--admin-text-muted);">${escapeHtml(l.id)}</span>
         </td>
         <td>
-          <a href="https://wa.me/91${l.phone}" target="_blank" style="color: #25D366; font-weight: 600; text-decoration: none;">
-            +91 ${escapeHtml(l.phone)}
+          <a href="https://wa.me/91${l.phone}" target="_blank" style="color: #25D366; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 0.3rem;">
+            💬 +91 ${escapeHtml(l.phone)}
           </a>
         </td>
-        <td><span class="type-pill">${escapeHtml(l.type || "Inquiry")}</span></td>
+        <td>
+          <span class="type-pill" style="font-weight: 700;">${escapeHtml(serviceName)}</span>
+        </td>
+        <td style="max-width: 280px;">
+          <div style="font-size: 0.84rem; color: var(--admin-text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${escapeHtml(reqText)}">
+            ${escapeHtml(reqText)}
+          </div>
+        </td>
+        <td style="font-size: 0.8rem; color: var(--admin-text-muted); white-space: nowrap;">
+          ${escapeHtml(dateStr)}
+        </td>
         <td>
           <select class="status-select ${statusCls}" onchange="changeLeadStatus('${l.id}', this.value)">
-            ${["New", "Contacted", "Demo In Progress", "Converted / Won", "Completed", "Closed"].map(s => `
+            ${VALID_STATUSES.map(s => `
               <option value="${s}" ${l.status === s ? "selected" : ""}>${s}</option>
             `).join("")}
           </select>
         </td>
         <td>
-          <button class="action-btn" onclick="openLeadModal('${l.id}')">View Details</button>
+          <div style="display: flex; gap: 0.4rem;">
+            <button class="action-btn" onclick="openLeadModal('${l.id}')">View</button>
+            <button class="action-btn" style="color: #DC2626;" onclick="deleteLead('${l.id}')">×</button>
+          </div>
         </td>
       </tr>
     `;
@@ -349,9 +359,8 @@ function getStatusClass(status) {
   switch (status) {
     case "New": return "status-new";
     case "Contacted": return "status-contacted";
-    case "Demo In Progress": return "status-demo";
-    case "Converted / Won": return "status-won";
-    case "Completed": return "status-won";
+    case "Interested": return "status-demo";
+    case "Converted": return "status-won";
     default: return "status-closed";
   }
 }
@@ -374,11 +383,18 @@ window.openLeadModal = function(leadId) {
 
   document.getElementById("modalLeadClientName").textContent = lead.name;
   document.getElementById("modalLeadPhone").textContent = "+91 " + lead.phone;
-  document.getElementById("modalLeadType").textContent = lead.type;
-  document.getElementById("modalLeadIndustry").textContent = lead.industry || "-";
-  document.getElementById("modalLeadFeatures").textContent = Array.isArray(lead.features) ? lead.features.join(", ") : "-";
-  document.getElementById("modalLeadNotes").textContent = lead.notes || "None";
+  document.getElementById("modalLeadType").textContent = lead.service || lead.type || "Inquiry";
+  document.getElementById("modalLeadIndustry").textContent = lead.requirements || lead.notes || "-";
+  document.getElementById("modalLeadFeatures").textContent = lead.createdAt ? new Date(lead.createdAt).toLocaleString("en-IN") : "-";
+  document.getElementById("modalLeadNotes").textContent = lead.requirements || lead.notes || "None";
   document.getElementById("modalLeadAdminNotes").value = lead.adminNotes || "";
+
+  // WhatsApp quick button in modal
+  const waBtn = document.getElementById("modalLeadWhatsAppLink");
+  if (waBtn) {
+    const waMsg = `Hi ${lead.name}! Shashank here from Cloud Technologies regarding your enquiry for ${lead.service || "our services"}. Let's discuss your requirements!`;
+    waBtn.href = `https://wa.me/91${lead.phone}?text=${encodeURIComponent(waMsg)}`;
+  }
 
   document.getElementById("leadDetailModal").style.display = "flex";
 };
@@ -388,179 +404,47 @@ window.closeLeadModal = function() {
   currentLeadId = null;
 };
 
-function saveLeadsToStorage() {
-  localStorage.setItem(LEADS_KEY, JSON.stringify(leads));
-}
-
-// TAB 2: Digital Marketing Inquiries Table
-function initMarketingTable() {
-  const searchInput = document.getElementById("mktSearchInput");
-  const statusFilter = document.getElementById("mktStatusFilter");
-  const budgetFilter = document.getElementById("mktBudgetFilter");
-  const exportBtn = document.getElementById("btnExportMktCsv");
-
-  if (searchInput) searchInput.addEventListener("input", renderMarketingTable);
-  if (statusFilter) statusFilter.addEventListener("change", renderMarketingTable);
-  if (budgetFilter) budgetFilter.addEventListener("change", renderMarketingTable);
-
-  if (exportBtn) {
-    exportBtn.addEventListener("click", exportMarketingCsv);
-  }
-
-  const saveMktStatusBtn = document.getElementById("btnSaveMktStatus");
-  if (saveMktStatusBtn) {
-    saveMktStatusBtn.addEventListener("click", () => {
-      if (!currentMktLeadId) return;
-      const lead = mktLeads.find(m => m.id === currentMktLeadId);
-      if (lead) {
-        lead.status = document.getElementById("mktModalStatusSelect").value;
-        localStorage.setItem(MKT_LEADS_KEY, JSON.stringify(mktLeads));
-        renderMarketingTable();
-        updateMetrics();
-        closeMktModal();
-        showToast("Marketing inquiry status updated.");
-      }
-    });
-  }
-}
-
-function renderMarketingTable() {
-  const tbody = document.getElementById("mktTableBody");
-  if (!tbody) return;
-
-  const search = (document.getElementById("mktSearchInput")?.value || "").toLowerCase();
-  const status = document.getElementById("mktStatusFilter")?.value || "all";
-  const budget = document.getElementById("mktBudgetFilter")?.value || "all";
-
-  const filtered = mktLeads.filter(m => {
-    const matchSearch = (m.fullName || "").toLowerCase().includes(search) ||
-                        (m.brandName || "").toLowerCase().includes(search) ||
-                        (m.location || "").toLowerCase().includes(search) ||
-                        (m.phone || "").toLowerCase().includes(search);
-    const matchStatus = status === "all" || m.status === status;
-    const matchBudget = budget === "all" || m.adBudget === budget;
-    return matchSearch && matchStatus && matchBudget;
-  });
-
-  const mktBadge = document.getElementById("mktBadgeCount");
-  if (mktBadge) mktBadge.textContent = mktLeads.length;
-
-  if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="8" style="text-align: center; color: var(--admin-text-muted); padding: 2.5rem;">No digital marketing inquiries found. Submissions from <code>digital-marketing-enquiry.html</code> will appear here automatically!</td></tr>`;
-    return;
-  }
-
-  tbody.innerHTML = filtered.map(m => {
-    const dateStr = m.submittedAt ? new Date(m.submittedAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }) : "-";
-    return `
-      <tr>
-        <td style="font-size: 0.8rem; color: var(--admin-text-muted);">${escapeHtml(dateStr)}</td>
-        <td>
-          <div style="font-weight: 700; color: var(--admin-text);">${escapeHtml(m.brandName)}</div>
-          <div style="font-size: 0.8rem; color: var(--admin-text-muted);">By ${escapeHtml(m.fullName)}</div>
-        </td>
-        <td>
-          <a href="https://wa.me/91${m.phone}" target="_blank" style="color: #25D366; font-weight: 700; text-decoration: none;">
-            +91 ${escapeHtml(m.phone)}
-          </a>
-        </td>
-        <td>
-          <div style="font-size: 0.84rem;">${escapeHtml(m.category)}</div>
-          <div style="font-size: 0.76rem; color: var(--admin-text-muted);">📍 ${escapeHtml(m.location)}</div>
-        </td>
-        <td>
-          <span style="font-weight: 700; color: #2563EB; font-size: 0.84rem;">${escapeHtml(m.adBudget)}</span>
-        </td>
-        <td>
-          <span style="font-size: 0.8rem; color: var(--admin-text-secondary);">${escapeHtml(m.challenge || "-")}</span>
-        </td>
-        <td>
-          <span class="type-pill" style="background: rgba(37, 99, 235, 0.1); color: #2563EB;">${escapeHtml(m.status || "New")}</span>
-        </td>
-        <td>
-          <div style="display: flex; gap: 0.35rem;">
-            <button class="action-btn" onclick="openMktModal('${m.id}')">View</button>
-            <button class="action-btn" style="color: #DC2626;" onclick="deleteMktLead('${m.id}')">×</button>
-          </div>
-        </td>
-      </tr>
-    `;
-  }).join("");
-}
-
-window.openMktModal = function(mktId) {
-  const m = mktLeads.find(l => l.id === mktId);
-  if (!m) return;
-  currentMktLeadId = mktId;
-
-  document.getElementById("mktModalName").textContent = m.fullName;
-  document.getElementById("mktModalBrand").textContent = m.brandName;
-  document.getElementById("mktModalPhone").textContent = "+91 " + m.phone;
-  document.getElementById("mktModalCategory").textContent = m.category;
-  document.getElementById("mktModalLocation").textContent = m.location;
-  document.getElementById("mktModalUrl").textContent = m.url || "None provided";
-  document.getElementById("mktModalBudget").textContent = m.adBudget;
-  document.getElementById("mktModalServices").textContent = Array.isArray(m.services) ? m.services.join(", ") : "-";
-  document.getElementById("mktModalChallenge").textContent = m.challenge;
-  document.getElementById("mktModalNotes").textContent = m.notes || "None";
-  document.getElementById("mktModalStatusSelect").value = m.status || "New";
-
-  const waBtn = document.getElementById("mktModalWhatsAppBtn");
-  if (waBtn) {
-    const waText = `Hi ${m.fullName}! Shashank here from Cloud Technologies regarding your marketing inquiry for ${m.brandName}. Let's discuss your ad strategy!`;
-    waBtn.href = `https://wa.me/91${m.phone}?text=${encodeURIComponent(waText)}`;
-  }
-
-  document.getElementById("mktDetailModal").style.display = "flex";
-};
-
-window.closeMktModal = function() {
-  document.getElementById("mktDetailModal").style.display = "none";
-  currentMktLeadId = null;
-};
-
-window.deleteMktLead = function(mktId) {
-  if (!confirm("Are you sure you want to delete this marketing enquiry?")) return;
-  mktLeads = mktLeads.filter(m => m.id !== mktId);
-  localStorage.setItem(MKT_LEADS_KEY, JSON.stringify(mktLeads));
-  renderMarketingTable();
+window.deleteLead = function(leadId) {
+  if (!confirm("Are you sure you want to delete this enquiry?")) return;
+  leads = leads.filter(l => l.id !== leadId);
+  saveLeadsToStorage();
   updateMetrics();
+  filterAndRenderLeads();
   showToast("Enquiry deleted.");
 };
 
-function exportMarketingCsv() {
-  if (mktLeads.length === 0) {
-    alert("No marketing leads to export.");
+window.exportLeadsCSV = function() {
+  if (leads.length === 0) {
+    alert("No enquiries available to export.");
     return;
   }
-  const headers = ["ID", "Submitted At", "Client Name", "Brand Name", "WhatsApp", "Category", "Location", "Website URL", "Monthly Ad Budget", "Primary Challenge", "Services", "Notes", "Status"];
-  const rows = mktLeads.map(m => [
-    m.id,
-    m.submittedAt,
-    `"${(m.fullName || "").replace(/"/g, '""')}"`,
-    `"${(m.brandName || "").replace(/"/g, '""')}"`,
-    m.phone,
-    `"${(m.category || "").replace(/"/g, '""')}"`,
-    `"${(m.location || "").replace(/"/g, '""')}"`,
-    `"${(m.url || "").replace(/"/g, '""')}"`,
-    `"${(m.adBudget || "").replace(/"/g, '""')}"`,
-    `"${(m.challenge || "").replace(/"/g, '""')}"`,
-    `"${(Array.isArray(m.services) ? m.services.join(", ") : "").replace(/"/g, '""')}"`,
-    `"${(m.notes || "").replace(/"/g, '""')}"`,
-    m.status || "New"
+  const headers = ["ID", "Customer Name", "Mobile Number", "Service Requested", "Project Requirements", "Date Received", "Lead Status", "Admin Notes"];
+  const rows = leads.map(l => [
+    l.id,
+    `"${(l.name || "").replace(/"/g, '""')}"`,
+    l.phone,
+    `"${(l.service || l.type || "").replace(/"/g, '""')}"`,
+    `"${(l.requirements || l.notes || "").replace(/"/g, '""')}"`,
+    l.createdAt || "",
+    l.status || "New",
+    `"${(l.adminNotes || "").replace(/"/g, '""')}"`
   ]);
 
   const csvContent = "data:text/csv;charset=utf-8," + [headers.join(","), ...rows.map(r => r.join(","))].join("\n");
   const encodedUri = encodeURI(csvContent);
   const link = document.createElement("a");
   link.setAttribute("href", encodedUri);
-  link.setAttribute("download", `cloud_marketing_leads_${Date.now()}.csv`);
+  link.setAttribute("download", `cloud_technologies_enquiries_${Date.now()}.csv`);
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
+};
+
+function saveLeadsToStorage() {
+  localStorage.setItem(LEADS_KEY, JSON.stringify(leads));
 }
 
-// TAB 3: Client Collaborations Manager
+// TAB 2: Client Collaborations Manager
 function initClientsManager() {
   renderClientsManager();
 }
@@ -572,8 +456,8 @@ function renderClientsManager() {
   grid.innerHTML = clients.map(c => `
     <div style="background: #FFFFFF; border: 1px solid var(--admin-border); border-radius: 12px; padding: 1.25rem; display: flex; flex-direction: column; justify-content: space-between; gap: 1rem;">
       <div style="display: flex; align-items: center; gap: 1rem;">
-        <div style="width: 80px; height: 50px; background: #F8FAFC; border: 1px solid var(--admin-border-subtle); border-radius: 8px; display: flex; align-items: center; justify-content: center; padding: 0.35rem;">
-          <img src="${escapeHtml(c.logo)}" alt="${escapeHtml(c.name)}" style="max-height: 40px; max-width: 70px; object-fit: contain;">
+        <div style="width: 74px; height: 50px; background: #F8FAFC; border: 1px solid var(--admin-border-subtle); border-radius: 8px; display: flex; align-items: center; justify-content: center; padding: 0.35rem;">
+          <img src="${escapeHtml(c.logo)}" alt="${escapeHtml(c.name)}" style="max-height: 40px; max-width: 66px; object-fit: contain;">
         </div>
         <div>
           <strong style="display: block; font-size: 0.95rem; color: var(--admin-text);">${escapeHtml(c.name)}</strong>
@@ -582,7 +466,7 @@ function renderClientsManager() {
       </div>
       <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--admin-border-subtle); padding-top: 0.85rem;">
         <span style="font-size: 0.82rem; font-weight: 700; color: ${c.active ? '#16A34A' : '#64748B'};">
-          ${c.active ? '● Active on Homepage' : '○ Inactive / Hidden'}
+          ${c.active ? '● Active' : '○ Inactive'}
         </span>
         <button class="action-btn" onclick="toggleClientStatus('${c.id}')" style="font-weight: 700;">
           ${c.active ? 'Deactivate' : 'Activate'}
@@ -598,22 +482,21 @@ window.toggleClientStatus = function(clientId) {
     c.active = !c.active;
     localStorage.setItem(CLIENTS_KEY, JSON.stringify(clients));
     renderClientsManager();
-    showToast(`${c.name} is now ${c.active ? 'Active' : 'Hidden'} on website.`);
+    showToast(`${c.name} is now ${c.active ? 'Active' : 'Hidden'}.`);
   }
 };
 
 window.openAddClientModal = function() {
   const name = prompt("Enter Client / Brand Name:");
   if (!name) return;
-  const industry = prompt("Enter Industry / Subtitle:", "Satara Business");
-  const logo = prompt("Enter Logo Image Path (e.g. images/client-mahajan.png):", "images/cloud-logo.png");
+  const industry = prompt("Enter Industry / Solution Type:", "Satara Business");
+  const logo = prompt("Enter Logo Image Path (e.g. images/client-jogeshwari.svg):", "images/cloud-logo.png");
 
   const newClient = {
     id: "client_" + Date.now(),
     name,
-    industry: industry || "Business",
+    industry: industry || "Business Solution",
     logo: logo || "images/cloud-logo.png",
-    badge: "Verified",
     active: true
   };
 
@@ -623,7 +506,7 @@ window.openAddClientModal = function() {
   showToast(`Added ${name} to Collaborations.`);
 };
 
-// TAB 4: Website Content & Settings Editor
+// TAB 3: Website Content & Settings Editor
 function initConfigEditor() {
   const form = document.getElementById("siteConfigForm");
   const resetBtn = document.getElementById("btnResetConfig");
@@ -632,21 +515,19 @@ function initConfigEditor() {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       siteConfig = {
-        brandName: document.getElementById("cfgBrandName").value.trim(),
-        brandTag: document.getElementById("cfgBrandTag").value.trim(),
-        directPhone: document.getElementById("cfgDirectPhone").value.trim(),
-        whatsappNumber: document.getElementById("cfgWhatsappNumber").value.trim(),
-        supportEmail: document.getElementById("cfgSupportEmail").value.trim(),
-        uptimeBadge: document.getElementById("cfgUptimeBadge").value.trim(),
-        deliveryBadge: document.getElementById("cfgDeliveryBadge").value.trim(),
-        heroTag: document.getElementById("cfgHeroTag").value.trim(),
-        heroTitle: document.getElementById("cfgHeroTitle").value.trim(),
-        heroDesc: document.getElementById("cfgHeroDesc").value.trim(),
-        demoCalloutTitle: document.getElementById("cfgDemoCalloutTitle").value.trim(),
-        demoCalloutDesc: document.getElementById("cfgDemoCalloutDesc").value.trim(),
-        founderName: document.getElementById("cfgFounderName").value.trim(),
-        founderTitle: document.getElementById("cfgFounderTitle").value.trim(),
-        founderQuote: document.getElementById("cfgFounderQuote").value.trim()
+        brandName: document.getElementById("cfgBrandName")?.value.trim() || siteConfig.brandName,
+        brandTag: document.getElementById("cfgBrandTag")?.value.trim() || siteConfig.brandTag,
+        directPhone: document.getElementById("cfgDirectPhone")?.value.trim() || siteConfig.directPhone,
+        whatsappNumber: document.getElementById("cfgWhatsappNumber")?.value.trim() || siteConfig.whatsappNumber,
+        supportEmail: document.getElementById("cfgSupportEmail")?.value.trim() || siteConfig.supportEmail,
+        uptimeBadge: document.getElementById("cfgUptimeBadge")?.value.trim() || siteConfig.uptimeBadge,
+        deliveryBadge: document.getElementById("cfgDeliveryBadge")?.value.trim() || siteConfig.deliveryBadge,
+        heroTag: document.getElementById("cfgHeroTag")?.value.trim() || siteConfig.heroTag,
+        heroTitle: document.getElementById("cfgHeroTitle")?.value.trim() || siteConfig.heroTitle,
+        heroDesc: document.getElementById("cfgHeroDesc")?.value.trim() || siteConfig.heroDesc,
+        founderName: document.getElementById("cfgFounderName")?.value.trim() || siteConfig.founderName,
+        founderTitle: document.getElementById("cfgFounderTitle")?.value.trim() || siteConfig.founderTitle,
+        founderQuote: document.getElementById("cfgFounderQuote")?.value.trim() || siteConfig.founderQuote
       };
       localStorage.setItem(CONFIG_KEY, JSON.stringify(siteConfig));
       showToast("Website settings saved. Live changes will reflect on reload!");
@@ -655,7 +536,7 @@ function initConfigEditor() {
 
   if (resetBtn) {
     resetBtn.addEventListener("click", () => {
-      if (confirm("Reset all settings to default Cloud Technologies values?")) {
+      if (confirm("Reset all settings to default values?")) {
         siteConfig = { ...DEFAULT_CONFIG };
         localStorage.setItem(CONFIG_KEY, JSON.stringify(siteConfig));
         populateConfigFields();
