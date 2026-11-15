@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initLeadForm();
   initMobileMenu();
   initSmoothScroll();
+  initClientCarousel();
 });
 
 // -------------------------------------------------------------
@@ -184,19 +185,147 @@ window.closeMobileMenu = function() {
 };
 
 // -------------------------------------------------------------
-// 4. Smooth Scrolling for Internal Hash Anchors
+// 5. Automatic Horizontal Client Logo Carousel (1.5s Interval)
 // -------------------------------------------------------------
-function initSmoothScroll() {
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", function(e) {
-      const targetId = this.getAttribute("href");
-      if (targetId === "#" || targetId === "") return;
-      const targetEl = document.querySelector(targetId);
-      if (targetEl) {
-        e.preventDefault();
-        targetEl.scrollIntoView({ behavior: "smooth" });
-        closeMobileMenu();
-      }
+function initClientCarousel() {
+  const track = document.getElementById("collabCarouselTrack");
+  const viewport = document.getElementById("collabCarouselViewport");
+  if (!track || !viewport) return;
+
+  // 3 Approved Clients ONLY: SK Relax Studio, Hiramoti Collection, Mahajan Hospital
+  const clientLogos = [
+    { name: "SK Relax Studio", logo: "images/client-sk-relax.png" },
+    { name: "HIRAMOTI Collection", logo: "images/client-hiramoti.png" },
+    { name: "Mahajan Hospital", logo: "images/client-mahajan.png" }
+  ];
+
+  // Repeat items 6 times (18 badges) to create a seamless infinite loop buffer
+  const repeatCount = 6;
+  const baseCount = clientLogos.length;
+  track.innerHTML = "";
+
+  for (let r = 0; r < repeatCount; r++) {
+    clientLogos.forEach(c => {
+      const item = document.createElement("div");
+      item.className = "collab-logo-item";
+      item.setAttribute("title", c.name);
+
+      const img = document.createElement("img");
+      img.src = c.logo;
+      img.alt = c.name;
+      img.className = "collab-logo-img";
+      img.loading = "eager";
+
+      item.appendChild(img);
+      track.appendChild(item);
     });
+  }
+
+  let currentIndex = baseCount * 2; // start at middle cycle (index 6)
+  let autoplayTimer = null;
+  const INTERVAL_MS = 1500; // 1.5s interval
+  let isTransitioning = false;
+
+  function getStepWidth() {
+    const firstItem = track.children[0];
+    if (!firstItem) return 96;
+    const style = window.getComputedStyle(track);
+    const gap = parseFloat(style.gap || style.columnGap || "24");
+    return firstItem.offsetWidth + gap;
+  }
+
+  function renderPosition(animate = true) {
+    const step = getStepWidth();
+    if (animate) {
+      track.style.transition = "transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)";
+      isTransitioning = true;
+    } else {
+      track.style.transition = "none";
+      isTransitioning = false;
+    }
+    track.style.transform = `translateX(-${currentIndex * step}px)`;
+  }
+
+  function advanceNext() {
+    currentIndex++;
+    renderPosition(true);
+  }
+
+  function advancePrev() {
+    currentIndex--;
+    renderPosition(true);
+  }
+
+  track.addEventListener("transitionend", () => {
+    isTransitioning = false;
+    // When past cycle 4, normalize seamlessly to cycle 2
+    if (currentIndex >= baseCount * 4) {
+      currentIndex -= baseCount * 2;
+      renderPosition(false);
+    } else if (currentIndex < baseCount) {
+      currentIndex += baseCount * 2;
+      renderPosition(false);
+    }
+  });
+
+  function startAutoplay() {
+    stopAutoplay();
+    autoplayTimer = setInterval(() => {
+      advanceNext();
+    }, INTERVAL_MS);
+  }
+
+  function stopAutoplay() {
+    if (autoplayTimer) {
+      clearInterval(autoplayTimer);
+      autoplayTimer = null;
+    }
+  }
+
+  // Initial layout positioning
+  renderPosition(false);
+  startAutoplay();
+
+  // Pause on hover
+  viewport.addEventListener("mouseenter", stopAutoplay);
+  viewport.addEventListener("mouseleave", startAutoplay);
+
+  // Mobile touch / swipe support
+  let touchStartX = 0;
+  let touchDeltaX = 0;
+  let isTouching = false;
+
+  viewport.addEventListener("touchstart", (e) => {
+    stopAutoplay();
+    isTouching = true;
+    touchStartX = e.touches[0].clientX;
+    touchDeltaX = 0;
+  }, { passive: true });
+
+  viewport.addEventListener("touchmove", (e) => {
+    if (!isTouching) return;
+    touchDeltaX = e.touches[0].clientX - touchStartX;
+  }, { passive: true });
+
+  viewport.addEventListener("touchend", () => {
+    if (!isTouching) return;
+    isTouching = false;
+    if (touchDeltaX < -28) {
+      advanceNext();
+    } else if (touchDeltaX > 28) {
+      advancePrev();
+    } else {
+      renderPosition(true);
+    }
+    startAutoplay();
+  });
+
+  // Handle window resizing without broken positioning
+  let resizeTimeout = null;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      renderPosition(false);
+    }, 100);
   });
 }

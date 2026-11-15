@@ -398,7 +398,7 @@ button {
    2. HERO SECTION & FOUNDER INTRODUCTION
 ============================================================= */
 .hero-section {
-  padding: 4.5rem 0 4rem 0;
+  padding: 3.5rem 0 3rem 0;
   background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
   position: relative;
   overflow: hidden;
@@ -434,7 +434,8 @@ button {
   font-size: 0.82rem;
   font-weight: 700;
   color: var(--color-primary-dark);
-  margin-bottom: 1.4rem;
+  margin-bottom: 1.1rem;
+  max-width: 100%;
 }
 
 .hero-location-indicator .loc-dot {
@@ -443,6 +444,11 @@ button {
   border-radius: 50%;
   background: #10B981;
   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25);
+  flex-shrink: 0;
+}
+
+.hero-location-indicator .loc-text {
+  line-height: 1.35;
 }
 
 .hero-headline {
@@ -452,23 +458,182 @@ button {
   color: var(--color-navy);
   line-height: 1.16;
   letter-spacing: -0.025em;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .hero-subtext {
   font-size: clamp(1.05rem, 1.35vw, 1.2rem);
   color: var(--text-secondary);
   line-height: 1.65;
-  margin-bottom: 2.2rem;
+  margin-bottom: 1.6rem;
   max-width: 620px;
 }
 
 .hero-cta-group {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.85rem;
   flex-wrap: wrap;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.6rem;
+}
+
+.hero-btn-primary {
+  background: linear-gradient(135deg, #1D68F2 0%, #0284C7 100%);
+  color: #FFFFFF !important;
+  border-radius: var(--radius-full);
+  padding: 0.75rem 1.4rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  box-shadow: 0 4px 14px rgba(29, 104, 242, 0.3);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.hero-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(29, 104, 242, 0.42);
+}
+
+.hero-btn-discuss {
+  background: #FFFFFF;
+  color: #1D68F2 !important;
+  border: 1.5px solid #2563EB;
+  border-radius: var(--radius-full);
+  padding: 0.72rem 1.4rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.hero-btn-discuss:hover {
+  background: #EFF6FF;
+  border-color: #1D68F2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.18);
+}
+
+.cta-chat-icon {
+  width: 18px;
+  height: 18px;
+  color: #1D68F2;
+  flex-shrink: 0;
+}
+
+/* =============================================================
+   CLIENT COLLABORATION CAROUSEL CARD
+============================================================= */
+.hero-collab-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: 20px;
+  padding: 1.35rem 1.25rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  margin-top: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.collab-title {
+  font-family: var(--font-heading);
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: var(--color-navy);
+  text-align: center;
+  letter-spacing: -0.015em;
+  margin-bottom: 0.35rem;
+}
+
+.collab-subtitle {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  text-align: center;
+  line-height: 1.45;
+  margin-bottom: 1.25rem;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.collab-carousel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 0.25rem 0;
+}
+
+.collab-fade-mask {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 48px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.collab-fade-mask.fade-left {
+  left: 0;
+  background: linear-gradient(90deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.collab-fade-mask.fade-right {
+  right: 0;
+  background: linear-gradient(270deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.collab-carousel-viewport {
+  overflow: hidden;
+  width: 100%;
+  user-select: none;
+  cursor: grab;
+}
+
+.collab-carousel-viewport:active {
+  cursor: grabbing;
+}
+
+.collab-carousel-track {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  will-change: transform;
+}
+
+.collab-logo-item {
+  flex: 0 0 auto;
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 6px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.collab-logo-item:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.15);
+}
+
+.collab-logo-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: contain;
+  display: block;
 }
 
 .hero-trust-row {
@@ -1566,30 +1731,148 @@ button {
 }
 
 @media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+  .nav-container {
+    height: 60px;
+    width: 100%;
+  }
+  .brand-logo-img {
+    width: 38px;
+    height: 38px;
+  }
+  .brand-name {
+    font-size: 1.05rem;
+  }
+  .brand-tag {
+    font-size: 0.65rem;
+  }
   .nav-links {
     display: none;
   }
   .btn-get-quote {
     display: none;
   }
-  .mobile-menu-btn {
-    display: block;
+  .nav-actions {
+    display: flex;
+    align-items: center;
   }
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem;
+  }
+
+  /* Mobile Hero: Compact vertical alignment matching reference screenshot */
   .hero-section {
-    padding: 3rem 0;
+    padding: 1rem 0 1.25rem 0;
+  }
+  .hero-section::before {
+    display: none;
+  }
+  .hero-grid {
+    min-width: 0;
+    width: 100%;
+    gap: 1.5rem;
+  }
+  .hero-content {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+  .hero-location-indicator {
+    margin-bottom: 0.75rem;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.74rem;
+    white-space: normal;
+    line-height: 1.35;
+    max-width: 100%;
+    align-items: flex-start;
+  }
+  .hero-location-indicator .loc-dot {
+    margin-top: 3px;
   }
   .hero-headline {
-    font-size: 2.2rem;
+    font-size: clamp(1.65rem, 6.4vw, 2.1rem);
+    line-height: 1.18;
+    margin-bottom: 0.75rem;
+    word-break: break-word;
+  }
+  .hero-subtext {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin-bottom: 1.15rem;
   }
   .hero-cta-group {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .hero-cta-group .btn-primary,
-  .hero-cta-group .btn-secondary,
-  .hero-cta-group .btn-dark {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.15rem;
     width: 100%;
   }
+  .hero-btn-primary,
+  .hero-btn-discuss {
+    flex: 1 1 50%;
+    min-width: 0;
+    padding: 0.65rem 0.5rem;
+    font-size: 0.8rem;
+    justify-content: center;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  /* Collaboration Showcase Card on Mobile */
+  .hero-collab-card {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    padding: 1.15rem 0.85rem;
+    border-radius: 16px;
+    margin-top: 0.25rem;
+  }
+  .collab-title {
+    font-size: 1.02rem;
+    margin-bottom: 0.25rem;
+  }
+  .collab-subtitle {
+    font-size: 0.76rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+  }
+  .collab-carousel-container,
+  .collab-carousel-viewport {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+  }
+  .collab-carousel-track {
+    gap: 1.35rem;
+  }
+  .collab-logo-item {
+    width: 72px;
+    height: 72px;
+    padding: 5px;
+  }
+  .collab-fade-mask {
+    width: 32px;
+  }
+
+  /* Floating WhatsApp on Mobile */
+  .floating-whatsapp {
+    bottom: 20px;
+    right: 16px;
+    width: 50px;
+    height: 50px;
+  }
+  .floating-whatsapp svg {
+    width: 28px;
+    height: 28px;
+  }
+
   .services-grid-5 {
     grid-template-columns: 1fr;
   }
@@ -1614,5 +1897,27 @@ button {
   .footer-top-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-location-indicator {
+    font-size: 0.68rem;
+    padding: 0.3rem 0.65rem;
+  }
+  .hero-headline {
+    font-size: 1.65rem;
+  }
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero-btn-primary,
+  .hero-btn-discuss {
+    width: 100%;
+  }
+  .collab-logo-item {
+    width: 66px;
+    height: 66px;
   }
 }

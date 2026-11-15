@@ -46,7 +46,7 @@ const DEFAULT_LEADS = [
 const DEFAULT_CLIENTS = [
   {
     id: "client-sk-relax",
-    name: "SK Relax Beauty Academy & Salon",
+    name: "SK Relax Studio",
     industry: "Beauty Academy & Salon",
     logo: "images/client-sk-relax.png",
     active: true
@@ -59,31 +59,10 @@ const DEFAULT_CLIENTS = [
     active: true
   },
   {
-    id: "client-mama",
-    name: "Mama Pedhewale",
-    industry: "Heritage Sweets & D2C",
-    logo: "images/client-mama-pedhewale.png",
-    active: true
-  },
-  {
-    id: "client-mhaswadkar",
-    name: "Mhaswadkar Machineries",
-    industry: "Industrial Machinery Trading",
-    logo: "images/client-mhaswadkar.svg",
-    active: true
-  },
-  {
-    id: "client-punita",
-    name: "Punita Collection",
-    industry: "Ethnic & Western Boutique",
-    logo: "images/client-punita.svg",
-    active: true
-  },
-  {
-    id: "client-jogeshwari",
-    name: "Jogeshwari Misal",
-    industry: "Food & QSR Franchise",
-    logo: "images/client-jogeshwari.svg",
+    id: "client-mahajan",
+    name: "Mahajan Hospital",
+    industry: "Healthcare & Multispeciality",
+    logo: "images/client-mahajan.png",
     active: true
   }
 ];
@@ -93,7 +72,7 @@ const DEFAULT_CONFIG = {
   brandTag: "Digital Solutions & Software",
   directPhone: "8830464841",
   whatsappNumber: "8830464841",
-  supportEmail: "contact@cloudtechnologies.in",
+  supportEmail: "technologiescloud97@gmail.com",
   uptimeBadge: "99.9% Uptime • Free SSL Security",
   deliveryBadge: "Rapid Solutions Deployment",
   heroTag: "Full-Service Digital Engineering & Growth",
@@ -197,6 +176,24 @@ function initStorage() {
       localStorage.setItem(CLIENTS_KEY, JSON.stringify(clients));
     } else {
       clients = JSON.parse(rawClients);
+      // Cleanse removed clients: Jogeshwari, Mhaswadkar, Mama Pedhewale, Punita
+      const purgedKeys = ["jogeshwari", "mhaswadkar", "mama", "punita"];
+      clients = clients.filter(c => {
+        const idLow = (c.id || "").toLowerCase();
+        const nameLow = (c.name || "").toLowerCase();
+        return !purgedKeys.some(k => idLow.includes(k) || nameLow.includes(k));
+      });
+      // Ensure Mahajan Hospital is present
+      if (!clients.some(c => (c.id || "").toLowerCase().includes("mahajan") || (c.name || "").toLowerCase().includes("mahajan"))) {
+        clients.push({
+          id: "client-mahajan",
+          name: "Mahajan Hospital",
+          industry: "Healthcare & Multispeciality",
+          logo: "images/client-mahajan.png",
+          active: true
+        });
+      }
+      localStorage.setItem(CLIENTS_KEY, JSON.stringify(clients));
     }
 
     const rawConfig = localStorage.getItem(CONFIG_KEY);
@@ -205,6 +202,8 @@ function initStorage() {
       localStorage.setItem(CONFIG_KEY, JSON.stringify(siteConfig));
     } else {
       siteConfig = JSON.parse(rawConfig);
+      siteConfig.supportEmail = "technologiescloud97@gmail.com";
+      localStorage.setItem(CONFIG_KEY, JSON.stringify(siteConfig));
     }
   } catch (err) {
     console.warn("Storage error in admin:", err);
@@ -490,7 +489,7 @@ window.openAddClientModal = function() {
   const name = prompt("Enter Client / Brand Name:");
   if (!name) return;
   const industry = prompt("Enter Industry / Solution Type:", "Satara Business");
-  const logo = prompt("Enter Logo Image Path (e.g. images/client-jogeshwari.svg):", "images/cloud-logo.png");
+  const logo = prompt("Enter Logo Image Path (e.g. images/client-mahajan.png):", "images/cloud-logo.png");
 
   const newClient = {
     id: "client_" + Date.now(),
