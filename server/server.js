@@ -448,6 +448,16 @@ app.post('/api/admin/upload', requireAdmin, (req, res) => {
     }
 
     const fileUrl = `/uploads/${req.file.filename}`;
+    
+    // Mirror upload to root uploads directory so static hosts (Vercel, GitHub Pages) have the file
+    try {
+      const rootUploads = path.join(ROOT_DIR, 'uploads');
+      if (!fs.existsSync(rootUploads)) fs.mkdirSync(rootUploads, { recursive: true });
+      fs.copyFileSync(req.file.path, path.join(rootUploads, req.file.filename));
+    } catch (e) {
+      console.warn('[Upload] Root mirror failed:', e.message);
+    }
+
     res.json({
       success: true,
       url: fileUrl,
@@ -468,12 +478,21 @@ app.post('/api/admin/upload-multiple', requireAdmin, (req, res) => {
       return res.status(400).json({ success: false, error: 'No image files provided' });
     }
 
-    const uploaded = req.files.map(f => ({
-      url: `/uploads/${f.filename}`,
-      filename: f.filename,
-      size: f.size,
-      mimetype: f.mimetype
-    }));
+    const uploaded = req.files.map(f => {
+      try {
+        const rootUploads = path.join(ROOT_DIR, 'uploads');
+        if (!fs.existsSync(rootUploads)) fs.mkdirSync(rootUploads, { recursive: true });
+        fs.copyFileSync(f.path, path.join(rootUploads, f.filename));
+      } catch (e) {
+        console.warn('[Upload] Root mirror failed:', e.message);
+      }
+      return {
+        url: `/uploads/${f.filename}`,
+        filename: f.filename,
+        size: f.size,
+        mimetype: f.mimetype
+      };
+    });
 
     res.json({
       success: true,

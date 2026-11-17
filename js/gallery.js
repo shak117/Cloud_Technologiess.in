@@ -199,6 +199,7 @@
               alt="${escapeHTML(item.project_title)}" 
               class="gallery-card-img" 
               loading="lazy"
+              onerror="if (window.handleCoverError) { window.handleCoverError(this, '${escapeHTML(item.id)}'); } else { this.src='images/sk-relax-showcase.png'; }"
             >
             <div class="gallery-card-overlay">
               <span class="gallery-zoom-pill">
@@ -441,10 +442,15 @@
     if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) {
       return url;
     }
-    if (url.startsWith('/uploads/')) {
-      return `${API_BASE}${url}`;
+    if (url.includes('client-sk-relax') || url.includes('logo-sk-relax')) return 'images/client-sk-relax.png';
+    if (url.includes('client-hiramoti') || url.includes('logo-hiramoti')) return 'images/client-hiramoti.png';
+    if (url.includes('091954') || url.includes('sk-relax-showcase')) return 'images/sk-relax-showcase.png';
+    if (url.includes('092029') || url.includes('hiramoti-showcase')) return 'images/hiramoti-showcase.png';
+    if (url.startsWith('/uploads/') || url.startsWith('uploads/')) {
+      const barePath = url.replace(/^\/+/, '');
+      return API_BASE ? `${API_BASE}/${barePath}` : barePath;
     }
-    return url;
+    return url.replace(/^\/+/, '');
   }
 
   function escapeHTML(str) {

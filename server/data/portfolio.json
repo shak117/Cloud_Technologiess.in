@@ -3,7 +3,7 @@
     "id": "client-sk-relax",
     "client_name": "SK Relax Beauty Academy & Salon",
     "logo_url": "images/client-sk-relax.png",
-    "cover_image_url": "/uploads/Screenshot_2026-11-17_091954-1794887600637-643326328.png",
+    "cover_image_url": "images/sk-relax-showcase.png",
     "industry": "Salon & Beauty",
     "services": [
       "Website Development",
@@ -27,7 +27,7 @@
     "id": "client-hiramoti",
     "client_name": "HIRAMOTI Collection",
     "logo_url": "images/client-hiramoti.png",
-    "cover_image_url": "/uploads/Screenshot_2026-11-17_092029-1794887576163-834706443.png",
+    "cover_image_url": "images/hiramoti-showcase.png",
     "industry": "Retail & E-commerce",
     "services": [
       "Website Development",
@@ -38,7 +38,7 @@
     "website_url": "",
     "instagram_url": "",
     "project_images": [
-      "images/hiramoti-showcase.jpg"
+      "images/hiramoti-showcase.png"
     ],
     "is_featured": true,
     "display_order": 2,

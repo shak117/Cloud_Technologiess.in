@@ -242,6 +242,41 @@ function initMobileMenu() {
 // -------------------------------------------------------------
 let showcaseAutoplayTimer = null;
 let currentShowcaseIndex = 0;
+// Global robust fallback for client showcase & portfolio covers
+function handleCoverError(img, clientId) {
+  if (!img) return;
+  img.onerror = null;
+  const fallbacks = {
+    'client-sk-relax': 'images/sk-relax-showcase.png',
+    'gallery-sk-relax': 'images/sk-relax-showcase.png',
+    'client-hiramoti': 'images/hiramoti-showcase.png',
+    'gallery-hiramoti': 'images/hiramoti-showcase.png',
+    'client-mahajan': 'images/mahajan-hospital-showcase.png',
+    'gallery-mahajan': 'images/mahajan-hospital-showcase.png',
+    'client-knotberry-creations-592': 'images/knotberry-studios.png',
+    'gallery-knotberry': 'images/knotberry-studios.png',
+    'gallery-billing-software': 'images/billing-software-preview.png'
+  };
+  if (clientId && fallbacks[clientId]) {
+    img.src = fallbacks[clientId];
+    return;
+  }
+  const alt = (img.alt || '').toLowerCase();
+  const src = (img.src || '').toLowerCase();
+  if (alt.includes('sk relax') || src.includes('sk-relax')) {
+    img.src = 'images/sk-relax-showcase.png';
+  } else if (alt.includes('hiramoti') || src.includes('hiramoti')) {
+    img.src = 'images/hiramoti-showcase.png';
+  } else if (alt.includes('mahajan') || src.includes('mahajan')) {
+    img.src = 'images/mahajan-hospital-showcase.png';
+  } else if (alt.includes('knotberry') || src.includes('knotberry')) {
+    img.src = 'images/knotberry-studios.png';
+  } else {
+    img.src = 'images/billing-software-preview.png';
+  }
+}
+window.handleCoverError = handleCoverError;
+
 let showcaseClients = [];
 
 function initDynamicClientShowcase(clientsList) {
@@ -257,12 +292,16 @@ function initDynamicClientShowcase(clientsList) {
   function resolveAssetUrl(url) {
     if (!url) return 'images/cloud-logo.png';
     if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) return url;
+    if (url.includes('client-sk-relax') || url.includes('logo-sk-relax')) return 'images/client-sk-relax.png';
+    if (url.includes('client-hiramoti') || url.includes('logo-hiramoti')) return 'images/client-hiramoti.png';
+    if (url.includes('091954') || url.includes('sk-relax-showcase')) return 'images/sk-relax-showcase.png';
+    if (url.includes('092029') || url.includes('hiramoti-showcase')) return 'images/hiramoti-showcase.png';
     const apiBase = (window.CLOUD_CONFIG && window.CLOUD_CONFIG.apiUrl ? window.CLOUD_CONFIG.apiUrl : '').replace(/\/$/, '');
     if (url.startsWith('/uploads/') || url.startsWith('uploads/')) {
-      const cleanPath = url.startsWith('/') ? url : `/${url}`;
-      return apiBase ? `${apiBase}${cleanPath}` : cleanPath;
+      const barePath = url.replace(/^\/+/, '');
+      return apiBase ? `${apiBase}/${barePath}` : barePath;
     }
-    return url;
+    return url.replace(/^\/+/, '');
   }
 
   // Filter genuine published clients and deduplicate
@@ -311,7 +350,7 @@ function initDynamicClientShowcase(clientsList) {
     return `
       <article class="showcase-client-card" data-index="${index}">
         <div class="showcase-card-cover">
-          <img src="${escapeHtml(coverSrc)}" alt="${escapeHtml(name)} Project Preview" loading="lazy">
+          <img src="${escapeHtml(coverSrc)}" alt="${escapeHtml(name)} Project Preview" loading="lazy" onerror="handleCoverError(this, '${escapeHtml(client.id)}')">
           <span class="showcase-featured-badge">★ Featured Project</span>
         </div>
         <div class="showcase-card-body">
@@ -655,12 +694,16 @@ function renderPortfolioGrid(container, list) {
   function resolveAssetUrl(url) {
     if (!url) return 'images/cloud-logo.png';
     if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('data:')) return url;
+    if (url.includes('client-sk-relax') || url.includes('logo-sk-relax')) return 'images/client-sk-relax.png';
+    if (url.includes('client-hiramoti') || url.includes('logo-hiramoti')) return 'images/client-hiramoti.png';
+    if (url.includes('091954') || url.includes('sk-relax-showcase')) return 'images/sk-relax-showcase.png';
+    if (url.includes('092029') || url.includes('hiramoti-showcase')) return 'images/hiramoti-showcase.png';
     const apiBase = (window.CLOUD_CONFIG && window.CLOUD_CONFIG.apiUrl ? window.CLOUD_CONFIG.apiUrl : '').replace(/\/$/, '');
     if (url.startsWith('/uploads/') || url.startsWith('uploads/')) {
-      const cleanPath = url.startsWith('/') ? url : `/${url}`;
-      return apiBase ? `${apiBase}${cleanPath}` : cleanPath;
+      const barePath = url.replace(/^\/+/, '');
+      return apiBase ? `${apiBase}/${barePath}` : barePath;
     }
-    return url;
+    return url.replace(/^\/+/, '');
   }
 
   container.innerHTML = list.map(client => {
@@ -670,7 +713,7 @@ function renderPortfolioGrid(container, list) {
 
     const coverHtml = coverSrc ? `
       <div class="project-cover-box">
-        <img src="${escapeHtml(coverSrc)}" alt="${escapeHtml(client.client_name)} Showcase" class="project-cover-img" loading="lazy">
+        <img src="${escapeHtml(coverSrc)}" alt="${escapeHtml(client.client_name)} Showcase" class="project-cover-img" loading="lazy" onerror="handleCoverError(this, '${escapeHtml(client.id)}')">
       </div>
     ` : `
       <div class="project-cover-box placeholder">

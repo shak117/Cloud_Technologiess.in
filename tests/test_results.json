@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-17T10:35:42.381Z",
+  "timestamp": "2026-11-17T16:00:33.952Z",
   "total": 28,
   "passed": 28,
   "failed": 0,
@@ -84,21 +84,21 @@
     {
       "endpoint": "/api/portfolio",
       "method": "GET",
-      "description": "Public portfolio returns 5 published clients with separated logo_url & cover_image_url",
+      "description": "Public portfolio returns 4 published clients with separated logo_url & cover_image_url",
       "status": "PASS",
       "details": ""
     },
     {
       "endpoint": "/api/admin/portfolio",
       "method": "GET",
-      "description": "Admin portfolio returns all 5 records including drafts",
+      "description": "Admin portfolio returns all 4 records including drafts",
       "status": "PASS",
       "details": ""
     },
     {
       "endpoint": "/api/admin/portfolio",
       "method": "POST",
-      "description": "Client creation creates persistent record with ID: client-qa-test-client-automation-511",
+      "description": "Client creation creates persistent record with ID: client-qa-test-client-automation-834",
       "status": "PASS",
       "details": ""
     },
@@ -110,14 +110,14 @@
       "details": ""
     },
     {
-      "endpoint": "/api/admin/portfolio/client-qa-test-client-automation-511",
+      "endpoint": "/api/admin/portfolio/client-qa-test-client-automation-834",
       "method": "PUT",
       "description": "Client update persists modified cover_image_url & description",
       "status": "PASS",
       "details": ""
     },
     {
-      "endpoint": "/api/admin/portfolio/client-qa-test-client-automation-511/status",
+      "endpoint": "/api/admin/portfolio/client-qa-test-client-automation-834/status",
       "method": "PATCH",
       "description": "Toggle status changes client from published to draft",
       "status": "PASS",
@@ -131,7 +131,7 @@
       "details": ""
     },
     {
-      "endpoint": "/api/admin/portfolio/client-qa-test-client-automation-511",
+      "endpoint": "/api/admin/portfolio/client-qa-test-client-automation-834",
       "method": "DELETE",
       "description": "Admin delete client cleans up database record & temporary files",
       "status": "PASS",
@@ -161,12 +161,12 @@
     {
       "endpoint": "/api/admin/gallery",
       "method": "POST",
-      "description": "Gallery creation creates item ID: gallery-qa-test-gallery-item-31",
+      "description": "Gallery creation creates item ID: gallery-qa-test-gallery-item-261",
       "status": "PASS",
       "details": ""
     },
     {
-      "endpoint": "/api/admin/gallery/gallery-qa-test-gallery-item-31",
+      "endpoint": "/api/admin/gallery/gallery-qa-test-gallery-item-261",
       "method": "DELETE",
       "description": "Admin delete gallery item removes record cleanly",
       "status": "PASS",
