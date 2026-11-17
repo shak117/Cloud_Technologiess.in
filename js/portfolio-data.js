@@ -1,0 +1,99 @@
+// Cloud Technologies - Bundled Portfolio Fallback Dataset
+// Automatically synchronized with backend database
+
+window.INITIAL_PORTFOLIO_CLIENTS = [
+  {
+    "id": "client-sk-relax",
+    "client_name": "SK Relax Beauty Academy & Salon",
+    "logo_url": "images/client-sk-relax.png",
+    "cover_image_url": "/uploads/Screenshot_2026-11-17_091954-1794887600637-643326328.png",
+    "industry": "Salon & Beauty",
+    "services": [
+      "Website Development",
+      "UI/UX Design",
+      "Digital Marketing",
+      "Meta Ads Management"
+    ],
+    "project_description": "Complete luxury salon & beauty academy website with online booking flow, course syllabus showcases, and targeted Meta ads campaigns.",
+    "website_url": "https://skrelaxbeauty.com",
+    "instagram_url": "https://www.instagram.com/skrelax_2010/",
+    "project_images": [
+      "images/sk-relax-showcase.png"
+    ],
+    "is_featured": true,
+    "display_order": 1,
+    "publish_status": "published",
+    "created_at": "2026-09-10T10:00:00.000Z",
+    "updated_at": "2026-11-16T12:00:00.000Z"
+  },
+  {
+    "id": "client-hiramoti",
+    "client_name": "HIRAMOTI Collection",
+    "logo_url": "images/client-hiramoti.png",
+    "cover_image_url": "/uploads/Screenshot_2026-11-17_092029-1794887576163-834706443.png",
+    "industry": "Retail & E-commerce",
+    "services": [
+      "Website Development",
+      "E-commerce Development",
+      "UI/UX Design"
+    ],
+    "project_description": "Mobile-first digital product catalogue enabling buyers across Maharashtra to explore collections rapidly with 1-click WhatsApp orders.",
+    "website_url": "",
+    "instagram_url": "",
+    "project_images": [
+      "images/hiramoti-showcase.jpg"
+    ],
+    "is_featured": true,
+    "display_order": 2,
+    "publish_status": "published",
+    "created_at": "2026-09-15T11:00:00.000Z",
+    "updated_at": "2026-11-16T12:00:00.000Z"
+  },
+  {
+    "id": "client-mahajan",
+    "client_name": "Mahajan Hospital",
+    "logo_url": "images/client-mahajan.png",
+    "cover_image_url": "images/mahajan-hospital-showcase.png",
+    "industry": "Healthcare",
+    "services": [
+      "Website Development",
+      "UI/UX Design",
+      "Business Automation"
+    ],
+    "project_description": "Modern multispeciality hospital portal with department directories, doctor profiles, and direct emergency patient contact flows.",
+    "website_url": "",
+    "instagram_url": "",
+    "project_images": [
+      "images/mahajan-hospital-showcase.png"
+    ],
+    "is_featured": false,
+    "display_order": 3,
+    "publish_status": "published",
+    "created_at": "2026-09-20T10:00:00.000Z",
+    "updated_at": "2026-11-17T07:18:45.216Z"
+  },
+  {
+    "id": "client-knotberry-creations-592",
+    "client_name": "Knotberry Creations",
+    "logo_url": "images/client-knotberry.png",
+    "cover_image_url": "images/knotberry-studios.png",
+    "industry": "Retail & E-commerce",
+    "services": [
+      "Website Development",
+      "E-commerce Development",
+      "UI/UX Design"
+    ],
+    "project_description": "Direct-to-consumer boutique storefront with automated inventory, custom crochet catalogue, and UPI checkout.",
+    "website_url": "",
+    "instagram_url": "",
+    "project_images": [
+      "images/knotberry-studios.png",
+      "/uploads/logo-1794823269050-257905921.jpg"
+    ],
+    "is_featured": true,
+    "display_order": 4,
+    "publish_status": "published",
+    "created_at": "2026-11-16T10:01:30.787Z",
+    "updated_at": "2026-11-16T12:00:00.000Z"
+  }
+];

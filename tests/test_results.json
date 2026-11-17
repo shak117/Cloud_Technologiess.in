@@ -1,0 +1,204 @@
+{
+  "timestamp": "2026-11-17T10:35:42.381Z",
+  "total": 28,
+  "passed": 28,
+  "failed": 0,
+  "results": [
+    {
+      "endpoint": "/api/health",
+      "method": "GET",
+      "description": "Health check returns status ok & storage verification",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/admin/login",
+      "method": "POST",
+      "description": "Valid admin credentials return auth token & user profile",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/admin/login",
+      "method": "POST",
+      "description": "Rejection of invalid password with 401 Unauthorized",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/admin/verify",
+      "method": "GET",
+      "description": "Session token validation succeeds for authenticated token",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/admin/verify",
+      "method": "GET",
+      "description": "Rejects missing Authorization header with 401 Unauthorized",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/admin/verify",
+      "method": "GET",
+      "description": "Rejects invalid bearer token with 403 Forbidden",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/admin/logout",
+      "method": "POST",
+      "description": "Admin logout clears server session state cleanly",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/admin/upload",
+      "method": "POST",
+      "description": "Upload valid PNG logo returns persistent relative URL",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/admin/upload",
+      "method": "POST",
+      "description": "Rejection of non-image MIME type (.exe) with 400 Bad Request",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/admin/upload",
+      "method": "POST",
+      "description": "Rejection of request missing multipart file",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/admin/upload",
+      "method": "POST",
+      "description": "Rejection of unauthorized upload with 403 Forbidden",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/portfolio",
+      "method": "GET",
+      "description": "Public portfolio returns 5 published clients with separated logo_url & cover_image_url",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/admin/portfolio",
+      "method": "GET",
+      "description": "Admin portfolio returns all 5 records including drafts",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/admin/portfolio",
+      "method": "POST",
+      "description": "Client creation creates persistent record with ID: client-qa-test-client-automation-511",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/portfolio",
+      "method": "GET",
+      "description": "Created client appears immediately in public portfolio response",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/admin/portfolio/client-qa-test-client-automation-511",
+      "method": "PUT",
+      "description": "Client update persists modified cover_image_url & description",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/admin/portfolio/client-qa-test-client-automation-511/status",
+      "method": "PATCH",
+      "description": "Toggle status changes client from published to draft",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/portfolio",
+      "method": "GET",
+      "description": "Draft client disappears cleanly from public API results",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/admin/portfolio/client-qa-test-client-automation-511",
+      "method": "DELETE",
+      "description": "Admin delete client cleans up database record & temporary files",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/admin/portfolio",
+      "method": "GET",
+      "description": "Confirm complete cleanup of test client from persistent database",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/gallery",
+      "method": "GET",
+      "description": "Public gallery returns 5 published creations",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/admin/gallery",
+      "method": "GET",
+      "description": "Admin gallery returns all 5 items",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/admin/gallery",
+      "method": "POST",
+      "description": "Gallery creation creates item ID: gallery-qa-test-gallery-item-31",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/admin/gallery/gallery-qa-test-gallery-item-31",
+      "method": "DELETE",
+      "description": "Admin delete gallery item removes record cleanly",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/services",
+      "method": "GET",
+      "description": "Services endpoint returns 6 structured service offerings",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/products",
+      "method": "GET",
+      "description": "Products endpoint returns FastPOS Billing and Cloud ERP solutions",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/enquiries",
+      "method": "POST",
+      "description": "Contact intake validates lead, logs record & generates prefilled WhatsApp link",
+      "status": "PASS",
+      "details": ""
+    },
+    {
+      "endpoint": "/api/enquiries",
+      "method": "POST",
+      "description": "Rejection of invalid phone number with 400 Bad Request",
+      "status": "PASS",
+      "details": ""
+    }
+  ]
+}

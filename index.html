@@ -66,6 +66,7 @@
           <li><a href="#services" class="nav-link">Services</a></li>
           <li><a href="#software" class="nav-link">Software</a></li>
           <li><a href="#work" class="nav-link">Our Work</a></li>
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
           <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
       </nav>
@@ -93,6 +94,7 @@
       <li><a href="#services" class="mobile-drawer-link" onclick="closeMobileMenu()">Services</a></li>
       <li><a href="#software" class="mobile-drawer-link" onclick="closeMobileMenu()">Software Products</a></li>
       <li><a href="#work" class="mobile-drawer-link" onclick="closeMobileMenu()">Our Work</a></li>
+      <li><a href="gallery.html" class="mobile-drawer-link" onclick="closeMobileMenu()">Gallery</a></li>
       <li><a href="#contact" class="mobile-drawer-link" onclick="closeMobileMenu()">Contact</a></li>
       <li style="margin-top: 0.5rem;">
         <a href="#contact" class="btn-primary" style="width: 100%;" onclick="closeMobileMenu()">
@@ -103,12 +105,12 @@
   </div>
 
   <!-- =========================================================
-       2. HERO SECTION & FOUNDER INTRODUCTION
+       2. HERO SECTION (RESTORED TWO-COLUMN LAYOUT & MOCKUPS)
   ========================================================== -->
   <section class="hero-section" id="hero">
     <div class="container hero-grid">
 
-      <!-- Left Column: Company Introduction -->
+      <!-- Left Column: Company Introduction & Value Proposition -->
       <div class="hero-content">
         <div class="hero-location-indicator">
           <span class="loc-dot"></span>
@@ -116,7 +118,7 @@
         </div>
 
         <h1 class="hero-headline">
-          Building Digital Solutions That Help <span class="highlight-blue">Businesses Grow.</span>
+          Building Digital Solutions That Help <span class="highlight-blue">Your Business Grow.</span>
         </h1>
 
         <p class="hero-subtext">
@@ -127,7 +129,7 @@
           <a href="#services" class="btn-primary hero-btn-primary">
             Explore Our Services <span>→</span>
           </a>
-          <a href="https://wa.me/918830464841?text=Hi%20Shashank,%20I%20would%20like%20to%20discuss%20a%20project%20for%20my%20business" target="_blank" rel="noopener" class="btn-secondary hero-btn-discuss">
+          <a href="https://wa.me/918830464841?text=Hello%20Cloud%20Technologies,%20I%20would%20like%20to%20discuss%20a%20project%20for%20my%20business." target="_blank" rel="noopener" class="btn-secondary hero-btn-discuss">
             <svg class="cta-chat-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
             </svg>
@@ -135,63 +137,94 @@
           </a>
         </div>
 
-        <!-- Client Collaborations Card -->
-        <div class="hero-collab-card" id="clients">
-          <h3 class="collab-title">Businesses That Trust Our Digital Expertise</h3>
-          <p class="collab-subtitle">Building meaningful digital partnerships through technology, creativity and measurable growth.</p>
-
-          <div class="collab-carousel-container" id="collabCarouselContainer">
-            <div class="collab-fade-mask fade-left"></div>
-            <div class="collab-carousel-viewport" id="collabCarouselViewport">
-              <div class="collab-carousel-track" id="collabCarouselTrack">
-                <div class="collab-logo-item" title="SK Relax Studio">
-                  <img src="images/client-sk-relax.png" alt="SK Relax Studio" class="collab-logo-img">
-                </div>
-                <div class="collab-logo-item" title="HIRAMOTI Collection">
-                  <img src="images/client-hiramoti.png" alt="HIRAMOTI Collection" class="collab-logo-img">
-                </div>
-                <div class="collab-logo-item" title="Mahajan Hospital">
-                  <img src="images/client-mahajan.png" alt="Mahajan Hospital" class="collab-logo-img">
-                </div>
-              </div>
-            </div>
-            <div class="collab-fade-mask fade-right"></div>
+        <!-- Key Benefits Row -->
+        <div class="hero-benefits-row">
+          <div class="benefit-item">
+            <span class="benefit-icon">⚡</span>
+            <span class="benefit-text">Fast &amp; Reliable</span>
+          </div>
+          <div class="benefit-item">
+            <span class="benefit-icon">🔒</span>
+            <span class="benefit-text">Secure &amp; Scalable</span>
+          </div>
+          <div class="benefit-item">
+            <span class="benefit-icon">📍</span>
+            <span class="benefit-text">Direct Founder Support</span>
           </div>
         </div>
       </div>
 
-      <!-- Right Column: Professional Founder Card -->
-      <div class="hero-founder" id="about">
-        <div class="founder-card">
-          <div class="founder-card-header">
-            <div class="founder-photo-wrap">
-              <img src="images/shashank-pawar.jpg" alt="Shashank Pawar - Founder of Cloud Technologies" class="founder-photo-img">
-              <div class="founder-verified-badge" title="Verified Founder">✓</div>
+      <!-- Right Column: Laptop & Smartphone Device Mockup -->
+      <div class="hero-visual">
+        <div class="hero-glow-circle"></div>
+
+        <!-- Laptop Mockup -->
+        <div class="laptop-device">
+          <div class="laptop-screen">
+            <div class="laptop-bar">
+              <div class="window-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <div class="laptop-url-bar">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                https://cloudtechnologies.in
+              </div>
             </div>
-            <div>
-              <div class="founder-tagline">Behind Cloud Technologies</div>
-              <h2 class="founder-name">Shashank Pawar</h2>
-              <div class="founder-role">Founder &bull; Principal Solutions Architect</div>
+            
+            <div class="laptop-inner-screen">
+              <div class="inner-nav">
+                <div class="inner-brand">
+                  <img src="images/cloud-logo.png" alt="Cloud Technologies Logo" class="inner-logo">
+                  <strong>Cloud Technologies</strong>
+                </div>
+                <span class="inner-tag">99.9% Uptime SLA</span>
+              </div>
+              <div class="inner-hero-preview">
+                <div class="inner-headline">Digital Solutions for Growing Businesses</div>
+                <p class="inner-sub">Empowering businesses with modern web engineering, ERP systems &amp; digital marketing.</p>
+                <div class="inner-stats-row">
+                  <div class="stat-box">
+                    <div class="stat-num">&lt; 1.5s</div>
+                    <div class="stat-lbl">Mobile Speed</div>
+                  </div>
+                  <div class="stat-box">
+                    <div class="stat-num">100%</div>
+                    <div class="stat-lbl">UPI Success</div>
+                  </div>
+                  <div class="stat-box">
+                    <div class="stat-num">5+</div>
+                    <div class="stat-lbl">Satara Brands</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+          <div class="laptop-base"></div>
+          <div class="laptop-notch"></div>
+        </div>
 
-          <div class="founder-bio-quote">
-            "Hi, I'm Shashank Pawar, Founder of Cloud Technologies. I work with businesses to turn their ideas and everyday operational challenges into practical digital solutions."
-          </div>
-
-          <div class="founder-highlights">
-            <div class="founder-h-item">
-              <span>✓</span> Direct technical leadership
+        <!-- Smartphone Mockup -->
+        <div class="phone-device">
+          <div class="phone-speaker"></div>
+          <div class="phone-screen">
+            <div class="phone-header">
+              <span class="phone-time">9:41</span>
+              <span style="font-size: 0.58rem; color: #16A34A; font-weight: bold;">● 5G</span>
             </div>
-            <div class="founder-h-item">
-              <span>✓</span> No sales agency middlemen
+            <div class="phone-brand-card">
+              <div class="phone-check">✓</div>
+              <div class="phone-card-title">Order Received</div>
+              <div class="phone-amount">₹4,250.00</div>
+              <div class="phone-upi-badge">Zero-Timeout UPI</div>
             </div>
-            <div class="founder-h-item">
-              <span>✓</span> Practical business ROI
-            </div>
-            <div class="founder-h-item">
-              <span>✓</span> Long-term software support
-            </div>
+            <a href="https://wa.me/918830464841?text=Hello%20Cloud%20Technologies,%20I%20would%20like%20to%20discuss%20a%20project%20for%20my%20business." target="_blank" rel="noopener" class="phone-wa-btn">
+              WhatsApp Chat →
+            </a>
           </div>
         </div>
       </div>
@@ -200,77 +233,350 @@
   </section>
 
   <!-- =========================================================
-       3. WHAT WE DO – SIMPLE BUSINESS-FOCUSED SERVICES
+       3. MEET THE FOUNDER SECTION
   ========================================================== -->
-  <section class="services-section" id="services">
+  <section class="founder-section" id="about">
     <div class="container">
-      <div class="section-header">
-        <span class="section-tag">WHAT WE DO</span>
-        <h2 class="section-title">Simple, Business-Focused Digital Services</h2>
+      <div class="section-header text-center">
+        <span class="section-tag">MEET THE FOUNDER</span>
+        <h2 class="section-title">The Leadership Behind Cloud Technologies</h2>
         <p class="section-subtitle">
-          Practical digital services engineered to solve everyday business bottlenecks and help you acquire more customers.
+          Driven by technical excellence, practical problem-solving, and direct founder accountability.
         </p>
       </div>
 
-      <div class="services-grid-5">
+      <div class="founder-layout-grid">
+        <!-- Founder Photograph (Left Column) -->
+        <div class="founder-photo-column">
+          <div class="founder-card-photo-box">
+            <div class="founder-photo-frame">
+              <img src="images/shashank-pawar.jpg" alt="Shashank Pawar - Founder of Cloud Technologies" class="founder-real-photo">
+              <div class="founder-verified-pill" title="Verified Founder">
+                <span class="check-icon">✓</span> Verified Founder
+              </div>
+            </div>
+            <div class="founder-badge-under">
+              <h3 class="founder-photo-name">Shashank Pawar</h3>
+              <p class="founder-photo-title">Founder – Cloud Technologies</p>
+              <span class="founder-location-tag">📍 Satara, Maharashtra</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Founder Story & Intro (Right Column) -->
+        <div class="founder-content-column">
+          <div class="founder-story-card">
+            <div class="founder-greeting-pill">DIRECT TECHNICAL LEADERSHIP</div>
+            
+            <h3 class="founder-name-heading">Shashank Pawar</h3>
+            <p class="founder-designation-sub">Founder – Cloud Technologies</p>
+
+            <div class="founder-quote-banner">
+              "Hello! I'm Shashank, founder of Cloud Technologies. My vision is to help businesses simplify their operations and grow through practical digital solutions."
+            </div>
+
+            <p class="founder-paragraph">
+              From building professional websites and business software to helping brands reach more customers through digital marketing, I focus on creating solutions that solve real business problems.
+            </p>
+
+            <div class="founder-highlights-grid">
+              <div class="founder-hl-item">
+                <span class="hl-check">✓</span>
+                <span>Direct technical leadership</span>
+              </div>
+              <div class="founder-hl-item">
+                <span class="hl-check">✓</span>
+                <span>No sales agency middlemen</span>
+              </div>
+              <div class="founder-hl-item">
+                <span class="hl-check">✓</span>
+                <span>Practical business ROI</span>
+              </div>
+              <div class="founder-hl-item">
+                <span class="hl-check">✓</span>
+                <span>Long-term software support</span>
+              </div>
+            </div>
+
+            <div class="founder-cta-row">
+              <a href="https://wa.me/918830464841?text=Hello%20Shashank,%20I%20would%20like%20to%20discuss%20working%20together%20with%20Cloud%20Technologies." target="_blank" rel="noopener" class="btn-founder-cta">
+                Let's Work Together <span>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       4. CLIENT COLLABORATIONS (3s HORIZONTAL CAROUSEL WITH ARROWS)
+  ========================================================== -->
+  <!-- =========================================================
+       4. DYNAMIC CLIENT SHOWCASE — MAIN DESIGN FEATURE
+  ========================================================== -->
+  <section class="client-showcase-section" id="clients">
+    <div class="container">
+      <div class="showcase-header-row">
+        <div class="showcase-header-text">
+          <span class="section-tag">DYNAMIC CLIENT SHOWCASE</span>
+          <h2 class="section-title">Trusted by Businesses. Built with Purpose.</h2>
+          <p class="section-subtitle">
+            Every project represents a business we have helped move forward through technology and creativity.
+          </p>
+        </div>
+        <div class="showcase-controls-group">
+          <button type="button" class="btn-shuffle-clients" id="btnShuffleClients" title="Shuffle featured client highlights">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 3 21 3 21 8"></polyline>
+              <line x1="4" y1="20" x2="21" y2="3"></line>
+              <polyline points="21 16 21 21 16 21"></polyline>
+              <line x1="15" y1="15" x2="21" y2="21"></line>
+              <line x1="4" y1="4" x2="9" y2="9"></line>
+            </svg>
+            <span>Explore Our Clients</span>
+          </button>
+          <div class="showcase-nav-arrows">
+            <button type="button" class="showcase-arrow-btn prev" id="clientShowcasePrev" aria-label="Previous client">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <button type="button" class="showcase-arrow-btn next" id="clientShowcaseNext" aria-label="Next client">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3D Depth Client Showcase Carousel Track -->
+      <div class="client-showcase-viewport" id="clientShowcaseViewport">
+        <div class="client-showcase-track" id="clientShowcaseTrack">
+          <!-- Rendered dynamically by js/app.js from /api/portfolio -->
+          <div class="showcase-loading-skeleton">
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card active"></div>
+            <div class="skeleton-card"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination Indicators -->
+      <div class="client-showcase-dots" id="clientShowcaseDots"></div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       5. WHAT WE DO — 8 INTERACTIVE DIGITAL SERVICES
+  ========================================================== -->
+  <section class="services-section" id="services">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-tag">WHAT WE DO</span>
+        <h2 class="section-title">Engineered Digital Services for Modern Businesses</h2>
+        <p class="section-subtitle">
+          Comprehensive, result-driven digital solutions designed to modernize operations, elevate your brand, and drive measurable revenue growth.
+        </p>
+      </div>
+
+      <div class="services-grid-8" id="servicesGrid">
 
         <!-- 1. Website Development -->
-        <div class="service-card">
-          <div class="service-icon-box">💻</div>
+        <div class="service-card" data-service="Website Development">
+          <div class="service-card-glow"></div>
+          <div class="service-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
           <h3 class="service-title">Website Development</h3>
           <p class="service-desc">
-            Professional websites that help customers discover your business, understand your services and contact you easily.
+            High-speed, SEO-engineered business websites with custom brand aesthetics, mobile-first responsiveness, and conversion architecture.
           </p>
+          <div class="service-tags-row">
+            <span class="service-mini-tag">Next.js / React</span>
+            <span class="service-mini-tag">Mobile Responsive</span>
+            <span class="service-mini-tag">Fast CDN</span>
+          </div>
           <button class="btn-service-action" onclick="preselectServiceAndScroll('Website Development')">
-            Discuss Your Project <span>→</span>
+            <span>Explore Service</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </button>
         </div>
 
         <!-- 2. E-commerce Development -->
-        <div class="service-card">
-          <div class="service-icon-box">🛍️</div>
+        <div class="service-card" data-service="E-commerce Development">
+          <div class="service-card-glow"></div>
+          <div class="service-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+          </div>
           <h3 class="service-title">E-commerce Development</h3>
           <p class="service-desc">
-            Sell your products online, manage orders and provide customers with a convenient shopping experience.
+            Direct-to-consumer store platforms with automated catalogue synchronization, zero-timeout UPI checkout, and automated WhatsApp order alerts.
           </p>
-          <button class="btn-service-action" onclick="preselectServiceAndScroll('E-commerce Website')">
-            Discuss Your Project <span>→</span>
+          <div class="service-tags-row">
+            <span class="service-mini-tag">UPI Checkout</span>
+            <span class="service-mini-tag">Live Inventory</span>
+            <span class="service-mini-tag">Order Tracking</span>
+          </div>
+          <button class="btn-service-action" onclick="preselectServiceAndScroll('E-commerce Development')">
+            <span>Explore Service</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </button>
         </div>
 
-        <!-- 3. Digital Marketing & Meta Ads -->
-        <div class="service-card">
-          <div class="service-icon-box">📈</div>
-          <h3 class="service-title">Digital Marketing &amp; Meta Ads</h3>
+        <!-- 3. Digital Marketing -->
+        <div class="service-card" data-service="Digital Marketing">
+          <div class="service-card-glow"></div>
+          <div class="service-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
+          </div>
+          <h3 class="service-title">Digital Marketing</h3>
           <p class="service-desc">
-            Reach potential customers through Instagram and Facebook advertising, creative campaigns and lead generation.
+            Strategic digital presence campaigns, localized local search optimization, content positioning, and multi-channel audience engagement.
           </p>
-          <button class="btn-service-action" onclick="preselectServiceAndScroll('Digital Marketing / Meta Ads')">
-            Discuss Your Project <span>→</span>
+          <div class="service-tags-row">
+            <span class="service-mini-tag">Brand Reach</span>
+            <span class="service-mini-tag">Local SEO</span>
+            <span class="service-mini-tag">Growth Telemetry</span>
+          </div>
+          <button class="btn-service-action" onclick="preselectServiceAndScroll('Digital Marketing')">
+            <span>Explore Service</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </button>
         </div>
 
-        <!-- 4. Custom Software Development -->
-        <div class="service-card">
-          <div class="service-icon-box">⚙️</div>
+        <!-- 4. Meta Ads Management -->
+        <div class="service-card" data-service="Meta Ads Management">
+          <div class="service-card-glow"></div>
+          <div class="service-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg>
+          </div>
+          <h3 class="service-title">Meta Ads Management</h3>
+          <p class="service-desc">
+            High-converting Facebook &amp; Instagram advertising with custom audience targeting, pixel tracking, creative A/B testing, and direct WhatsApp lead funnels.
+          </p>
+          <div class="service-tags-row">
+            <span class="service-mini-tag">Meta Pixel</span>
+            <span class="service-mini-tag">Lead Generation</span>
+            <span class="service-mini-tag">ROI Tracking</span>
+          </div>
+          <button class="btn-service-action" onclick="preselectServiceAndScroll('Meta Ads Management')">
+            <span>Explore Service</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+        </div>
+
+        <!-- 5. Custom Software Development -->
+        <div class="service-card" data-service="Custom Software Development">
+          <div class="service-card-glow"></div>
+          <div class="service-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+          </div>
           <h3 class="service-title">Custom Software Development</h3>
           <p class="service-desc">
-            Software designed around your business processes to reduce manual work and improve efficiency.
+            Tailored software applications built around your exact commercial workflows, eliminating manual bottlenecks and unifying business data.
           </p>
+          <div class="service-tags-row">
+            <span class="service-mini-tag">Custom Architecture</span>
+            <span class="service-mini-tag">Secure Cloud</span>
+            <span class="service-mini-tag">Scalable APIs</span>
+          </div>
           <button class="btn-service-action" onclick="preselectServiceAndScroll('Custom Software')">
-            Discuss Your Project <span>→</span>
+            <span>Explore Service</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </button>
         </div>
 
-        <!-- 5. Business Automation -->
-        <div class="service-card">
-          <div class="service-icon-box">⚡</div>
+        <!-- 6. Billing Software (FastPOS) -->
+        <div class="service-card" data-service="Billing Software">
+          <div class="service-card-glow"></div>
+          <div class="service-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+              <line x1="6" y1="8" x2="6" y2="8"></line>
+              <line x1="10" y1="8" x2="18" y2="8"></line>
+              <line x1="6" y1="12" x2="6" y2="12"></line>
+              <line x1="10" y1="12" x2="18" y2="12"></line>
+              <line x1="6" y1="16" x2="18" y2="16"></line>
+            </svg>
+          </div>
+          <h3 class="service-title">Billing Software (FastPOS)</h3>
+          <p class="service-desc">
+            Instant GST and non-GST invoicing for retail and wholesale. Features barcode scanning, thermal printing, credit ledgers, and live stock telemetry.
+          </p>
+          <div class="service-tags-row">
+            <span class="service-mini-tag">GST Invoicing</span>
+            <span class="service-mini-tag">Thermal &amp; A4</span>
+            <span class="service-mini-tag">Stock Ledger</span>
+          </div>
+          <button class="btn-service-action" onclick="preselectServiceAndScroll('Billing Software')">
+            <span>Explore Service</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+        </div>
+
+        <!-- 7. ERP Solutions -->
+        <div class="service-card" data-service="ERP Solutions">
+          <div class="service-card-glow"></div>
+          <div class="service-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+          </div>
+          <h3 class="service-title">ERP Solutions</h3>
+          <p class="service-desc">
+            Enterprise resource planning consolidating multi-warehouse inventory, procurement orders, staff task distribution, and executive cash-flow reporting.
+          </p>
+          <div class="service-tags-row">
+            <span class="service-mini-tag">Multi-Branch</span>
+            <span class="service-mini-tag">Procurement</span>
+            <span class="service-mini-tag">Executive Reports</span>
+          </div>
+          <button class="btn-service-action" onclick="preselectServiceAndScroll('ERP Solutions')">
+            <span>Explore Service</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+        </div>
+
+        <!-- 8. Business Automation -->
+        <div class="service-card" data-service="Business Automation">
+          <div class="service-card-glow"></div>
+          <div class="service-icon-box">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
           <h3 class="service-title">Business Automation</h3>
           <p class="service-desc">
-            Automate repetitive tasks, organize business information and make everyday operations easier.
+            Automating routine business tasks, synchronizing customer leads, sending instant WhatsApp alerts, and eliminating human data entry errors.
           </p>
+          <div class="service-tags-row">
+            <span class="service-mini-tag">WhatsApp Bots</span>
+            <span class="service-mini-tag">Workflow Sync</span>
+            <span class="service-mini-tag">Zero Repetition</span>
+          </div>
           <button class="btn-service-action" onclick="preselectServiceAndScroll('Business Automation')">
-            Discuss Your Project <span>→</span>
+            <span>Explore Service</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
           </button>
         </div>
 
@@ -428,15 +734,18 @@
         </p>
       </div>
 
-      <div class="portfolio-grid-6">
+      <!-- Dynamic Category / Industry Filter Bar -->
+      <div class="portfolio-filter-bar" id="portfolioFilterBar"></div>
 
+      <!-- Dynamic Portfolio Grid -->
+      <div class="portfolio-grid-6" id="portfolioDynamicGrid">
         <!-- 1. SK Relax Beauty Academy & Salon -->
         <div class="project-card">
           <div class="project-thumb-box">
             <img src="images/client-sk-relax.png" alt="SK Relax Beauty Academy &amp; Salon Logo" class="project-thumb-img">
           </div>
           <div class="project-info-body">
-            <span class="project-industry-tag">Beauty Academy &bull; Satara</span>
+            <span class="project-industry-tag">Salon &amp; Beauty &bull; Satara</span>
             <h3 class="project-client-name">SK Relax Beauty Academy &amp; Salon</h3>
             <p class="project-solution-desc">
               High-converting digital presence, online student admissions funnels, and targeted Meta ad campaigns generating continuous inquiries.
@@ -480,7 +789,24 @@
             </button>
           </div>
         </div>
+      </div>
 
+      <!-- Explore Gallery CTA Banner -->
+      <div class="portfolio-gallery-cta-banner">
+        <div class="gallery-cta-content">
+          <div class="gallery-cta-badge">CREATIVE SHOWCASE</div>
+          <h3 class="gallery-cta-title">Looking for More Website &amp; Software Design Examples?</h3>
+          <p class="gallery-cta-desc">Explore our full creative showcase featuring live website designs, custom software interfaces, e-commerce stores, and digital marketing creatives.</p>
+        </div>
+        <div class="gallery-cta-action">
+          <a href="gallery.html" class="btn-gallery-cta">
+            <span>Explore Our Gallery</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -709,6 +1035,7 @@
             <li><a href="#services">Services</a></li>
             <li><a href="#software">Business Software</a></li>
             <li><a href="#work">Our Work</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
             <li><a href="#contact">Contact Us</a></li>
           </ul>
         </div>
@@ -768,6 +1095,8 @@
   </a>
 
   <!-- Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/portfolio-data.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

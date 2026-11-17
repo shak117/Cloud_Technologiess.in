@@ -3,507 +3,1090 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Control Panel | Cloud Technologies</title>
+  <title>Portfolio CMS & Admin Control Panel | Cloud Technologies</title>
   <meta name="robots" content="noindex, nofollow">
-  <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/admin.css">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233dd6c8' stroke-width='2'><rect x='2' y='3' width='20' height='6' rx='2'/><rect x='2' y='15' width='20' height='6' rx='2'/><circle cx='6' cy='6' r='1' fill='%233dd6c8'/><circle cx='6' cy='18' r='1' fill='%233dd6c8'/><path d='M18 9v6'/></svg>">
+  <link rel="icon" type="image/png" href="images/cloud-logo.png">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 </head>
 <body class="admin-body">
 
   <!-- =========================================================
-       LOGIN MODAL OVERLAY (PASSWORD PROTECTED)
+       1. ADMIN AUTHENTICATION OVERLAY
   ========================================================== -->
   <div class="admin-login-overlay" id="adminLoginOverlay">
     <div class="login-card">
       <div class="login-icon-box">
-        🔒
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+        </svg>
       </div>
       <h2 class="login-title">Cloud Technologies</h2>
-      <div class="login-subtitle">Admin Security Portal • Authorized Access Only</div>
+      <div class="login-subtitle">Portfolio CMS & Admin Security Portal</div>
 
       <div class="login-error" id="loginError"></div>
 
       <form id="adminLoginForm">
         <div class="login-form-group">
-          <label for="adminUsername">Username</label>
-          <input type="text" id="adminUsername" class="login-input" placeholder="Enter admin username" required autofocus autocomplete="username">
+          <label for="adminUsername">Admin Username</label>
+          <input type="text" id="adminUsername" class="login-input" placeholder="e.g. cloud" required autofocus autocomplete="username">
         </div>
 
         <div class="login-form-group">
-          <label for="adminPassword">Password</label>
-          <input type="password" id="adminPassword" class="login-input" placeholder="Enter admin password" required autocomplete="current-password">
+          <label for="adminPassword">Security Password</label>
+          <input type="password" id="adminPassword" class="login-input" placeholder="Enter password" required autocomplete="current-password">
         </div>
 
-        <button type="submit" class="btn-login-submit">
-          Authenticate &amp; Access Panel →
+        <button type="submit" class="btn-login-submit" id="btnLoginSubmit">
+          Authenticate &amp; Open Dashboard →
         </button>
       </form>
 
       <div class="login-footer-hint">
-        🔐 Protected system • Cloud Technologies Infrastructure
+        🔐 Protected system • Cloud Technologies Portfolio Infrastructure
       </div>
     </div>
   </div>
 
   <!-- =========================================================
-       ADMIN HEADER
+       2. TOP NAVIGATION HEADER
   ========================================================== -->
-  <header class="admin-navbar">
-    <div class="admin-nav-inner">
-      <div style="display: flex; align-items: center; gap: 1rem;">
-        <a href="index.html" class="admin-brand">
-          <img src="images/cloud-logo.png" alt="Cloud Technologies Logo" class="brand-logo-img" style="width: 36px; height: 36px; border-radius: 50%;">
-          <div>
-            <span class="brand-name" style="font-size: 1.1rem;">Cloud Technologies</span>
-          </div>
-        </a>
-        <span class="admin-brand-tag">Admin Console</span>
+  <header class="admin-header">
+    <div class="admin-header-left">
+      <button class="mobile-sidebar-toggle" id="mobileSidebarToggle" aria-label="Toggle menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <a href="index.html" class="admin-brand">
+        <img src="images/cloud-logo.png" alt="Cloud Technologies Logo" class="brand-logo-img">
+        <div class="brand-text-block">
+          <span class="brand-title">Cloud Technologies</span>
+          <span class="brand-sub">Portfolio CMS Console</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="admin-header-right">
+      <!-- Live Server Telemetry Badge -->
+      <div class="api-status-badge" id="apiStatusBadge">
+        <span class="status-dot"></span>
+        <span id="apiStatusText">Connecting API...</span>
       </div>
 
-      <div class="admin-nav-right">
-        <a href="index.html" target="_blank" style="color: var(--admin-teal); text-decoration: none; font-size: 0.82rem; font-weight: 700; display: flex; align-items: center; gap: 0.35rem;">
-          <span>🌐 View Live Site</span>
-        </a>
-        <div class="admin-user-badge">
-          <span style="color: #34d399; font-size: 0.75rem;">●</span>
-          <span>cloud (Shashank Pawar)</span>
+      <a href="index.html#work" target="_blank" class="btn-header-link" title="Open live public portfolio in new tab">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="2" y1="12" x2="22" y2="12"></line>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+        </svg>
+        <span>View Live Website</span>
+      </a>
+
+      <div class="admin-user-pill">
+        <div class="user-avatar">SP</div>
+        <div class="user-meta">
+          <span class="user-name">Shashank Pawar</span>
+          <span class="user-role">Administrator</span>
         </div>
-        <button class="btn-admin-logout" id="adminLogoutBtn">
-          <span>Logout ⏏</span>
-        </button>
       </div>
+
+      <button class="btn-logout" id="adminLogoutBtn" title="Sign out of Admin Console">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+          <polyline points="16 17 21 12 16 7"></polyline>
+          <line x1="21" y1="12" x2="9" y2="12"></line>
+        </svg>
+        <span>Logout</span>
+      </button>
     </div>
   </header>
 
   <!-- =========================================================
-       MAIN DASHBOARD
+       3. MAIN LAYOUT: SIDEBAR + CONTENT AREA
   ========================================================== -->
-  <main class="admin-container">
+  <div class="admin-layout">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="sidebar-section-title">MANAGEMENT MODULES</div>
+      <nav class="sidebar-nav">
+        <!-- 1. Portfolio Management (Primary) -->
+        <button class="sidebar-link active" data-tab="tab-portfolio" id="sideLinkPortfolio">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+          </svg>
+          <span>Portfolio Management</span>
+          <span class="sidebar-badge" id="sideBadgeClients">6</span>
+        </button>
 
-    <!-- Top Metrics Overview -->
-    <div class="admin-metrics-grid">
-      <div class="metric-card">
-        <div class="metric-icon-box" style="background: rgba(59, 130, 246, 0.15); color: #60a5fa;">
-          📋
+        <!-- 2. Gallery Management -->
+        <button class="sidebar-link" data-tab="tab-gallery" id="sideLinkGallery">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+            <polyline points="21 15 16 10 5 21"></polyline>
+          </svg>
+          <span>Gallery Management</span>
+          <span class="sidebar-badge" id="sideBadgeGallery">6</span>
+        </button>
+
+        <!-- 2. Dashboard Overview -->
+        <button class="sidebar-link" data-tab="tab-dashboard" id="sideLinkDashboard">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="9"></rect>
+            <rect x="14" y="3" width="7" height="5"></rect>
+            <rect x="14" y="12" width="7" height="9"></rect>
+            <rect x="3" y="16" width="7" height="5"></rect>
+          </svg>
+          <span>System Overview</span>
+        </button>
+
+        <!-- 3. Website Content & Settings -->
+        <button class="sidebar-link" data-tab="tab-settings" id="sideLinkSettings">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+          <span>Website Settings</span>
+        </button>
+      </nav>
+
+      <!-- Sidebar Footer Info -->
+      <div class="sidebar-footer-box">
+        <div class="sidebar-footer-label">DATA WORKFLOW</div>
+        <div class="sidebar-footer-desc">
+          Admin Panel → Backend API → Database → Live Website
         </div>
-        <div>
-          <div class="metric-val" id="metricTotalRequests">0</div>
-          <div class="metric-label">Total Inquiries</div>
+        <div class="sidebar-footer-credit">
+          Cloud Technologies v2.5
         </div>
       </div>
+    </aside>
 
-      <div class="metric-card">
-        <div class="metric-icon-box" style="background: rgba(61, 214, 200, 0.15); color: #3dd6c8;">
-          ✨
-        </div>
-        <div>
-          <div class="metric-val" id="metricNewRequests" style="color: var(--admin-teal);">0</div>
-          <div class="metric-label">New / Unread</div>
-        </div>
-      </div>
+    <!-- Main Content Panes -->
+    <main class="admin-content-pane">
 
-      <div class="metric-card">
-        <div class="metric-icon-box" style="background: rgba(245, 158, 11, 0.15); color: #fbbf24;">
-          ⚙️
-        </div>
-        <div>
-          <div class="metric-val" id="metricActiveDemos" style="color: var(--admin-gold);">0</div>
-          <div class="metric-label">Active Demos</div>
-        </div>
-      </div>
-
-      <div class="metric-card">
-        <div class="metric-icon-box" style="background: rgba(16, 185, 129, 0.15); color: #34d399;">
-          🏆
-        </div>
-        <div>
-          <div class="metric-val" id="metricConvertedClients" style="color: var(--admin-green);">0</div>
-          <div class="metric-label">Converted / Won</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Navigation Tabs -->
-    <div class="admin-tabs-bar">
-      <button class="admin-tab-btn active" data-tab="tab-requests">
-        <span>📥 Proposals &amp; Demos</span>
-      </button>
-      <button class="admin-tab-btn" data-tab="tab-marketing-leads">
-        <span>📈 Digital Marketing Enquiries (<span id="mktBadgeCount">0</span>)</span>
-      </button>
-      <button class="admin-tab-btn" data-tab="tab-clients">
-        <span>🤝 Client Collaborations</span>
-      </button>
-      <button class="admin-tab-btn" data-tab="tab-content">
-        <span>✏️ Website Content &amp; Settings</span>
-      </button>
-    </div>
-
-    <!-- =========================================================
-         TAB 1: CLIENT REQUESTS & DEMOS
-    ========================================================== -->
-    <div class="admin-tab-pane" id="tab-requests" style="display: block;">
-      <div class="admin-toolbar">
-        <div class="toolbar-left">
-          <input type="text" id="leadSearchInput" class="admin-search-input" placeholder="Search by name, phone, demand...">
-          
-          <select id="leadStatusFilter" class="admin-filter-select">
-            <option value="all">All Statuses</option>
-            <option value="New">New</option>
-            <option value="Contacted">Contacted</option>
-            <option value="Interested">Interested</option>
-            <option value="Converted">Converted</option>
-            <option value="Not Interested">Not Interested</option>
-          </select>
-
-          <select id="leadTypeFilter" class="admin-filter-select">
-            <option value="all">All Request Types</option>
-            <option value="Demo Booking">Demo Bookings</option>
-            <option value="Custom Proposal">Custom Proposals</option>
-          </select>
-        </div>
-
-        <div class="toolbar-right">
-          <button class="btn-admin-action btn-gold" onclick="exportLeadsCSV()">
-            <span>📥 Export to CSV</span>
+      <!-- =========================================================
+           TAB 1: PORTFOLIO MANAGEMENT (PRIMARY MODULE)
+      ========================================================== -->
+      <section class="tab-pane active" id="tab-portfolio">
+        
+        <!-- Module Header -->
+        <div class="pane-header-row">
+          <div>
+            <h1 class="pane-title">Portfolio Management</h1>
+            <p class="pane-subtitle">
+              Add, edit, publish and manage client projects displayed dynamically on the live website.
+            </p>
+          </div>
+          <button class="btn-primary-action" id="btnAddNewClient">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>+ Add New Client</span>
           </button>
         </div>
-      </div>
 
-      <!-- Requests Table -->
-      <div class="admin-card-table">
-        <table class="admin-table">
-          <thead>
-            <tr>
-              <th>Customer Name</th>
-              <th>Mobile Number</th>
-              <th>Service Requested</th>
-              <th>Project Requirements</th>
-              <th>Date Received</th>
-              <th>Lead Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="leadsTableBody">
-            <!-- Dynamically populated -->
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <!-- =========================================================
-         TAB 2: WEBSITE CONTENT & SETTINGS EDITOR
-    ========================================================== -->
-    <div class="admin-tab-pane" id="tab-content" style="display: none;">
-      <form id="siteConfigForm">
-        <div class="content-editor-grid">
-          
-          <!-- Card 1: Agency & Contact -->
-          <div class="editor-card">
-            <div class="editor-card-header">
-              <span style="font-size: 1.3rem;">🏢</span>
-              <h3 class="editor-card-title">Agency &amp; Contact Info</h3>
+        <!-- 4 Metrics Cards -->
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-icon blue">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
             </div>
-
-            <div class="editor-form-group">
-              <label for="cfgBrandName">Agency Brand Name</label>
-              <input type="text" id="cfgBrandName" class="editor-input" required>
-            </div>
-
-            <div class="editor-form-group">
-              <label for="cfgBrandTag">Agency Tagline / Subtitle</label>
-              <input type="text" id="cfgBrandTag" class="editor-input">
-            </div>
-
-            <div class="editor-form-group">
-              <label for="cfgDirectPhone">Direct Phone Number</label>
-              <input type="text" id="cfgDirectPhone" class="editor-input" required>
-            </div>
-
-            <div class="editor-form-group">
-              <label for="cfgWhatsappNumber">WhatsApp Number (numeric, e.g. 8830464841)</label>
-              <input type="text" id="cfgWhatsappNumber" class="editor-input" required>
-            </div>
-
-            <div class="editor-form-group">
-              <label for="cfgSupportEmail">Support Email</label>
-              <input type="email" id="cfgSupportEmail" class="editor-input">
-            </div>
-
-            <div class="editor-form-group">
-              <label for="cfgUptimeBadge">Telemetry Uptime Badge</label>
-              <input type="text" id="cfgUptimeBadge" class="editor-input">
-            </div>
-
-            <div class="editor-form-group">
-              <label for="cfgDeliveryBadge">Telemetry Delivery Badge</label>
-              <input type="text" id="cfgDeliveryBadge" class="editor-input">
+            <div class="metric-details">
+              <div class="metric-num" id="statTotalClients">0</div>
+              <div class="metric-name">Total Clients</div>
             </div>
           </div>
 
-          <!-- Card 2: Homepage Hero & Marketing Copy -->
-          <div class="editor-card">
-            <div class="editor-card-header">
-              <span style="font-size: 1.3rem;">🚀</span>
-              <h3 class="editor-card-title">Homepage Hero &amp; Messaging</h3>
+          <div class="metric-card">
+            <div class="metric-icon green">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
             </div>
-
-            <div class="editor-form-group">
-              <label for="cfgHeroTag">Hero Section Tag</label>
-              <input type="text" id="cfgHeroTag" class="editor-input">
-            </div>
-
-            <div class="editor-form-group">
-              <label for="cfgHeroTitle">Hero Main Headline</label>
-              <textarea id="cfgHeroTitle" class="editor-textarea" style="min-height: 55px;"></textarea>
-            </div>
-
-            <div class="editor-form-group">
-              <label for="cfgHeroDesc">Hero Description</label>
-              <textarea id="cfgHeroDesc" class="editor-textarea" style="min-height: 85px;"></textarea>
-            </div>
-
-            <div class="editor-form-group">
-              <label for="cfgDemoCalloutTitle">Demo Callout Banner Title</label>
-              <input type="text" id="cfgDemoCalloutTitle" class="editor-input">
-            </div>
-
-            <div class="editor-form-group">
-              <label for="cfgDemoCalloutDesc">Demo Callout Banner Description</label>
-              <textarea id="cfgDemoCalloutDesc" class="editor-textarea" style="min-height: 60px;"></textarea>
+            <div class="metric-details">
+              <div class="metric-num text-green" id="statPublishedClients">0</div>
+              <div class="metric-name">Published Projects</div>
             </div>
           </div>
 
-          <!-- Card 3: Founder Profile & Quote -->
-          <div class="editor-card">
-            <div class="editor-card-header">
-              <span style="font-size: 1.3rem;">👨‍💻</span>
-              <h3 class="editor-card-title">Founder Details (Shashank Pawar)</h3>
+          <div class="metric-card">
+            <div class="metric-icon amber">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
             </div>
-
-            <div class="editor-form-group">
-              <label for="cfgFounderName">Founder Name</label>
-              <input type="text" id="cfgFounderName" class="editor-input">
-            </div>
-
-            <div class="editor-form-group">
-              <label for="cfgFounderTitle">Founder Official Title</label>
-              <input type="text" id="cfgFounderTitle" class="editor-input">
-            </div>
-
-            <div class="editor-form-group">
-              <label for="cfgFounderQuote">Founder Quote &amp; Philosophy</label>
-              <textarea id="cfgFounderQuote" class="editor-textarea" style="min-height: 90px;"></textarea>
+            <div class="metric-details">
+              <div class="metric-num text-amber" id="statDraftClients">0</div>
+              <div class="metric-name">Draft Projects</div>
             </div>
           </div>
 
-          <!-- Card 4: Quick Guide & Live Sync -->
-          <div class="editor-card">
-            <div class="editor-card-header">
-              <span style="font-size: 1.3rem;">💡</span>
-              <h3 class="editor-card-title">Live Dynamic Sync</h3>
+          <div class="metric-card">
+            <div class="metric-icon cyan">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
             </div>
-            <p style="font-size: 0.88rem; color: #94a3b8; line-height: 1.6;">
-              When you click <strong style="color: #ffffff;">Save Website Changes</strong>, your edits are saved to local persistent storage. The main website (<code style="color: var(--admin-teal);">index.html</code>, <code style="color: var(--admin-teal);">services.html</code>, <code style="color: var(--admin-teal);">gallery.html</code>, <code style="color: var(--admin-teal);">team.html</code>) dynamically pulls and updates these values in real-time.
-            </p>
-            <div style="margin-top: 1.2rem; padding: 1rem; background: rgba(61, 214, 200, 0.06); border: 1px solid rgba(61, 214, 200, 0.2); border-radius: 10px;">
-              <div style="font-size: 0.8rem; font-weight: 700; color: var(--admin-teal); margin-bottom: 0.3rem;">✓ Security Notice</div>
-              <div style="font-size: 0.78rem; color: #cbd5e1;">Credentials are encrypted in session memory. You can log out safely anytime from the top bar.</div>
+            <div class="metric-details">
+              <div class="metric-num text-cyan" id="statFeaturedClients">0</div>
+              <div class="metric-name">Featured on Home</div>
             </div>
           </div>
+        </div>
 
-          <!-- Floating Actions Bar -->
-          <div class="editor-actions-bar">
-            <div>
-              <button type="button" class="btn-reset-config" id="btnResetConfig">
-                ↺ Reset All Defaults
-              </button>
-            </div>
-            <button type="submit" class="btn-save-config">
-              <span>💾 Save Website Changes &amp; Apply Live</span>
+        <!-- Filter & Search Toolbar -->
+        <div class="table-control-card">
+          <div class="search-input-box">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="portfolioSearch" class="search-field" placeholder="Search by client name, industry, services...">
+          </div>
+
+          <div class="filters-row">
+            <select id="filterIndustry" class="select-field">
+              <option value="all">All Industries</option>
+              <option value="Salon & Beauty">Salon &amp; Beauty</option>
+              <option value="Healthcare">Healthcare</option>
+              <option value="Restaurant & Food">Restaurant &amp; Food</option>
+              <option value="Retail & E-commerce">Retail &amp; E-commerce</option>
+              <option value="Manufacturing">Manufacturing</option>
+              <option value="Education">Education</option>
+              <option value="Fitness">Fitness</option>
+              <option value="Other">Other</option>
+            </select>
+
+            <select id="filterStatus" class="select-field">
+              <option value="all">All Statuses</option>
+              <option value="published">Published Only</option>
+              <option value="draft">Drafts Only</option>
+            </select>
+
+            <button class="btn-refresh" id="btnRefreshPortfolio" title="Reload from API">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="23 4 23 10 17 10"></polyline>
+                <polyline points="1 20 1 14 7 14"></polyline>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+              </svg>
+              <span>Refresh</span>
             </button>
           </div>
+        </div>
 
+        <!-- Clients Data Table Card -->
+        <div class="data-table-card">
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th style="width: 72px;">Client Logo</th>
+                  <th>Client Name</th>
+                  <th>Industry</th>
+                  <th>Services Provided</th>
+                  <th style="width: 110px;">Status</th>
+                  <th style="width: 170px; text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="portfolioTableBody">
+                <!-- Dynamically rendered by admin.js -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Empty State Container -->
+          <div class="table-empty-state" id="tableEmptyState" style="display: none;">
+            <div class="empty-icon">📁</div>
+            <h3>No Portfolio Clients Found</h3>
+            <p>No clients matched your search or filters. Click "+ Add New Client" to create your first portfolio entry.</p>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- =========================================================
+           TAB: GALLERY MANAGEMENT (NEW MODULE)
+      ========================================================== -->
+      <section class="tab-pane" id="tab-gallery" style="display: none;">
+        
+        <!-- Module Header -->
+        <div class="pane-header-row">
+          <div>
+            <h1 class="pane-title">Gallery Management</h1>
+            <p class="pane-subtitle">
+              Upload, organize, associate with clients, and publish project screenshots to the public gallery.
+            </p>
+          </div>
+          <button class="btn-primary-action" id="btnAddNewGallery">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>+ Add Gallery Image</span>
+          </button>
+        </div>
+
+        <!-- 4 Gallery Metrics Cards -->
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-icon blue">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+            </div>
+            <div class="metric-details">
+              <div class="metric-num" id="statTotalGallery">0</div>
+              <div class="metric-name">Total Images</div>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon green">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+              </svg>
+            </div>
+            <div class="metric-details">
+              <div class="metric-num text-green" id="statPublishedGallery">0</div>
+              <div class="metric-name">Published Images</div>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon amber">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+              </svg>
+            </div>
+            <div class="metric-details">
+              <div class="metric-num text-amber" id="statDraftGallery">0</div>
+              <div class="metric-name">Draft Images</div>
+            </div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-icon cyan">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <div class="metric-details">
+              <div class="metric-num text-cyan" id="statRecentGallery">0</div>
+              <div class="metric-name">Recently Added</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter & Search Toolbar -->
+        <div class="table-control-card">
+          <div class="search-input-box">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="gallerySearch" class="search-field" placeholder="Search by project title, client, or category...">
+          </div>
+
+          <div class="filters-row">
+            <select id="filterGalleryCategory" class="select-field">
+              <option value="all">All Categories</option>
+              <option value="Website Development">Website Development</option>
+              <option value="E-commerce">E-commerce</option>
+              <option value="UI/UX Design">UI/UX Design</option>
+              <option value="Digital Marketing">Digital Marketing</option>
+              <option value="Software & Applications">Software &amp; Applications</option>
+              <option value="Branding & Creative Work">Branding &amp; Creative Work</option>
+            </select>
+
+            <select id="filterGalleryStatus" class="select-field">
+              <option value="all">All Statuses</option>
+              <option value="published">Published Only</option>
+              <option value="draft">Drafts Only</option>
+            </select>
+
+            <button class="btn-refresh" id="btnRefreshGallery" title="Reload gallery from API">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="23 4 23 10 17 10"></polyline>
+                <polyline points="1 20 1 14 7 14"></polyline>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+              </svg>
+              <span>Refresh</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Gallery Data Table Card -->
+        <div class="data-table-card">
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th style="width: 80px;">Thumbnail</th>
+                  <th>Project Title &amp; Client</th>
+                  <th>Category</th>
+                  <th style="width: 80px; text-align: center;">Order</th>
+                  <th style="width: 110px;">Status</th>
+                  <th style="width: 180px; text-align: right;">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="galleryTableBody">
+                <!-- Dynamically rendered by admin.js -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Empty State Container -->
+          <div class="table-empty-state" id="galleryTableEmptyState" style="display: none;">
+            <div class="empty-icon">🖼️</div>
+            <h3>No Gallery Images Found</h3>
+            <p>No gallery images matched your filter. Click "+ Add Gallery Image" to upload your first project work.</p>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- =========================================================
+           TAB 2: SYSTEM OVERVIEW
+      ========================================================== -->
+      <section class="tab-pane" id="tab-dashboard" style="display: none;">
+        <div class="pane-header-row">
+          <div>
+            <h1 class="pane-title">System &amp; CMS Overview</h1>
+            <p class="pane-subtitle">
+              Operational telemetry and data synchronization status.
+            </p>
+          </div>
+        </div>
+
+        <div class="overview-grid">
+          <!-- Connection Status Card -->
+          <div class="overview-card">
+            <div class="overview-card-header">
+              <h3>Backend API Architecture</h3>
+              <span class="badge-pill green">Active</span>
+            </div>
+            <div class="overview-card-body">
+              <div class="info-row">
+                <span class="info-label">Active API Server:</span>
+                <span class="info-val" id="overviewApiUrl">http://localhost:5000</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Persistent Storage:</span>
+                <span class="info-val">server/data/portfolio.json</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Media Uploads Folder:</span>
+                <span class="info-val">server/uploads/</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">GitHub Pages Endpoint:</span>
+                <span class="info-val">Public CORS Enabled (Direct Fetch)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Business Contact Information Card -->
+          <div class="overview-card">
+            <div class="overview-card-header">
+              <h3>Direct WhatsApp Gateway</h3>
+              <span class="badge-pill blue">Verified</span>
+            </div>
+            <div class="overview-card-body">
+              <div class="info-row">
+                <span class="info-label">Business WhatsApp:</span>
+                <span class="info-val">+91 8830464841</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Company Email:</span>
+                <span class="info-val">technologiescloud97@gmail.com</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Location:</span>
+                <span class="info-val">Satara, Maharashtra, India</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Enquiry Handling:</span>
+                <span class="info-val">100% Direct WhatsApp &bull; Zero Data Leakage</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           TAB 3: WEBSITE SETTINGS
+      ========================================================== -->
+      <section class="tab-pane" id="tab-settings" style="display: none;">
+        <div class="pane-header-row">
+          <div>
+            <h1 class="pane-title">Website Content &amp; Contact Settings</h1>
+            <p class="pane-subtitle">
+              Verify company contact credentials and brand details across all public pages.
+            </p>
+          </div>
+        </div>
+
+        <div class="settings-card">
+          <form id="settingsForm">
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="settingPhone">Direct Business Phone</label>
+                <input type="text" id="settingPhone" class="form-input" value="+91 8830464841" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="settingWhatsapp">WhatsApp Number (Without + or spaces)</label>
+                <input type="text" id="settingWhatsapp" class="form-input" value="8830464841" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="settingEmail">Official Email Address</label>
+                <input type="email" id="settingEmail" class="form-input" value="technologiescloud97@gmail.com" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="settingLocation">Headquarters Location</label>
+                <input type="text" id="settingLocation" class="form-input" value="Satara, Maharashtra | Serving Businesses Across India" required>
+              </div>
+            </div>
+
+            <div class="form-actions-bar">
+              <button type="submit" class="btn-primary-action">Save Settings</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- =========================================================
+       4. MODAL: ADD / EDIT CLIENT PORTFOLIO FORM
+  ========================================================== -->
+  <div class="admin-modal-overlay" id="clientModalOverlay" style="display: none;">
+    <div class="client-modal-card">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title" id="clientModalTitle">Add New Client Project</h2>
+          <p class="modal-subtitle">Fill in the project details below to update the live website portfolio.</p>
+        </div>
+        <button type="button" class="modal-close-btn" id="btnCloseClientModal" aria-label="Close modal">&times;</button>
+      </div>
+
+      <form id="clientForm" class="admin-modal-form">
+        <input type="hidden" id="clientId" value="">
+
+        <div class="modal-body-scroll">
+          
+          <!-- 1. Client Name -->
+          <div class="form-group">
+            <label class="form-label" for="clientNameInput">
+              Client Name <span class="req">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="clientNameInput" 
+              class="form-input" 
+              placeholder="e.g. SK Relax Beauty Academy & Salon" 
+              required
+            >
+          </div>
+
+          <!-- 2. Client Logo Upload & Preview -->
+          <div class="form-group">
+            <label class="form-label">
+              Client Logo <span class="req">*</span>
+            </label>
+            
+            <div class="logo-upload-container">
+              <!-- Live Preview Box -->
+              <div class="logo-preview-box">
+                <img id="logoPreviewImg" src="images/cloud-logo.png" alt="Logo Preview" class="logo-preview-element">
+              </div>
+
+              <!-- Upload Controls -->
+              <div class="logo-controls">
+                <div class="file-drop-area">
+                  <input type="file" id="logoFileInput" accept="image/png,image/jpeg,image/jpg,image/webp,image/svg+xml" class="file-input-hidden">
+                  <label for="logoFileInput" class="btn-file-select">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="17 8 12 3 7 8"></polyline>
+                      <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <span>Upload Logo Image</span>
+                  </label>
+                  <span class="file-hint">PNG, JPG, SVG, WebP (Max 5MB)</span>
+                </div>
+
+                <!-- Or specify existing image path / URL -->
+                <div class="url-input-wrap">
+                  <span class="url-prefix">Or Path:</span>
+                  <input type="text" id="logoUrlInput" class="form-input-sm" placeholder="e.g. images/client-sk-relax.png">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2B. Project Cover / Showcase Screenshot (Separate from Brand Logo) -->
+          <div class="form-group">
+            <label class="form-label">
+              Project Cover Screenshot / Showcase Banner
+            </label>
+            <div class="cover-upload-container">
+              <!-- Live Preview Box -->
+              <div class="cover-preview-box">
+                <img id="coverPreviewImg" src="images/cloud-logo.png" alt="Cover Preview" class="cover-preview-element">
+              </div>
+
+              <!-- Upload Controls -->
+              <div class="logo-controls">
+                <div class="file-drop-area">
+                  <input type="file" id="coverFileInput" accept="image/png,image/jpeg,image/jpg,image/webp" class="file-input-hidden">
+                  <label for="coverFileInput" class="btn-file-select">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="17 8 12 3 7 8"></polyline>
+                      <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <span>Upload Project Cover</span>
+                  </label>
+                  <span class="file-hint">Website screenshot or showcase banner (PNG, JPG, WebP)</span>
+                </div>
+
+                <!-- Or specify existing image path / URL -->
+                <div class="url-input-wrap">
+                  <span class="url-prefix">Or Path:</span>
+                  <input type="text" id="coverUrlInput" class="form-input-sm" placeholder="e.g. images/sk-relax-showcase.png">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Industry Dropdown -->
+          <div class="form-group">
+            <label class="form-label" for="industrySelect">
+              Industry <span class="req">*</span>
+            </label>
+            <select id="industrySelect" class="form-select" required>
+              <option value="">Select an Industry</option>
+              <option value="Salon & Beauty">Salon &amp; Beauty</option>
+              <option value="Healthcare">Healthcare</option>
+              <option value="Restaurant & Food">Restaurant &amp; Food</option>
+              <option value="Retail & E-commerce">Retail &amp; E-commerce</option>
+              <option value="Manufacturing">Manufacturing</option>
+              <option value="Education">Education</option>
+              <option value="Fitness">Fitness</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <!-- 4. Services Provided (Multi-select Checkboxes) -->
+          <div class="form-group">
+            <label class="form-label">
+              Services Provided <span class="req">*</span>
+              <span class="form-label-hint">(Select all delivered services)</span>
+            </label>
+            
+            <div class="services-checkbox-grid">
+              <label class="checkbox-pill">
+                <input type="checkbox" name="services" value="Website Development">
+                <span>Website Development</span>
+              </label>
+              <label class="checkbox-pill">
+                <input type="checkbox" name="services" value="E-commerce Development">
+                <span>E-commerce Development</span>
+              </label>
+              <label class="checkbox-pill">
+                <input type="checkbox" name="services" value="UI/UX Design">
+                <span>UI/UX Design</span>
+              </label>
+              <label class="checkbox-pill">
+                <input type="checkbox" name="services" value="Digital Marketing">
+                <span>Digital Marketing</span>
+              </label>
+              <label class="checkbox-pill">
+                <input type="checkbox" name="services" value="Meta Ads Management">
+                <span>Meta Ads Management</span>
+              </label>
+              <label class="checkbox-pill">
+                <input type="checkbox" name="services" value="SEO">
+                <span>SEO</span>
+              </label>
+              <label class="checkbox-pill">
+                <input type="checkbox" name="services" value="Billing Software">
+                <span>Billing Software</span>
+              </label>
+              <label class="checkbox-pill">
+                <input type="checkbox" name="services" value="ERP Software">
+                <span>ERP Software</span>
+              </label>
+              <label class="checkbox-pill">
+                <input type="checkbox" name="services" value="Custom Software Development">
+                <span>Custom Software Development</span>
+              </label>
+              <label class="checkbox-pill">
+                <input type="checkbox" name="services" value="Business Automation">
+                <span>Business Automation</span>
+              </label>
+              <label class="checkbox-pill">
+                <input type="checkbox" name="services" value="Website Maintenance">
+                <span>Website Maintenance</span>
+              </label>
+              <label class="checkbox-pill">
+                <input type="checkbox" name="services" value="Other">
+                <span>Other</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 5. Project Description -->
+          <div class="form-group">
+            <label class="form-label" for="projectDescInput">
+              Project Description <span class="req">*</span>
+            </label>
+            <textarea 
+              id="projectDescInput" 
+              class="form-textarea" 
+              rows="3" 
+              placeholder="Brief description of what Cloud Technologies delivered..."
+              required
+            ></textarea>
+          </div>
+
+          <!-- 6 & 7: URLs -->
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="websiteUrlInput">Website URL (Optional)</label>
+              <input type="url" id="websiteUrlInput" class="form-input" placeholder="https://clientwebsite.com">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="instagramUrlInput">Instagram URL (Optional)</label>
+              <input type="url" id="instagramUrlInput" class="form-input" placeholder="https://instagram.com/client_profile">
+            </div>
+          </div>
+
+          <!-- 8 & 9: Display Settings -->
+          <div class="display-settings-card">
+            <div class="form-label" style="margin-bottom: 0.75rem;">Display &amp; Visibility Settings</div>
+            
+            <div class="settings-row-flex">
+              <!-- Featured Toggle -->
+              <label class="toggle-control-label">
+                <input type="checkbox" id="featuredToggle">
+                <span class="toggle-slider"></span>
+                <span class="toggle-text">Featured Project (Promote to Top)</span>
+              </label>
+
+              <!-- Display Order -->
+              <div class="order-control">
+                <label for="displayOrderInput" class="order-label">Display Order:</label>
+                <input type="number" id="displayOrderInput" class="form-input-num" min="1" max="999" value="1">
+              </div>
+            </div>
+
+            <!-- Publish Status Radio -->
+            <div class="publish-status-group">
+              <label class="status-radio-label">
+                <input type="radio" name="publishStatus" value="published" id="radioPublished" checked>
+                <span class="radio-pill green">
+                  <span class="status-dot"></span>
+                  <span>Published (Live on Website)</span>
+                </span>
+              </label>
+
+              <label class="status-radio-label">
+                <input type="radio" name="publishStatus" value="draft" id="radioDraft">
+                <span class="radio-pill amber">
+                  <span class="status-dot"></span>
+                  <span>Save as Draft (Admin Only)</span>
+                </span>
+              </label>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Modal Footer Actions -->
+        <div class="modal-footer">
+          <button type="button" class="btn-modal-cancel" id="btnCancelClientModal">Cancel</button>
+          
+          <div class="modal-footer-actions">
+            <button type="button" class="btn-save-draft" id="btnSaveDraft">Save as Draft</button>
+            <button type="submit" class="btn-primary-action" id="btnSubmitClient">Publish Client</button>
+          </div>
         </div>
       </form>
     </div>
+  </div>
 
-    <!-- =========================================================
-         TAB 2: DIGITAL MARKETING ENQUIRIES (10-FIELD SUBMISSIONS)
-    ========================================================== -->
-    <div class="admin-tab-pane" id="tab-marketing-leads" style="display: none;">
-      <div class="admin-toolbar">
-        <div class="toolbar-left">
-          <input type="text" id="mktSearchInput" class="admin-search-input" placeholder="Search by name, brand, location, challenge...">
-          <select id="mktStatusFilter" class="admin-filter-select">
-            <option value="all">All Statuses</option>
-            <option value="New">New</option>
-            <option value="Contacted">Contacted</option>
-            <option value="Audit Sent">Audit Sent</option>
-            <option value="Call Scheduled">Call Scheduled</option>
-            <option value="Active Client">Active Client</option>
-            <option value="Closed">Closed</option>
-          </select>
-          <select id="mktBudgetFilter" class="admin-filter-select">
-            <option value="all">All Ad Budgets</option>
-            <option value="₹10,000 - ₹25,000 / month">₹10K - ₹25K</option>
-            <option value="₹25,000 - ₹50,000 / month">₹25K - ₹50K</option>
-            <option value="₹50,000 - ₹1,00,000 / month">₹50K - ₹100K</option>
-            <option value="₹1,00,000+ / month">₹100K+</option>
-          </select>
-        </div>
-        <div class="toolbar-right">
-          <button class="btn-toolbar-action" id="btnExportMktCsv">
-            <span>📥 Export CSV</span>
-          </button>
-        </div>
+  <!-- =========================================================
+       5. MODAL: VIEW CLIENT DETAILS
+  ========================================================== -->
+  <div class="admin-modal-overlay" id="viewModalOverlay" style="display: none;">
+    <div class="client-modal-card view-modal">
+      <div class="modal-header">
+        <h2 class="modal-title" id="viewModalTitle">Client Details</h2>
+        <button type="button" class="modal-close-btn" id="btnCloseViewModal">&times;</button>
       </div>
-
-      <div class="admin-table-card">
-        <table class="admin-table" id="mktTable">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Client &amp; Brand</th>
-              <th>WhatsApp Phone</th>
-              <th>Category &amp; Location</th>
-              <th>Monthly Ad Budget</th>
-              <th>Key Challenge</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody id="mktTableBody">
-            <!-- Dynamically populated -->
-          </tbody>
-        </table>
+      <div class="modal-body-scroll" id="viewModalBody">
+        <!-- Rendered dynamically -->
+      </div>
+      <div class="modal-footer" style="justify-content: flex-end;">
+        <button type="button" class="btn-modal-cancel" id="btnDismissViewModal">Close</button>
       </div>
     </div>
+  </div>
 
-    <!-- =========================================================
-         TAB 3: CLIENT COLLABORATIONS MANAGER
-    ========================================================== -->
-    <div class="admin-tab-pane" id="tab-clients" style="display: none;">
-      <div class="content-editor-card">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-          <div>
-            <h3 class="editor-section-title" style="margin: 0;">Homepage Client Collaborations</h3>
-            <p class="editor-section-desc">Manage the approved client brand logos displayed in the 1.5-second homepage carousel.</p>
+  <!-- =========================================================
+       6. MODAL: DELETE CONFIRMATION
+  ========================================================== -->
+  <div class="admin-modal-overlay" id="deleteModalOverlay" style="display: none;">
+    <div class="delete-confirm-card">
+      <div class="delete-icon-box">⚠️</div>
+      <h3 class="delete-title" id="deleteModalTitle">Delete Item</h3>
+      <p class="delete-desc" id="deleteModalDesc">
+        Are you sure you want to permanently delete this item? This action cannot be undone.
+      </p>
+      <div class="delete-actions">
+        <button type="button" class="btn-modal-cancel" id="btnCancelDelete">Cancel</button>
+        <button type="button" class="btn-danger-action" id="btnConfirmDelete">Delete Permanently</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       7. MODAL: ADD / EDIT GALLERY IMAGE FORM (SCROLLABLE ARCHITECTURE)
+  ========================================================== -->
+  <div class="admin-modal-overlay" id="galleryModalOverlay" style="display: none;">
+    <div class="gallery-modal-card">
+      <div class="modal-header">
+        <div>
+          <h2 class="modal-title" id="galleryModalTitle">Add Gallery Image</h2>
+          <p class="modal-subtitle">Upload high-resolution project screenshots and associate them with client work.</p>
+        </div>
+        <button type="button" class="modal-close-btn" id="btnCloseGalleryModal" aria-label="Close modal">&times;</button>
+      </div>
+
+      <form id="galleryForm" class="admin-modal-form">
+        <input type="hidden" id="galleryId" value="">
+
+        <div class="modal-body-scroll">
+          
+          <!-- 1. Image Upload & Live Preview -->
+          <div class="form-group">
+            <label class="form-label">
+              Project Image <span class="req">*</span>
+              <span class="form-label-hint">(Max 10MB • PNG, JPG, WebP, SVG)</span>
+            </label>
+            
+            <div class="logo-upload-container">
+              <div class="logo-preview-box" style="width: 100px; height: 75px;">
+                <img id="galleryPreviewImg" src="images/cloud-logo.png" alt="Gallery Preview" class="logo-preview-element" style="object-fit: cover;">
+              </div>
+
+              <div class="logo-controls">
+                <div class="file-drop-area">
+                  <input type="file" id="galleryFileInput" accept="image/png,image/jpeg,image/jpg,image/webp,image/svg+xml" class="file-input-hidden">
+                  <label for="galleryFileInput" class="btn-file-select">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="17 8 12 3 7 8"></polyline>
+                      <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <span>Upload Image File</span>
+                  </label>
+                  <span class="file-hint">Drag &amp; drop or click to choose (Max 10MB)</span>
+                </div>
+
+                <div class="url-input-wrap">
+                  <span class="url-prefix">Or Image Path:</span>
+                  <input type="text" id="galleryImageUrlInput" class="form-input-sm" placeholder="e.g. images/knotberry-studios.png">
+                </div>
+              </div>
+            </div>
           </div>
-          <button class="btn-save-config" onclick="openAddClientModal()">+ Add New Client Logo</button>
+
+          <!-- 2. Project Title -->
+          <div class="form-group">
+            <label class="form-label" for="galleryTitleInput">
+              Project Title <span class="req">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="galleryTitleInput" 
+              class="form-input" 
+              placeholder="e.g. knotberry.studios — Handmade Boutique & D2C Store" 
+              required
+            >
+          </div>
+
+          <!-- 3. Client Association -->
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="galleryClientSelect">
+                Associated Client
+                <span class="form-label-hint">(Select from portfolio)</span>
+              </label>
+              <select id="galleryClientSelect" class="form-select">
+                <option value="">-- Standalone Project (No Client) --</option>
+                <!-- Populated dynamically from portfolio clients -->
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="galleryClientCustomInput">
+                Custom Client / Brand Name
+              </label>
+              <input 
+                type="text" 
+                id="galleryClientCustomInput" 
+                class="form-input" 
+                placeholder="e.g. knotberry.studios"
+              >
+            </div>
+          </div>
+
+          <!-- 4. Category -->
+          <div class="form-group">
+            <label class="form-label" for="galleryCategorySelect">
+              Category <span class="req">*</span>
+            </label>
+            <select id="galleryCategorySelect" class="form-select" required>
+              <option value="Website Development">Website Development</option>
+              <option value="E-commerce">E-commerce</option>
+              <option value="UI/UX Design">UI/UX Design</option>
+              <option value="Digital Marketing">Digital Marketing</option>
+              <option value="Software & Applications">Software &amp; Applications</option>
+              <option value="Branding & Creative Work">Branding &amp; Creative Work</option>
+            </select>
+          </div>
+
+          <!-- 5. Short Description -->
+          <div class="form-group">
+            <label class="form-label" for="galleryDescInput">
+              Short Description <span class="req">*</span>
+            </label>
+            <textarea 
+              id="galleryDescInput" 
+              class="form-textarea" 
+              rows="3" 
+              placeholder="Highlight key business outcomes, delivered features or tech stack..."
+              required
+            ></textarea>
+          </div>
+
+          <!-- 6. Project URL -->
+          <div class="form-group">
+            <label class="form-label" for="galleryUrlInput">Project URL (Optional)</label>
+            <input type="url" id="galleryUrlInput" class="form-input" placeholder="https://clientwebsite.com">
+          </div>
+
+          <!-- 7 & 8: Display Settings -->
+          <div class="display-settings-card">
+            <div class="form-label" style="margin-bottom: 0.75rem;">Display &amp; Visibility Settings</div>
+            
+            <div class="settings-row-flex">
+              <label class="toggle-control-label">
+                <input type="checkbox" id="galleryFeaturedToggle">
+                <span class="toggle-slider"></span>
+                <span class="toggle-text">Featured Image (Top of Gallery)</span>
+              </label>
+
+              <div class="order-control">
+                <label for="galleryOrderInput" class="order-label">Display Order:</label>
+                <input type="number" id="galleryOrderInput" class="form-input-num" min="1" max="999" value="1">
+              </div>
+            </div>
+
+            <div class="publish-status-group">
+              <label class="status-radio-label">
+                <input type="radio" name="galleryPublishStatus" value="published" id="galleryRadioPublished" checked>
+                <span class="radio-pill green">
+                  <span class="status-dot"></span>
+                  <span>Published (Live in Gallery)</span>
+                </span>
+              </label>
+
+              <label class="status-radio-label">
+                <input type="radio" name="galleryPublishStatus" value="draft" id="galleryRadioDraft">
+                <span class="radio-pill amber">
+                  <span class="status-dot"></span>
+                  <span>Save as Draft (Admin Only)</span>
+                </span>
+              </label>
+            </div>
+          </div>
+
         </div>
 
-        <div id="clientsManagerGrid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem;">
-          <!-- Dynamically populated client cards -->
+        <!-- Fixed Modal Footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn-modal-cancel" id="btnCancelGalleryModal">Cancel</button>
+          
+          <div class="modal-footer-actions">
+            <button type="button" class="btn-save-draft" id="btnSaveGalleryDraft">Save as Draft</button>
+            <button type="submit" class="btn-primary-action" id="btnSubmitGallery">Publish Image</button>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
-
-  </main>
+  </div>
 
   <!-- =========================================================
-       LEAD DETAIL / INTERNAL NOTES MODAL
+       8. MODAL: GALLERY IMAGE FULLSCREEN PREVIEW
   ========================================================== -->
-  <div class="modal-backdrop" id="leadDetailModal">
-    <div class="modal-dialog" style="max-width: 520px;">
-      <button class="modal-close-btn" onclick="closeLeadModal()" aria-label="Close modal">&times;</button>
-      
-      <div class="section-tag" style="margin-bottom: 0.5rem;">REQUEST DETAILS</div>
-      <h3 class="modal-title" id="modalLeadClientName">Client Name</h3>
-      
-      <div style="font-size: 0.84rem; color: #94a3b8; margin-bottom: 1.2rem; line-height: 1.6;">
-        <div><strong>Phone:</strong> <span id="modalLeadPhone" style="color: #ffffff;"></span></div>
-        <div><strong>Industry:</strong> <span id="modalLeadIndustry" style="color: #ffffff;"></span></div>
-        <div><strong>Request Type:</strong> <span id="modalLeadType" style="color: #ffffff;"></span></div>
-        <div><strong>Features:</strong> <span id="modalLeadFeatures" style="color: var(--admin-teal);"></span></div>
-        <div style="margin-top: 0.5rem;"><strong>Client Notes:</strong> <span id="modalLeadNotes" style="color: #cbd5e1; font-style: italic;"></span></div>
+  <div class="admin-modal-overlay" id="galleryPreviewModalOverlay" style="display: none;">
+    <div class="gallery-preview-modal-card">
+      <div class="gallery-preview-header">
+        <h3 id="galleryPreviewModalTitle">Image Preview</h3>
+        <button type="button" class="modal-close-btn" id="btnCloseGalleryPreviewModal" style="color: #fff;">&times;</button>
       </div>
-
-      <div class="form-group">
-        <label class="form-label" for="modalLeadAdminNotes">Admin Internal Notes &amp; Follow-up Status</label>
-        <textarea id="modalLeadAdminNotes" class="form-textarea" placeholder="Add private notes (e.g. called client, demo scheduled for Friday)..." style="min-height: 80px;"></textarea>
+      <div class="gallery-preview-body">
+        <img id="galleryPreviewModalImg" src="" alt="Full Preview">
       </div>
-
-      <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.8rem; margin-top: 1rem; flex-wrap: wrap;">
-        <a href="#" id="modalLeadWhatsAppLink" target="_blank" class="btn-modal-submit" style="background: #25D366; color: #FFFFFF; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">
-          <span>💬 Chat on WhatsApp</span>
-        </a>
-        <button type="button" class="btn-modal-submit" id="btnSaveLeadNotes" style="background: #2563EB; color: #FFFFFF;">
-          Save Internal Notes
-        </button>
+      <div class="modal-footer" style="background: #1E293B; border-color: rgba(255,255,255,0.1); justify-content: flex-end;">
+        <button type="button" class="btn-modal-cancel" id="btnDismissGalleryPreviewModal">Close Preview</button>
       </div>
     </div>
   </div>
 
-  <!-- Toast -->
-  <div id="adminToast" class="admin-toast"></div>
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
 
-  <!-- Admin Scripts -->
+  <!-- Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/portfolio-data.js"></script>
+  <script src="js/gallery-data.js"></script>
   <script src="js/admin.js"></script>
-  <!-- =========================================================
-       MARKETING LEAD DETAIL MODAL
-  ========================================================== -->
-  <div class="admin-modal-overlay" id="mktDetailModal" style="display: none;">
-    <div class="admin-modal-card" style="max-width: 650px;">
-      <div class="admin-modal-header">
-        <h3 class="admin-modal-title">Digital Marketing Enquiry Details</h3>
-        <button class="admin-modal-close" onclick="closeMktModal()">&times;</button>
-      </div>
-      <div class="admin-modal-body">
-        <div class="modal-detail-row">
-          <strong>Client Name:</strong> <span id="mktModalName">-</span>
-        </div>
-        <div class="modal-detail-row">
-          <strong>Brand / Business:</strong> <span id="mktModalBrand">-</span>
-        </div>
-        <div class="modal-detail-row">
-          <strong>WhatsApp:</strong> <span id="mktModalPhone">-</span>
-        </div>
-        <div class="modal-detail-row">
-          <strong>Category:</strong> <span id="mktModalCategory">-</span>
-        </div>
-        <div class="modal-detail-row">
-          <strong>Location:</strong> <span id="mktModalLocation">-</span>
-        </div>
-        <div class="modal-detail-row">
-          <strong>Social / Web URL:</strong> <span id="mktModalUrl">-</span>
-        </div>
-        <div class="modal-detail-row">
-          <strong>Monthly Ad Budget:</strong> <span id="mktModalBudget" style="color: #2563EB; font-weight: 700;">-</span>
-        </div>
-        <div class="modal-detail-row">
-          <strong>Services Required:</strong> <span id="mktModalServices">-</span>
-        </div>
-        <div class="modal-detail-row">
-          <strong>Primary Challenge:</strong> <span id="mktModalChallenge">-</span>
-        </div>
-        <div class="modal-detail-row">
-          <strong>Client Notes:</strong> <span id="mktModalNotes">-</span>
-        </div>
-        <div style="margin-top: 1.25rem;">
-          <label class="form-field-label">Status Update:</label>
-          <select id="mktModalStatusSelect" class="form-input">
-            <option value="New">New</option>
-            <option value="Contacted">Contacted</option>
-            <option value="Audit Sent">Audit Sent</option>
-            <option value="Call Scheduled">Call Scheduled</option>
-            <option value="Active Client">Active Client</option>
-            <option value="Closed">Closed</option>
-          </select>
-        </div>
-      </div>
-      <div class="admin-modal-footer" style="display: flex; justify-content: space-between; gap: 0.75rem;">
-        <a href="#" id="mktModalWhatsAppBtn" target="_blank" class="btn-save-lead-notes" style="background: #25D366; text-decoration: none; display: inline-flex; align-items: center; gap: 0.4rem;">
-          <span>💬 Chat on WhatsApp</span>
-        </a>
-        <div style="display: flex; gap: 0.5rem;">
-          <button class="btn-modal-cancel" onclick="closeMktModal()">Close</button>
-          <button class="btn-save-lead-notes" id="btnSaveMktStatus">Save Status</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
 </body>
 </html>

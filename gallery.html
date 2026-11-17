@@ -3,15 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Creations &amp; Gallery | Cloud Technologies — Selected Client Work</title>
-  <meta name="description" content="Explore real digital platforms, high-converting e-commerce stores, and custom design systems delivered for Cloud Technologies' partner brands like HIRAMOTI Catalogue and knotberry.studios.">
-  <link rel="stylesheet" href="css/styles.css">
+  <title>Website Design &amp; Digital Projects Portfolio | Cloud Technologies</title>
+  <meta name="description" content="Explore websites, e-commerce platforms, software solutions and creative digital projects developed by Cloud Technologies.">
+  <link rel="canonical" href="https://cloudtechnologies.in/gallery.html">
+
+  <!-- Open Graph Metadata -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Website Design &amp; Digital Projects Portfolio | Cloud Technologies">
+  <meta property="og:description" content="Explore websites, e-commerce platforms, software solutions and creative digital projects developed by Cloud Technologies.">
+  <meta property="og:image" content="https://cloudtechnologies.in/images/cloud-logo.png">
+  <meta property="og:url" content="https://cloudtechnologies.in/gallery.html">
+
+  <!-- Favicon & Stylesheet -->
   <link rel="icon" type="image/png" href="images/cloud-logo.png">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="gallery-page-body">
 
   <!-- =========================================================
-       MAIN NAVIGATION BAR
+       1. STICKY NAVBAR
   ========================================================== -->
   <header class="navbar" id="siteNavbar">
     <div class="container nav-container">
@@ -19,74 +34,28 @@
         <img src="images/cloud-logo.png" alt="Cloud Technologies Logo" class="brand-logo-img">
         <div class="brand-text">
           <span class="brand-name">Cloud Technologies</span>
-          <span class="brand-tag">Web Development &bull; IT Solutions</span>
+          <span class="brand-tag">Digital Solutions &bull; Software</span>
         </div>
       </a>
 
       <nav class="nav-menu" id="navMenu">
         <ul class="nav-links" id="navLinks">
           <li><a href="index.html" class="nav-link">Home</a></li>
-          <li class="nav-dropdown-item">
-            <a href="services.html" class="nav-link">
-              Services <span class="dropdown-chevron">▾</span>
-            </a>
-            <div class="nav-dropdown-menu">
-              <a href="services.html#web-dev" class="dropdown-link">
-                <div class="dropdown-link-icon">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                </div>
-                <div>
-                  <div class="dropdown-link-title">Website Development</div>
-                  <div class="dropdown-link-desc">React, Next.js, WordPress &amp; E-Commerce</div>
-                </div>
-              </a>
-              <a href="services.html#ui-ux" class="dropdown-link">
-                <div class="dropdown-link-icon">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 4.24 4.24"></path><path d="m14.83 9.17 4.24-4.24"></path><path d="m14.83 14.83 4.24 4.24"></path><path d="m9.17 14.83-4.24 4.24"></path></svg>
-                </div>
-                <div>
-                  <div class="dropdown-link-title">UI/UX Design</div>
-                  <div class="dropdown-link-desc">Figma prototypes &amp; brand design systems</div>
-                </div>
-              </a>
-              <a href="services.html#meta-ads" class="dropdown-link">
-                <div class="dropdown-link-icon">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 6l-9.5 9.5-5-5L1 18"></path><polyline points="17 6 23 6 23 12"></polyline></svg>
-                </div>
-                <div>
-                  <div class="dropdown-link-title">Meta Ads &amp; Marketing</div>
-                  <div class="dropdown-link-desc">High-ROI Instagram &amp; Facebook campaigns</div>
-                </div>
-              </a>
-              <a href="services.html#cloud-hosting" class="dropdown-link">
-                <div class="dropdown-link-icon">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
-                </div>
-                <div>
-                  <div class="dropdown-link-title">Managed Cloud Hosting</div>
-                  <div class="dropdown-link-desc">Sub-1.5s load, 99.9% uptime &amp; SSL security</div>
-                </div>
-              </a>
-              <div class="dropdown-footer">
-                <a href="services.html" class="dropdown-all-link">All Services Overview →</a>
-              </div>
-            </div>
-          </li>
-          <li><a href="gallery.html" class="nav-link active">Creations &amp; Gallery</a></li>
-          <li><a href="team.html" class="nav-link">Team</a></li>
-          <li><a href="index.html#solutions" class="nav-link">Solutions</a></li>
-          <li><a href="services.html#process" class="nav-link">How We Work</a></li>
-          <li><a href="index.html#faq" class="nav-link">FAQ</a></li>
+          <li><a href="index.html#about" class="nav-link">About</a></li>
+          <li><a href="services.html" class="nav-link">Services</a></li>
+          <li><a href="index.html#software" class="nav-link">Software</a></li>
+          <li><a href="index.html#work" class="nav-link">Our Work</a></li>
+          <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
+          <li><a href="index.html#contact" class="nav-link">Contact</a></li>
         </ul>
       </nav>
 
       <div class="nav-actions">
-        <button class="btn-book-demo-nav" onclick="openDemoModal()">
-          Book Demo
-        </button>
-        <button class="btn-get-quote" onclick="openConsultationModal('general')">Get a Quote <span>→</span></button>
+        <a href="index.html#contact" class="btn-get-quote">
+          Get a Quote <span>→</span>
+        </a>
         <button class="mobile-menu-btn" id="mobileMenuToggle" aria-label="Toggle navigation menu">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="3" y1="12" x2="21" y2="12"></line>
             <line x1="3" y1="6" x2="21" y2="6"></line>
             <line x1="3" y1="18" x2="21" y2="18"></line>
@@ -96,231 +65,171 @@
     </div>
   </header>
 
-  <!-- Mobile Drawer Menu -->
-  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+  <!-- Mobile Navigation Drawer & Backdrop -->
+  <div class="mobile-nav-backdrop" id="mobileNavBackdrop" onclick="closeMobileMenu()"></div>
+  <div class="mobile-nav-drawer" id="mobileNavDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+    <div class="mobile-drawer-header">
+      <div class="brand-text">
+        <span class="brand-name">Cloud Technologies</span>
+        <span class="brand-tag">Digital Solutions &bull; Software</span>
+      </div>
+      <button class="mobile-drawer-close" onclick="closeMobileMenu()" aria-label="Close navigation menu">✕</button>
+    </div>
     <ul class="mobile-drawer-links">
-      <li><a href="index.html" class="mobile-drawer-link">Home</a></li>
-      <li><a href="services.html" class="mobile-drawer-link">Services</a></li>
-      <li><a href="gallery.html" class="mobile-drawer-link active">Creations &amp; Gallery</a></li>
-      <li><a href="team.html" class="mobile-drawer-link">Our Team &amp; Founder</a></li>
-      <li><a href="index.html#solutions" class="mobile-drawer-link">Solutions</a></li>
-      <li><a href="services.html#process" class="mobile-drawer-link">How We Work</a></li>
-      <li><a href="index.html#faq" class="mobile-drawer-link">FAQ</a></li>
+      <li><a href="index.html" class="mobile-drawer-link" onclick="closeMobileMenu()">Home</a></li>
+      <li><a href="index.html#about" class="mobile-drawer-link" onclick="closeMobileMenu()">About (Founder)</a></li>
+      <li><a href="services.html" class="mobile-drawer-link" onclick="closeMobileMenu()">Services</a></li>
+      <li><a href="index.html#software" class="mobile-drawer-link" onclick="closeMobileMenu()">Software Products</a></li>
+      <li><a href="index.html#work" class="mobile-drawer-link" onclick="closeMobileMenu()">Our Work</a></li>
+      <li><a href="gallery.html" class="mobile-drawer-link active" onclick="closeMobileMenu()">Gallery</a></li>
+      <li><a href="index.html#contact" class="mobile-drawer-link" onclick="closeMobileMenu()">Contact</a></li>
       <li style="margin-top: 1rem;">
-        <button class="btn-hero-primary" style="width: 100%; justify-content: center;" onclick="openConsultationModal('general'); toggleMobileMenu();">
-          Request Consultation →
-        </button>
-      </li>
-      <li>
-        <button class="btn-book-demo" style="width: 100%; justify-content: center; margin-top: 0.5rem;" onclick="openDemoModal(); toggleMobileMenu();">
-          Book Free Demo →
-        </button>
+        <a href="index.html#contact" class="btn-primary" style="width: 100%; justify-content: center;" onclick="closeMobileMenu()">
+          Get a Quote →
+        </a>
       </li>
     </ul>
   </div>
 
   <!-- =========================================================
-       GALLERY HERO SECTION
+       2. GALLERY HERO SECTION (PREMIUM TECH TEXTURE)
   ========================================================== -->
   <section class="gallery-hero-section">
-    <div class="container">
-      <div class="gallery-hero-content">
-        <div class="section-tag">
-          <span class="badge-dot"></span> PROVEN CLIENT SHOWCASES
-        </div>
-        <h1 class="services-hero-title">
-          Selected Work. <span class="text-accent">Real Business Impact.</span>
-        </h1>
-        <p class="services-hero-desc">
-          We engineer digital platforms that drive measurable customer acquisition and sales. Explore our genuine client engagements across e-commerce, custom design systems, and digital growth.
-        </p>
-
-        <div class="hero-ctas" style="justify-content: center; flex-wrap: wrap; gap: 1rem; margin-top: 2rem;">
-          <button class="btn-book-demo" onclick="openDemoModal()">
-            ✨ Book a Free Demo Website for Your Brand →
-          </button>
-          <a href="https://wa.me/918830464841?text=Hi%20Cloud%20Technologies,%20I%20saw%20your%20work%20gallery%20and%20want%20to%20discuss%20a%20website" target="_blank" class="btn-hero-whatsapp">
-            Discuss on WhatsApp (8830464841) →
-          </a>
-          <button class="btn-hero-primary" onclick="openConsultationModal('general')">
-            Request Proposal Call
-          </button>
-        </div>
-
-        <div class="hero-demo-callout" style="max-width: 850px; margin: 2.5rem auto 0 auto;">
-          <div class="hero-demo-callout-text">
-            <div class="demo-badge-icon">✨</div>
-            <div>
-              <div class="hero-demo-callout-title">Need a Custom Prototype First?</div>
-              <div class="hero-demo-callout-desc">We can build an interactive working demo website tailored to your brand and industry requirements so you can test it live on your smartphone before any commitment. 100% Free!</div>
-            </div>
-          </div>
-          <button class="btn-book-demo-nav" onclick="openDemoModal()">Request Your Demo →</button>
-        </div>
+    <div class="container text-center">
+      <div class="gallery-hero-badge">
+        <span class="loc-dot"></span>
+        <span>OUR CREATIVE WORK &bull; CLIENT PORTFOLIO</span>
       </div>
+      <h1 class="gallery-hero-headline">
+        Our <span class="highlight-blue">Creative Work</span>
+      </h1>
+      <p class="gallery-hero-subtext">
+        A closer look at the websites, digital experiences and business solutions we've created.
+      </p>
 
-      <!-- Category Filter Tabs -->
-      <div class="gallery-filters-bar" style="margin-top: 3.5rem;">
-        <button class="gallery-filter-btn active" data-filter="all">All Collaborations</button>
-        <button class="gallery-filter-btn" data-filter="ecommerce">D2C E-Commerce</button>
-        <button class="gallery-filter-btn" data-filter="ui-ux">UI/UX Design Systems</button>
-        <button class="gallery-filter-btn" data-filter="web-apps">Custom Web Applications</button>
-        <button class="gallery-filter-btn" data-filter="meta-ads">Meta Ads &amp; Growth</button>
+      <div class="gallery-hero-ctas">
+        <a href="https://wa.me/918830464841?text=Hello%20Cloud%20Technologies,%20I%20saw%20your%20creative%20work%20gallery%20and%20want%20to%20discuss%20a%20project%20for%20my%20business." target="_blank" rel="noopener" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.587 1.838.934 2.802.934 3.181 0 5.767-2.587 5.767-5.766.001-3.187-2.575-5.77-5.773-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.044c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.155.57 4.178 1.564 5.927l-1.664 6.073 6.223-1.632c1.701.928 3.655 1.458 5.733 1.458 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          <span>Discuss on WhatsApp →</span>
+        </a>
+        <a href="index.html#contact" class="btn-secondary">
+          Request a Custom Proposal
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       3. DYNAMIC CATEGORY FILTERS BAR
+  ========================================================== -->
+  <section class="gallery-main-section">
+    <div class="container">
+      
+      <div class="gallery-category-bar-wrapper">
+        <div class="gallery-filter-bar" id="galleryFilterBar">
+          <!-- Dynamically populated only with active categories -->
+          <button class="gallery-cat-btn active" data-cat="all">All Work</button>
+        </div>
       </div>
 
       <!-- =========================================================
-           PROJECTS SHOWCASE (FLAGSHIP CLIENT PLATFORMS)
+           4. RESPONSIVE GALLERY GRID (3-4 COLS DESKTOP, 2 TABLET, 1-2 MOBILE)
       ========================================================== -->
-      <div class="gallery-grid-2col" id="galleryGrid" style="margin-top: 2rem;">
-
-        <!-- Creation 1: HIRAMOTI Catalogue & Collections -->
-        <div class="gallery-card" data-category="all ecommerce web-apps">
-          <div class="gallery-mockup-wrapper">
-            <div class="mockup-browser-bar">
-              <span class="mockup-dot"></span>
-              <span class="mockup-dot"></span>
-              <span class="mockup-dot"></span>
-              <span class="mockup-url-bar">https://hiramoticollections.com</span>
-            </div>
-            <div class="mockup-img-wrapper" style="background: #FFFFFF; display: flex; align-items: center; justify-content: center; min-height: 280px; padding: 2rem;">
-              <img src="images/client-hiramoti.png" alt="HIRAMOTI Catalogue Platform" class="mockup-img" style="max-height: 140px; width: auto; object-fit: contain;" loading="lazy" />
-              <div class="mockup-img-overlay">
-                <span class="screenshot-badge">
-                  HIRAMOTI Catalogue &bull; Satara
-                </span>
-                <span class="mini-tag" style="background: rgba(37, 37, 31, 0.85); color: #fff;">Live Digital Catalogue</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="gallery-card-body">
-            <span class="gallery-partner-name">Catalogue &amp; Collections</span>
-            <h3 class="gallery-project-title">HIRAMOTI — Digital Catalogue &amp; Product Showcase Platform</h3>
-            <p class="gallery-project-desc">
-              High-speed digital catalogue architecture engineered for product discovery and inquiry conversion. Features fast multi-resolution image compression, responsive category filtering, and instant 1-click WhatsApp inquiry funnel connecting buyers directly with sales representatives.
-            </p>
-
-            <div class="gallery-metric-box">
-              <div>
-                <span class="metric-highlight">&lt; 1.0s</span>
-                <span class="metric-label-text"> Mobile Load Speed</span>
-              </div>
-              <div style="font-size: 0.85rem; color: var(--accent); font-weight: 700;">
-                100% Mobile Responsiveness
-              </div>
-            </div>
-
-            <div class="gallery-deliverables-chips">
-              <span class="d-chip">Digital Product Catalogue</span>
-              <span class="d-chip">Mobile First UI/UX</span>
-              <span class="d-chip">Instant WhatsApp Inquiries</span>
-              <span class="d-chip">High-Speed CDN Edge</span>
-            </div>
-
-            <a href="https://wa.me/918830464841?text=Hi%20Cloud%20Technologies,%20I%20want%20a%20catalogue%20platform%20like%20HIRAMOTI" target="_blank" class="btn-gallery-wa">
-              Get a Digital Catalogue Like HIRAMOTI →
-            </a>
-          </div>
-        </div>
-
-        <!-- Creation 2: knotberry.studios -->
-        <div class="gallery-card" data-category="all ecommerce ui-ux meta-ads">
-          <div class="gallery-mockup-wrapper">
-            <div class="mockup-browser-bar">
-              <span class="mockup-dot"></span>
-              <span class="mockup-dot"></span>
-              <span class="mockup-dot"></span>
-              <span class="mockup-url-bar">https://knotberry.studios</span>
-            </div>
-            <div class="mockup-img-wrapper">
-              <img src="images/knotberry-studios.png" alt="knotberry.studios Handmade Crochet & Goodies Boutique Website" class="mockup-img" loading="lazy" />
-              <div class="mockup-img-overlay">
-                <span class="screenshot-badge">
-                  100% Handcrafted with Love &amp; Sweetness 🍓
-                </span>
-                <span class="mini-tag" style="background: rgba(37, 37, 31, 0.85); color: #fff;">Live Boutique</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="gallery-card-body">
-            <span class="gallery-partner-name">Handmade Crochet &amp; Lifestyle Brand</span>
-            <h3 class="gallery-project-title">knotberry.studios — Stitched with Care, Sprinkled with Joy &amp; Charm</h3>
-            <p class="gallery-project-desc">
-              Dreamy pastel aesthetic boutique engineered with custom Figma UI/UX, categorized goodie catalog (hair clips, plush keychains, scrunchies), direct <strong>"Custom Order 💌"</strong> WhatsApp integration, dynamic slide-out cart with free shipping milestone indicator (Free over ₹499!), and dedicated admin portal for inventory and custom color requests.
-            </p>
-
-            <div class="gallery-metric-box">
-              <div>
-                <span class="metric-highlight">5.0 ★</span>
-                <span class="metric-label-text"> 500+ Happy Customers</span>
-              </div>
-              <div style="font-size: 0.85rem; color: var(--accent); font-weight: 700;">
-                3.8x Meta Ads ROAS
-              </div>
-            </div>
-
-            <div class="gallery-deliverables-chips">
-              <span class="d-chip">Pastel UI/UX Design</span>
-              <span class="d-chip">Boutique E-Commerce</span>
-              <span class="d-chip">WhatsApp Custom Orders</span>
-              <span class="d-chip">Free Shipping Indicator</span>
-              <span class="d-chip">Meta Ads Growth Funnel</span>
-            </div>
-
-            <a href="https://wa.me/918830464841?text=Hi%20Cloud%20Technologies,%20I%20want%20a%20boutique%20store%20like%20knotberry.studios" target="_blank" class="btn-gallery-wa">
-              Get a Boutique Platform Like knotberry.studios →
-            </a>
-          </div>
-        </div>
-
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Rendered dynamically by js/gallery.js -->
       </div>
+
+      <!-- Empty State -->
+      <div class="gallery-empty-state" id="galleryEmptyState" style="display: none;">
+        <div class="empty-icon">🖼️</div>
+        <h3>No Projects in This Category Yet</h3>
+        <p>Check back soon or explore other categories to see our recent website and software work.</p>
+        <button class="btn-secondary" style="margin-top: 1rem;" onclick="galleryApp.openCategory('all')">View All Work</button>
+      </div>
+
     </div>
   </section>
 
   <!-- =========================================================
-       PARTNER BRANDS LOGOS SECTION
+       5. FULLSCREEN INTERACTIVE LIGHTBOX COMPONENT
   ========================================================== -->
-  <section class="partner-logos-section" id="partners">
-    <div class="container">
-      <div class="partner-section-lead" style="margin-bottom: 2rem;">
-        Genuine Client Collaborations Scaled by Cloud Technologies
+  <div class="gallery-lightbox-overlay" id="galleryLightbox" style="display: none;" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Project Preview Lightbox">
+    <div class="lightbox-container">
+      
+      <!-- Top Bar -->
+      <div class="lightbox-header">
+        <div class="lightbox-meta-block">
+          <span class="lightbox-category-tag" id="lightboxCategory">Website</span>
+          <span class="lightbox-client-tag" id="lightboxClient">Client Name</span>
+        </div>
+        <div class="lightbox-controls-top">
+          <span class="lightbox-counter" id="lightboxCounter">1 of 6</span>
+          <button type="button" class="lightbox-close-btn" id="lightboxCloseBtn" aria-label="Close preview">&times;</button>
+        </div>
       </div>
 
-      <div class="partner-logos-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); max-width: 820px; margin: 0 auto; gap: 1.5rem;">
-        <div class="partner-brand-pill" style="justify-content: center; padding: 1.25rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px;">
-          <img src="images/client-sk-relax.png" alt="SK Relax Studio Logo" style="height: 38px; width: auto; object-fit: contain; margin-right: 0.75rem;">
-          <span style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary);">SK Relax Studio</span>
+      <!-- Middle: Image with Prev/Next Nav -->
+      <div class="lightbox-media-wrap">
+        <button type="button" class="lightbox-nav-btn prev" id="lightboxPrevBtn" aria-label="Previous project">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+
+        <div class="lightbox-img-box">
+          <img src="" alt="Project Preview" id="lightboxImg" class="lightbox-img">
         </div>
-        <div class="partner-brand-pill" style="justify-content: center; padding: 1.25rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px;">
-          <img src="images/client-hiramoti.png" alt="HIRAMOTI Collection Logo" style="height: 38px; width: auto; object-fit: contain; margin-right: 0.75rem;">
-          <span style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary);">HIRAMOTI Collection</span>
+
+        <button type="button" class="lightbox-nav-btn next" id="lightboxNextBtn" aria-label="Next project">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Bottom Details Bar -->
+      <div class="lightbox-footer">
+        <div class="lightbox-info">
+          <h2 class="lightbox-title" id="lightboxTitle">Project Title</h2>
+          <p class="lightbox-desc" id="lightboxDesc">Detailed overview of the delivered solution.</p>
         </div>
-        <div class="partner-brand-pill" style="justify-content: center; padding: 1.25rem; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px;">
-          <img src="images/client-mahajan.png" alt="Mahajan Hospital Logo" style="height: 38px; width: auto; object-fit: contain; margin-right: 0.75rem;">
-          <span style="font-size: 1.05rem; font-weight: 700; color: var(--text-primary);">Mahajan Hospital</span>
+        <div class="lightbox-actions">
+          <a href="#" target="_blank" rel="noopener" class="lightbox-link-btn" id="lightboxLink">
+            <span>Visit Live Project</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+          </a>
+          <a href="https://wa.me/918830464841?text=Hello%20Cloud%20Technologies,%20I%20saw%20this%20project%20in%20your%20gallery%20and%20want%20to%20discuss%20a%20similar%20one." target="_blank" rel="noopener" class="btn-primary" style="padding: 0.65rem 1.15rem; font-size: 0.85rem;">
+            Discuss on WhatsApp →
+          </a>
         </div>
       </div>
+
     </div>
-  </section>
+  </div>
 
   <!-- =========================================================
-       10. FINAL CALL TO ACTION
+       6. CALL TO ACTION BANNER (CONSULTATION)
   ========================================================== -->
-  <section class="cta-closing-section">
+  <section class="gallery-cta-section">
     <div class="container">
-      <div class="cta-closing-card">
-        <div class="section-tag" style="margin-bottom: 1rem;">GET STARTED TODAY</div>
-        <h2 class="cta-closing-title">Ready to Be Our Next Partner Success Story?</h2>
-        <p class="cta-closing-desc">
-          Tell us about your brand. We will provide a custom proposal, design mockup, and clear timeline for your website launch.
+      <div class="gallery-bottom-cta-box">
+        <span class="cta-mini-tag">READY TO START YOUR PROJECT?</span>
+        <h2 class="cta-box-headline">Let's Build Something Exceptional Together</h2>
+        <p class="cta-box-sub">
+          Direct technical guidance from founder Shashank Pawar. Transparent pricing, modern engineering, and zero middlemen.
         </p>
-        <div class="cta-closing-actions">
-          <button class="btn-hero-primary" onclick="openConsultationModal('general')">
-            Book a Consultation →
-          </button>
-          <a href="https://wa.me/918830464841?text=Hi%20Cloud%20Technologies,%20I%20want%20to%20discuss%20a%20project%20for%20my%20business" target="_blank" class="btn-hero-whatsapp">
-            Message on WhatsApp (8830464841) →
+        <div class="cta-box-buttons">
+          <a href="https://wa.me/918830464841?text=Hello%20Shashank,%20I%20would%20like%20to%20discuss%20a%20project%20with%20Cloud%20Technologies." target="_blank" rel="noopener" class="btn-primary">
+            Chat on WhatsApp (+91 8830464841) →
+          </a>
+          <a href="index.html#contact" class="btn-secondary">
+            Send an Enquiry
           </a>
         </div>
       </div>
@@ -328,223 +237,96 @@
   </section>
 
   <!-- =========================================================
-       11. MULTI-COLUMN FOOTER
+       7. FOOTER
   ========================================================== -->
-  <footer class="site-footer">
+    <footer class="site-footer">
     <div class="container">
-      <div class="footer-grid">
+      <div class="footer-top-grid">
+
         <div class="footer-brand">
-          <div class="brand-logo" style="margin-bottom: 0.8rem;">
-            <div class="logo-symbol">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="3" width="20" height="6" rx="2"></rect>
-                <rect x="2" y="15" width="20" height="6" rx="2"></rect>
-                <circle cx="6" cy="6" r="1" fill="currentColor"></circle>
-                <circle cx="6" cy="18" r="1" fill="currentColor"></circle>
-                <path d="M18 9v6"></path>
-              </svg>
-            </div>
-            <div class="brand-text">
-              <span class="brand-name">Cloud Technologies</span>
-              <span class="brand-tag">Digital Solutions Agency</span>
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.8rem;">
+            <img src="images/cloud-logo.png" alt="Cloud Technologies Logo" class="brand-logo-img">
+            <div>
+              <div class="brand-name">Cloud Technologies</div>
+              <div class="brand-tag">Digital Solutions &bull; Software</div>
             </div>
           </div>
           <p class="footer-desc">
-            Premium digital consultancy specializing in bespoke web development, conversion-led UI/UX design, Meta Ads growth, and high-performance cloud hosting for ambitious brands.
+            We help businesses establish their digital presence, automate everyday operations and reach more customers through modern websites, business software and result-driven digital marketing.
           </p>
-          <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.8rem;">
+          <div class="footer-founder-badge">
             Founder: <strong>Shashank Pawar</strong>
           </div>
         </div>
 
         <div>
-          <h4 class="footer-col-title">Digital Services</h4>
-          <ul class="footer-links">
-            <li><a href="services.html#web-dev">Website Development</a></li>
-            <li><a href="services.html#ecommerce">E-Commerce Development</a></li>
-            <li><a href="services.html#ui-ux">UI/UX Design &amp; Prototyping</a></li>
-            <li><a href="services.html#web-dev">Custom Web Applications</a></li>
-            <li><a href="services.html#cloud-hosting">Cloud Hosting &amp; Infrastructure</a></li>
-            <li><a href="services.html#meta-ads">Meta Ads &amp; Digital Marketing</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="footer-col-title">Company &amp; Work</h4>
-          <ul class="footer-links">
+          <h4 class="footer-col-title">Navigation</h4>
+          <ul class="footer-links-list">
             <li><a href="index.html">Home</a></li>
-            <li><a href="gallery.html">Creations &amp; Gallery</a></li>
-            <li><a href="team.html">Our Team &amp; Founder</a></li>
-            <li><a href="services.html#process">How We Work</a></li>
-            <li><a href="index.html#faq">Frequently Asked Questions</a></li>
-            <li><a href="javascript:void(0)" onclick="openDemoModal()">Book Demo Website</a></li>
+            <li><a href="index.html#about">About Founder</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="index.html#software">Business Software</a></li>
+            <li><a href="index.html#work">Our Work</a></li>
+            <li><a href="gallery.html" class="active">Gallery</a></li>
+            <li><a href="index.html#contact">Contact Us</a></li>
           </ul>
         </div>
 
         <div>
-          <h4 class="footer-col-title">Direct Contact</h4>
-          <ul class="footer-links">
-            <li>
-              <a href="https://wa.me/918830464841" target="_blank" style="color: #178841; font-weight: 700;">
-                WhatsApp: +91 88304 64841
-              </a>
-            </li>
-            <li><a href="tel:+918830464841">Call: +91 88304 64841</a></li>
-            <li><a href="mailto:technologiescloud97@gmail.com">technologiescloud97@gmail.com</a></li>
-            <li><a href="javascript:void(0)" onclick="openConsultationModal('general')">Schedule Proposal Call</a></li>
+          <h4 class="footer-col-title">Solutions</h4>
+          <ul class="footer-links-list">
+            <li><a href="services.html#web-dev">Website Development</a></li>
+            <li><a href="services.html#ecommerce">E-Commerce Stores</a></li>
+            <li><a href="index.html#software">Cloud Billing Software</a></li>
+            <li><a href="index.html#software">Cloud ERP Solutions</a></li>
+            <li><a href="services.html#meta-ads">Meta Ads &amp; Marketing</a></li>
+            <li><a href="services.html#ui-ux">UI/UX &amp; Brand Design</a></li>
           </ul>
         </div>
+
+        <div>
+          <h4 class="footer-col-title">Direct Connect</h4>
+          <div class="footer-wa-box">
+            <span style="font-size: 0.8rem; color: #E2E8F0;">Direct WhatsApp Line:</span>
+            <span class="footer-wa-num">+91 88304 64841</span>
+            <a href="https://wa.me/918830464841" target="_blank" rel="noopener" style="color: #FFFFFF; font-size: 0.82rem; font-weight: 700; text-decoration: underline;">
+              Start WhatsApp Chat →
+            </a>
+          </div>
+          <div style="margin-top: 0.85rem;">
+            <span style="font-size: 0.78rem; color: #94A3B8; display: block; margin-bottom: 0.2rem;">Email:</span>
+            <a href="mailto:technologiescloud97@gmail.com" style="font-size: 0.82rem; color: #E2E8F0; text-decoration: none; word-break: break-all;">
+              technologiescloud97@gmail.com
+            </a>
+          </div>
+          <div style="margin-top: 0.85rem;">
+            <a href="admin.html" style="font-size: 0.82rem; color: #64748B;" title="Admin Portal Login">Admin Portal 🔒</a>
+          </div>
+        </div>
+
       </div>
 
-      <div class="footer-bottom">
+      <div class="footer-bottom-bar">
         <div>
-          © 2026 Cloud Technologies. All rights reserved. Full-Service Digital Agency &amp; Cloud Infrastructure.
+          &copy; 2026 Cloud Technologies. All rights reserved. Satara, Maharashtra.
         </div>
         <div class="developer-credit">
           Designed and Developed by <a href="https://wa.me/918830464841" target="_blank" rel="noopener">cloudtechnologies.in</a>
-        </div>
-        <div>
-          <a href="admin.html" style="color: var(--text-muted);" title="Admin Control Panel">Admin Portal 🔒</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <!-- =========================================================
-       FLOATING WHATSAPP BUTTON (MID-SIZE AT CORNER)
-  ========================================================== -->
-  <a href="https://wa.me/918830464841?text=Hi%20Cloud%20Technologies,%20I%20want%20to%20discuss%20a%20website%20project" target="_blank" class="floating-whatsapp" aria-label="Chat with Cloud Technologies on WhatsApp">
-    <svg class="wa-icon-svg" viewBox="0 0 24 24">
-      <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm5.79 14.07c-.24.68-1.4 1.25-1.93 1.33-.51.08-1.18.11-3.37-.8-2.64-1.1-4.34-3.79-4.47-3.96-.13-.18-1.07-1.42-1.07-2.71 0-1.29.68-1.92.92-2.18.24-.26.53-.33.7-.33.18 0 .35.01.5.01.16 0 .38-.06.59.45.22.53.76 1.85.83 1.99.07.14.12.31.02.5-.09.19-.14.3-.29.47-.14.17-.3.38-.43.51-.14.14-.29.3-.12.59.16.29.73 1.21 1.57 1.95 1.08.96 1.99 1.26 2.27 1.4.29.14.45.12.62-.07.17-.2.73-.85.93-1.14.19-.29.39-.24.65-.14.26.09 1.66.78 1.94.92.29.14.48.21.55.33.07.12.07.69-.17 1.37z"/>
+  <!-- Floating WhatsApp Action Button -->
+  <a href="https://wa.me/918830464841?text=Hello%20Cloud%20Technologies,%20I%20have%20an%20enquiry%20regarding%20your%20digital%20solutions." target="_blank" rel="noopener" class="floating-wa-btn" id="floatingWaBtn" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.587 1.838.934 2.802.934 3.181 0 5.767-2.587 5.767-5.766.001-3.187-2.575-5.77-5.773-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.275.072.376-.044c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.155.57 4.178 1.564 5.927l-1.664 6.073 6.223-1.632c1.701.928 3.655 1.458 5.733 1.458 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z"/>
     </svg>
-    <div class="wa-text-group">
-      <span class="wa-label-sub">Need Help?</span>
-      <span class="wa-label-main">WhatsApp Us</span>
-    </div>
   </a>
 
-  <!-- =========================================================
-       MODAL: CONSULTATION REQUEST
-  ========================================================== -->
-  <div class="modal-backdrop" id="consultationModal">
-    <div class="modal-dialog">
-      <button class="modal-close-btn" id="modalCloseBtn" onclick="closeConsultationModal()" aria-label="Close modal">&times;</button>
-      
-      <div class="section-tag" style="margin-bottom: 0.5rem;">STRATEGY SESSION</div>
-      <h3 class="modal-title">Request a Project Consultation</h3>
-      <p class="modal-desc">
-        Connect directly with our engineering team on WhatsApp (+91 88304 64841) to discuss your business requirements, timeline, and scope.
-      </p>
-
-      <form id="consultationModalForm">
-        <div class="form-group">
-          <label class="form-label" for="clientName">Your Name / Business Name</label>
-          <input type="text" id="clientName" class="form-input" placeholder="e.g. Rahul Sharma / Business Brand" required>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="projectTypeSelect">Primary Service Needed</label>
-          <select id="projectTypeSelect" class="form-select">
-            <option value="business-site">High-Impact Business Website</option>
-            <option value="ecommerce">E-Commerce Store &amp; UPI Payments</option>
-            <option value="ui-ux">Custom UI/UX &amp; Figma Design</option>
-            <option value="meta-ads">Meta Ads (Instagram &amp; Facebook)</option>
-            <option value="cloud-hosting">Managed Cloud Hosting Infrastructure</option>
-            <option value="retainer">Full-Stack Digital Growth Partnership</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="clientPhone">WhatsApp / Phone Number</label>
-          <input type="tel" id="clientPhone" class="form-input" placeholder="e.g. 9876543210" required>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="clientNotes">Project Requirements</label>
-          <textarea id="clientNotes" class="form-textarea" placeholder="Tell us about your products or services and what you want to build..."></textarea>
-        </div>
-
-        <button type="submit" class="btn-modal-submit">
-          Connect on WhatsApp Now →
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- =========================================================
-       MODAL: DEMO PROTOTYPE REQUEST
-  ========================================================== -->
-  <div class="modal-backdrop" id="demoModal">
-    <div class="modal-dialog">
-      <button class="modal-close-btn" onclick="closeDemoModal()" aria-label="Close modal">&times;</button>
-      
-      <div class="section-tag" style="margin-bottom: 0.5rem;">FREE PROTOTYPE</div>
-      <h3 class="modal-title">Book Your Demo Website</h3>
-      <p class="modal-desc">
-        Tell us your industry requirements. We will engineer a custom working prototype you can test on your phone before any commitment.
-      </p>
-
-      <form id="demoModalForm">
-        <div class="form-group">
-          <label class="form-label" for="demoClientName">Your Name / Business Brand</label>
-          <input type="text" id="demoClientName" class="form-input" placeholder="e.g. Shashi Sweets / Apex Clinic" required>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="demoIndustrySelect">Your Business Industry</label>
-          <select id="demoIndustrySelect" class="form-select">
-            <option value="Retail & D2C E-Commerce">Retail &amp; D2C E-Commerce</option>
-            <option value="Boutique & Lifestyle">Boutique &amp; Handmade Store (like knotberry.studios)</option>
-            <option value="Clinic & Healthcare">Clinic, Doctor &amp; Healthcare Portal</option>
-            <option value="Restaurant & Food">Restaurant, Cafe &amp; Cloud Kitchen</option>
-            <option value="Corporate & Consulting">Corporate Firm &amp; Consulting Agency</option>
-            <option value="Real Estate & Builder">Real Estate &amp; Construction</option>
-            <option value="Other Business">Other Custom Industry</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="demoClientPhone">WhatsApp / Contact Number</label>
-          <input type="tel" id="demoClientPhone" class="form-input" placeholder="e.g. 9876543210" required>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">Key Features Wanted in Demo</label>
-          <div class="demo-checkbox-grid">
-            <label class="demo-check-item">
-              <input type="checkbox" class="demo-feature-chk" value="Zero-Timeout UPI Payments"> Zero-Timeout UPI
-            </label>
-            <label class="demo-check-item">
-              <input type="checkbox" class="demo-feature-chk" value="WhatsApp Direct Orders"> WhatsApp Ordering
-            </label>
-            <label class="demo-check-item">
-              <input type="checkbox" class="demo-feature-chk" value="Pincode Delivery Checker"> Delivery Checker
-            </label>
-            <label class="demo-check-item">
-              <input type="checkbox" class="demo-feature-chk" value="Custom UI/UX & Brand Colors"> Custom UI/UX
-            </label>
-            <label class="demo-check-item">
-              <input type="checkbox" class="demo-feature-chk" value="Online Appointment Booking"> Appointment Booking
-            </label>
-            <label class="demo-check-item">
-              <input type="checkbox" class="demo-feature-chk" value="Product / Service Catalog"> Product Catalog
-            </label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="demoClientNotes">Additional Notes</label>
-          <textarea id="demoClientNotes" class="form-textarea" placeholder="Any specific design references or ideas..."></textarea>
-        </div>
-
-        <button type="submit" class="btn-modal-submit">
-          Request Free Demo Website →
-        </button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Main Controller Scripts -->
-  <script src="js/app.js"></script>
+  <!-- Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/gallery-data.js"></script>
+  <script src="js/gallery.js"></script>
 </body>
-</html>\n
+</html>
