@@ -5,8 +5,6 @@
   'use strict';
 
   // Constants & Storage Keys
-  const ADMIN_USER = 'cloud';
-  const ADMIN_PASS = 'Cloud@2005';
   const SESSION_KEY = 'cloudtech_admin_session';
   const TOKEN_KEY = 'cloudtech_auth_token';
   const LOCAL_CACHE_KEY = 'cloudtech_portfolio_cache';
@@ -57,6 +55,10 @@
       loginUser: document.getElementById('adminUsername'),
       loginPass: document.getElementById('adminPassword'),
       loginError: document.getElementById('loginError'),
+      btnTogglePassword: document.getElementById('btnTogglePassword'),
+      btnLoginSubmit: document.getElementById('btnLoginSubmit'),
+      btnLoginText: document.getElementById('btnLoginText'),
+      btnLoginLoading: document.getElementById('btnLoginLoading'),
       logoutBtn: document.getElementById('adminLogoutBtn'),
       apiStatusBadge: document.getElementById('apiStatusBadge'),
       apiStatusText: document.getElementById('apiStatusText'),
@@ -170,20 +172,56 @@
   // =========================================================
   // AUTHENTICATION
   // =========================================================
+  let isAuthenticating = false;
+
   function initAuth() {
     if (!el.loginForm) return;
 
+    // Show/Hide Password Toggle
+    if (el.btnTogglePassword && el.loginPass) {
+      el.btnTogglePassword.addEventListener('click', (e) => {
+        e.preventDefault();
+        const isPassword = el.loginPass.type === 'password';
+        el.loginPass.type = isPassword ? 'text' : 'password';
+        el.btnTogglePassword.setAttribute('aria-label', isPassword ? 'Hide password' : 'Show password');
+        el.btnTogglePassword.setAttribute('title', isPassword ? 'Hide password' : 'Show password');
+
+        const eyeIcon = el.btnTogglePassword.querySelector('.icon-eye');
+        const eyeOffIcon = el.btnTogglePassword.querySelector('.icon-eye-off');
+        if (eyeIcon) eyeIcon.style.display = isPassword ? 'none' : 'block';
+        if (eyeOffIcon) eyeOffIcon.style.display = isPassword ? 'block' : 'none';
+
+        el.loginPass.focus();
+      });
+    }
+
+    // Clear error message when user starts typing
+    [el.loginUser, el.loginPass].forEach(input => {
+      if (input) {
+        input.addEventListener('input', () => {
+          hideLoginError();
+        });
+      }
+    });
+
+    // Handle Login Form Submission
     el.loginForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const u = el.loginUser.value.trim();
-      const p = el.loginPass.value.trim();
+      if (isAuthenticating) return;
+
+      const u = el.loginUser ? el.loginUser.value.trim() : '';
+      const p = el.loginPass ? el.loginPass.value.trim() : '';
 
       if (!u || !p) {
-        showLoginError('Please enter both username and password.');
+        showLoginError('Please enter both your admin username and security password.');
+        if (!u && el.loginUser) el.loginUser.focus();
+        else if (el.loginPass) el.loginPass.focus();
         return;
       }
 
-      // Try Backend Authentication Endpoint
+      setLoginLoading(true);
+      hideLoginError();
+
       try {
         const response = await fetch(`${API_BASE}/api/admin/login`, {
           method: 'POST',
@@ -191,32 +229,37 @@
           body: JSON.stringify({ username: u, password: p })
         });
 
-        if (response.ok) {
-          const result = await response.json();
-          if (result.success && result.token) {
-            setAuthToken(result.token);
-            setSessionAuth(true);
-            showDashboard();
-            loadPortfolioData();
-            loadGalleryData();
-            showToast('Authenticated successfully with Cloud Technologies CMS.');
-            return;
+        const result = await response.json().catch(() => ({}));
+
+        if (response.ok && result.success && result.token) {
+          setAuthToken(result.token);
+          setSessionAuth(true);
+
+          // Reset inputs and password visibility state
+          if (el.loginUser) el.loginUser.value = '';
+          if (el.loginPass) {
+            el.loginPass.value = '';
+            el.loginPass.type = 'password';
+          }
+          resetPasswordToggle();
+
+          showDashboard();
+          loadPortfolioData();
+          loadGalleryData();
+          showToast('Authenticated successfully with Cloud Technologies CMS.');
+        } else {
+          const errMsg = result.error || 'Invalid administrator credentials. Please check your username and password.';
+          showLoginError(errMsg);
+          if (el.loginPass) {
+            el.loginPass.value = '';
+            el.loginPass.focus();
           }
         }
       } catch (err) {
-        console.warn('[Admin] Backend login offline, attempting direct credential fallback:', err);
-      }
-
-      // Fallback Direct Verification
-      if (u === ADMIN_USER && p === ADMIN_PASS) {
-        setAuthToken('authenticated_session_token');
-        setSessionAuth(true);
-        showDashboard();
-        loadPortfolioData();
-        loadGalleryData();
-        showToast('Authenticated via security credentials.');
-      } else {
-        showLoginError('Invalid administrator credentials. Access denied.');
+        console.error('[Admin] Authentication request failed:', err);
+        showLoginError('Unable to connect to authentication server. Please check your network or ensure the backend server is running.');
+      } finally {
+        setLoginLoading(false);
       }
     });
 
@@ -226,6 +269,27 @@
         showLoginOverlay();
         showToast('Signed out of Admin Console.');
       });
+    }
+  }
+
+  function setLoginLoading(loading) {
+    isAuthenticating = loading;
+    if (el.btnLoginSubmit) el.btnLoginSubmit.disabled = loading;
+    if (el.loginUser) el.loginUser.disabled = loading;
+    if (el.loginPass) el.loginPass.disabled = loading;
+    if (el.btnLoginText) el.btnLoginText.style.display = loading ? 'none' : 'inline';
+    if (el.btnLoginLoading) el.btnLoginLoading.style.display = loading ? 'inline-flex' : 'none';
+  }
+
+  function resetPasswordToggle() {
+    if (el.btnTogglePassword && el.loginPass) {
+      el.loginPass.type = 'password';
+      el.btnTogglePassword.setAttribute('aria-label', 'Show password');
+      el.btnTogglePassword.setAttribute('title', 'Show password');
+      const eye = el.btnTogglePassword.querySelector('.icon-eye');
+      const eyeOff = el.btnTogglePassword.querySelector('.icon-eye-off');
+      if (eye) eye.style.display = 'block';
+      if (eyeOff) eyeOff.style.display = 'none';
     }
   }
 
@@ -264,14 +328,35 @@
       el.loginOverlay.style.display = 'flex';
       if (el.loginUser) el.loginUser.value = '';
       if (el.loginPass) el.loginPass.value = '';
-      if (el.loginError) el.loginError.style.display = 'none';
+      resetPasswordToggle();
+      hideLoginError();
+      setLoginLoading(false);
+      setTimeout(() => {
+        if (el.loginUser) el.loginUser.focus();
+      }, 50);
     }
   }
 
   function showLoginError(msg) {
     if (el.loginError) {
-      el.loginError.textContent = msg;
+      el.loginError.innerHTML = `
+        <div style="display: flex; align-items: flex-start; gap: 0.5rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0; margin-top: 1px;">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          <span>${escapeHTML(msg)}</span>
+        </div>
+      `;
       el.loginError.style.display = 'block';
+    }
+  }
+
+  function hideLoginError() {
+    if (el.loginError) {
+      el.loginError.innerHTML = '';
+      el.loginError.style.display = 'none';
     }
   }
 
